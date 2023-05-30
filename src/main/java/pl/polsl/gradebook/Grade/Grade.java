@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import pl.polsl.gradebook.Student.Student;
 import pl.polsl.gradebook.Subject.Subject;
+import pl.polsl.gradebook.Teacher.Teacher;
 
 import java.math.BigDecimal;
 
@@ -19,13 +20,20 @@ public class Grade {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "subject_id" , referencedColumnName = "id")
     private Subject subject;
 
     @OneToOne
+    @JoinColumn(name = "student_id" , referencedColumnName = "id")
     private Student student;
+
+    @OneToOne
+    @JoinColumn(name = "teacher_id" , referencedColumnName = "id")
+    private Teacher teacher;
 
     private BigDecimal value;
 
-    @Enumerated(EnumType.STRING)
-    private GradeType gradeType;
+    private String description;
+
+
 }

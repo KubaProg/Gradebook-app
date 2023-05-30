@@ -1,13 +1,15 @@
 package pl.polsl.gradebook.Teacher;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.polsl.gradebook.Subject.Subject;
+import pl.polsl.gradebook.User.User;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,5 +21,18 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    @OneToMany(mappedBy = "teacher")
+    private List<Subject> subjects;
+
+    private String name;
+
+    private String surname;
+
+    private BigDecimal salary;
 
 }
