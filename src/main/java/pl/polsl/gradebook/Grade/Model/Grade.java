@@ -2,9 +2,9 @@ package pl.polsl.gradebook.Grade.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pl.polsl.gradebook.Student.Student;
-import pl.polsl.gradebook.Subject.Subject;
-import pl.polsl.gradebook.Teacher.Teacher;
+import pl.polsl.gradebook.Student.Model.Student;
+import pl.polsl.gradebook.Subject.Model.Subject;
+import pl.polsl.gradebook.Teacher.Model.Teacher;
 
 import java.math.BigDecimal;
 

@@ -1,11 +1,11 @@
-package pl.polsl.gradebook.Subject;
+package pl.polsl.gradebook.Subject.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.polsl.gradebook.Teacher.Teacher;
+import pl.polsl.gradebook.Teacher.Model.Teacher;
 
 @Entity
 @Getter

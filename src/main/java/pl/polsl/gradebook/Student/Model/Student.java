@@ -1,12 +1,12 @@
-package pl.polsl.gradebook.Student;
+package pl.polsl.gradebook.Student.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.polsl.gradebook.Subject.Subject;
-import pl.polsl.gradebook.User.User;
+import pl.polsl.gradebook.Subject.Model.Subject;
+import pl.polsl.gradebook.User.Model.User;
 
 import java.util.List;
 

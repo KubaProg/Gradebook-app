@@ -1,8 +1,8 @@
-package pl.polsl.gradebook.Headmaster;
+package pl.polsl.gradebook.Headmaster.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pl.polsl.gradebook.User.User;
+import pl.polsl.gradebook.User.Model.User;
 
 @Entity
 @Getter

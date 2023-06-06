@@ -1,4 +1,4 @@
-package pl.polsl.gradebook.User;
+package pl.polsl.gradebook.User.Model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
