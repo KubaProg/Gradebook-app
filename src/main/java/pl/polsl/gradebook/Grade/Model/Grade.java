@@ -1,4 +1,4 @@
-package pl.polsl.gradebook.Grade;
+package pl.polsl.gradebook.Grade.Model;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -22,5 +22,6 @@ public class Subject {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
+    private String name;
 
 }
