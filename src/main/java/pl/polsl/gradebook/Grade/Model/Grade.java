@@ -31,7 +31,7 @@ public class Grade {
     @JoinColumn(name = "teacher_id" , referencedColumnName = "id")
     private Teacher teacher;
 
-    private BigDecimal value;
+    private BigDecimal numericalValue;
 
     private String description;
 
