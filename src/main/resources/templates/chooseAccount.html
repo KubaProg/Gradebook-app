@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dziennik Elektroniczny</title>
-    <link rel="stylesheet" href="../static/styles/chooseAccount.css">
+    <link rel="stylesheet" href="../static/styles/chooseAccount.css" th:href="@{styles/chooseAccount.css}">
     <script src="../static/js/chooseAccount.js"></script>
 </head>
 <body>
@@ -26,9 +26,9 @@
                 </a></li>
             </ul>
             <div class="side-bar">
-                <img src="../static/images/student.png">
-                <img src="../static/images/teacherW.png">
-                <img src="../static/images/principalW.png">
+                <img src="../static/images/student.png" th:src="@{/images/student.png}">
+                <img src="../static/images/teacherW.png" th:src="@{/images/teacherW.png}">
+                <img src="../static/images/principalW.png" th:src="@{/images/principalW.png}">
             </div>
         </div>
     </div>
