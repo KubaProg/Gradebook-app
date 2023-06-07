@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserCredentialsDto {
 
-    private final String email;
+    private final String login;
     private final String password;
     private final String role;
 

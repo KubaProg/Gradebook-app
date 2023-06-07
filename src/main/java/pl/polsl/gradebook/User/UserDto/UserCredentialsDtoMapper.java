@@ -11,10 +11,10 @@ import static java.util.Arrays.stream;
 public class UserCredentialsDtoMapper {
 
     public static UserCredentialsDto map(User user){
-        String email = user.getLogin();
+        String login = user.getLogin();
         String password = user.getPassword();
         String role = user.getRole();
-        return new UserCredentialsDto(email,password,role);
+        return new UserCredentialsDto(login,password,role);
 
     }
 
