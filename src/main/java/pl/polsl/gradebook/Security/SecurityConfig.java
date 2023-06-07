@@ -21,6 +21,7 @@ class SecurityConfig {
 //                .requestMatchers("/**").permitAll()
                         .requestMatchers("/images/**", "/styles/**", "js/**").permitAll()
                         .requestMatchers("/landingPage").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/choose-account").permitAll()
 //                .requestMatchers("/jobList").hasAnyRole("USER","ADMIN")
 //                .requestMatchers("/adminsPanel/**").hasRole("ADMIN")
 //                .requestMatchers("/api/**").permitAll()
