@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dziennik Elektroniczny</title>
-    <link rel="stylesheet" href="../static/styles/chooseAccount.css" th:href="@{styles/chooseAccount.css}">
-    <script src="../static/js/chooseAccount.js"></script>
+    <link rel="stylesheet" href="../static/styles/css/choose-account.css" th:href="@{styles/css/choose-account.css}">
+    <script defer src="../static/js/chooseAccount.js" th:src="@{/js/chooseAccount.js}"></script>
 </head>
 <body>
     <div class="header">
@@ -15,13 +15,13 @@
     <div class="container">
         <div class="menu">
             <ul class="myUl">
-                <li><a href="file:///C:/Users/user/Desktop/Projekt%20prog/Strona.html">
+                <li><a href="/login">
                     <button class="button-select student first">Zaloguj się jako uczeń</button>
                 </a></li>
-                <li><a href="/b">
+                <li><a href="/login">
                     <button class="button-select teacher">Zaloguj się jako nauczyciel</button>
                 </a></li>
-                <li><a href="/c">
+                <li><a href="/login">
                     <button class="button-select principal">Zaloguj się jako dyrektor</button>
                 </a></li>
             </ul>
