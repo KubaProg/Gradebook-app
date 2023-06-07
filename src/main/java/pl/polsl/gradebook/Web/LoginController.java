@@ -5,12 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/chooseAccount")
-public class ChooseAccountController {
+@RequestMapping("/login")
+public class LoginController {
 
     @GetMapping
-    public String showChooseAccountPage() {return "chooseAccount";}
-
-
+    public String showLoginPage() {return "login";}
 
 }

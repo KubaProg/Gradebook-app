@@ -24,32 +24,36 @@ body {
 }
 
 .container {
-  flex: 1;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
 .login-form {
   background: #DDDDDD;
-  position: relative;
   width: 350px;
   height: 450px;
-  top: max(260px, 46%);
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
   border-radius: 5px;
   animation: fadeIn 1s;
+  margin: 0 auto; /* Add this line */
 }
+
 
 .login-form img {
   background: rgb(0, 151, 136);
-  position: absolute;
+  position: relative;
   width: 100px;
   height: 100px;
-  left: -50px;
-  top: -15px;
+  margin-left: -50px;
+  margin-top: -15px;
   border-radius: 5px;
+  z-index: 1;
 }
+
+
+
 
 .login-form::before {
   background: rgb(0, 151, 136);

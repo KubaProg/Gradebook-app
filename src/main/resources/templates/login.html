@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../static/styles/style.css">
-        <script src="../static/js/script.js"></script>
+        <link rel="stylesheet" href="../static/styles/style.css" th:href="@{/styles/style.css}">
+        <script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
     </head>
 
     <body>
@@ -12,26 +12,16 @@
 
         </div>
         <div class="container">
+            <form th:action="@{/login}" class="userLoggingForm" method="post" th:object="${user}">
             <div class="login-form">
-                <img src="../static/images/teacherW.png">
+                <img src="../static/images/teacherW.png" th:src="@{images/teacherW.png}">
                 <p class="first">Wpisz swój adres e-mail</p>
-                <input class="email" placeholder="Wpisz e-mail">
+                <input name="login" type="text" class="email" placeholder="Wpisz e-mail">
                 <p>Wpisz swoje hasło</p>
-                <input class="password" placeholder="Wpisz hasło">
-                <button class="login-button">Zaloguj</button>
+                <input name= "password" class="password" placeholder="Wpisz hasło">
+                <button type="submit" class="login-button">Zaloguj</button>
             </div>
-            <!-- <div id="toolbar">
-                <div class="select">Opcja 1</div>
-                <div class="select">Opcja 2</div>
-                <div class="select">Opcja 3</div>
-                <div class="select">Opcja 4</div>
-            </div> -->
-            <!-- <div id="content">
-
-            </div>
-            <div id="footer">
-
-            </div> -->
+            </form>
         </div>
 
     </body>
