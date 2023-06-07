@@ -20,7 +20,7 @@ class SecurityConfig {
         http.authorizeHttpRequests(requests -> requests
 //                .requestMatchers("/**").permitAll()
                         .requestMatchers("/images/**", "/styles/**", "js/**").permitAll()
-                        .requestMatchers("/landingPage").hasAnyRole("ADMIN","USER")
+                        .requestMatchers("/landingPage").hasAnyRole("USER","ADMIN")
 //                .requestMatchers("/jobList").hasAnyRole("USER","ADMIN")
 //                .requestMatchers("/adminsPanel/**").hasRole("ADMIN")
 //                .requestMatchers("/api/**").permitAll()
