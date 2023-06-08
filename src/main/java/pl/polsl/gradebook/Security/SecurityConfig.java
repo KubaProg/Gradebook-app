@@ -20,8 +20,9 @@ class SecurityConfig {
         http.authorizeHttpRequests(requests -> requests
 //                .requestMatchers("/**").permitAll()
                         .requestMatchers("/images/**", "/styles/**", "js/**").permitAll()
-                        .requestMatchers("/landingPage").hasAnyRole("USER","ADMIN")
                         .requestMatchers("/choose-account").permitAll()
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/error").permitAll()
 //                .requestMatchers("/jobList").hasAnyRole("USER","ADMIN")
 //                .requestMatchers("/adminsPanel/**").hasRole("ADMIN")
 //                .requestMatchers("/api/**").permitAll()
@@ -41,6 +42,8 @@ class SecurityConfig {
                 .logoutSuccessUrl("/")
         );
 
+
+
         return http.build();
     }
 
@@ -48,5 +51,7 @@ class SecurityConfig {
     public PasswordEncoder passwordEncoder(){
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
+
+
 
 }
