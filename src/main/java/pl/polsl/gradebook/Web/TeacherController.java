@@ -1,11 +1,10 @@
 package pl.polsl.gradebook.Web;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 import pl.polsl.gradebook.Grade.Model.Grade;
 import pl.polsl.gradebook.Grade.Repository.GradeRepository;
 import pl.polsl.gradebook.Student.Model.Student;
@@ -17,6 +16,7 @@ import pl.polsl.gradebook.Teacher.Service.TeacherService;
 import pl.polsl.gradebook.User.Model.User;
 import pl.polsl.gradebook.User.Service.UserService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +30,7 @@ public class TeacherController {
     StudentRepository studentRepository;
     GradeRepository gradeRepository;
     SubjectService subjectService;
+    GradeRepository gradeRepository;
 
     public TeacherController(UserService userService, TeacherRepository teacherRepository
     , TeacherService teacherService, StudentRepository studentRepository, GradeRepository gradeRepository, SubjectService subjectService) {
@@ -40,7 +41,6 @@ public class TeacherController {
         this.studentRepository = studentRepository;
         this.gradeRepository = gradeRepository;
         this.subjectService = subjectService;
-
     }
 
 
@@ -71,10 +71,51 @@ public class TeacherController {
         return "redirect:student-grades";
     }
 
-//    @PostMapping("/grades")
-//    public String addGrade(){
-//
-//    }
+    @PostMapping("/grades")
+    public String addGrade(@Valid Grade grade, Errors errors){
+        System.out.println(grade);
+
+        Long loggedUserId = userService.findCurrentUser().getId();
+        Optional<Teacher> teacher = teacherRepository.findTeacherByUserId(loggedUserId);
+
+        teacher.ifPresent(grade::setTeacher);
+
+        // add here all information about grade
+        if(!errors.hasErrors()){
+            gradeRepository.save(grade);
+        }
+
+        return "redirect:/teacher-panel";
+    }
+
+    @PostMapping("/grades/delete")
+    public String deleteGrade(@RequestParam("gradeId") Long gradeId) {
+        Optional<Grade> grade = gradeRepository.findById(gradeId);
+
+        grade.ifPresent(value -> gradeRepository.delete(value));
+
+        return "redirect:/teacher-panel";
+    }
+
+
+    @PostMapping("/grades/edit")
+    public String editGrade(@RequestParam("gradeId") Long gradeId, @RequestParam("newGradeValue") BigDecimal newGradeValue) {
+        Optional<Grade> grade = gradeRepository.findById(gradeId);
+
+        if (grade.isPresent()) {
+            Grade existingGrade = grade.get();
+            existingGrade.setNumericalValue(newGradeValue);
+            gradeRepository.save(existingGrade);
+        }
+
+        return "redirect:/teacher-panel";
+    }
+
+
+
+
+
+
 
 
     @GetMapping("/students")
