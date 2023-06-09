@@ -71,6 +71,15 @@ public class TeacherController {
         return "redirect:teacher-panel";
     }
 
+    @PostMapping("/add-student")
+    public String addStudent()
+    {
+
+
+
+        return "redirect:teacher-panel";
+    }
+
     @PostMapping("/grades")
     public String addGrade(@Valid Grade grade, Errors errors){
         System.out.println(grade);

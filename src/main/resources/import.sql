@@ -16,3 +16,5 @@ VALUES (3, 'michal','moryc',3);
 
 INSERT INTO Subject (teacher_id, name)
 VALUES (2, 'Mathematics') , (2, 'Physics'), (2, 'WALENIE KONIA');
+
+
