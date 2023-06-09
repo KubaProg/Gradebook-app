@@ -19,6 +19,7 @@ public class Grade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmp
     @OneToOne
     @JoinColumn(name = "subject_id" , referencedColumnName = "id")
     private Subject subject;
