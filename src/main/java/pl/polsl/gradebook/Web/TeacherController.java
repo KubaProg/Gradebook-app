@@ -30,7 +30,8 @@ public class TeacherController {
     StudentRepository studentRepository;
     GradeRepository gradeRepository;
     SubjectService subjectService;
-    GradeRepository gradeRepository;
+
+
 
     public TeacherController(UserService userService, TeacherRepository teacherRepository
     , TeacherService teacherService, StudentRepository studentRepository, GradeRepository gradeRepository, SubjectService subjectService) {
@@ -45,6 +46,9 @@ public class TeacherController {
 
 
     @GetMapping
+    public String showTeacherPage() {return "teacher-panel";}
+
+    @GetMapping("/subjects")
     public String showSubjects(Model model)
     {
         User currentUser = userService.findCurrentUser();
@@ -68,7 +72,7 @@ public class TeacherController {
             model.addAttribute("studentGrades", studentGrades);
         }
 
-        return "redirect:student-grades";
+        return "redirect:teacher-panel";
     }
 
     @PostMapping("/grades")
@@ -85,7 +89,7 @@ public class TeacherController {
             gradeRepository.save(grade);
         }
 
-        return "redirect:/teacher-panel";
+        return "redirect:teacher-panel";
     }
 
     @PostMapping("/grades/delete")
@@ -94,7 +98,7 @@ public class TeacherController {
 
         grade.ifPresent(value -> gradeRepository.delete(value));
 
-        return "redirect:/teacher-panel";
+        return "redirect:teacher-panel";
     }
 
 
@@ -108,15 +112,10 @@ public class TeacherController {
             gradeRepository.save(existingGrade);
         }
 
-        return "redirect:/teacher-panel";
+        return "redirect:teacher-panel";
     }
 
-
-
-
-
-
-
+    
 
     @GetMapping("/students")
     public String showSubjectStudents(@RequestParam Long id, Model model){
@@ -128,7 +127,7 @@ public class TeacherController {
             model.addAttribute(students);
         }
 
-        return "redirect:/teacher-panel";
+        return "redirect:teacher-panel";
     }
 
     @GetMapping("/add-subject")
@@ -143,7 +142,7 @@ public class TeacherController {
             subjectService.saveNewSubject(subjectName, teacher);
         }
 
-        return "redirect:/teacher-panel";
+        return "redirect:teacher-panel";
     }
 
 
