@@ -46,22 +46,18 @@ public class TeacherController {
 
 
     @GetMapping
-    public String showTeacherPage() {return "teacher-panel";}
+    public String showTeacherPage(Model model) {
 
-    @GetMapping("/subjects")
-    public String showSubjects(Model model)
-    {
         User currentUser = userService.findCurrentUser();
         Optional<Teacher> currentTeacher = teacherRepository.findById(currentUser.getId());
 
         if(currentTeacher.isPresent()){
             Teacher teacher = currentTeacher.get();
-            model.addAttribute(teacher.getSubjects());
+            model.addAttribute("subjects", teacher.getSubjects());
         }
 
         return "teacher-panel";
     }
-
 
     @GetMapping("/student-grades/{studentId}/{subjectId}")
     public String getStudentGrades(@PathVariable Long studentId, @PathVariable Long subjectId, Model model) {

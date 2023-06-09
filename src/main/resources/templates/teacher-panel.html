@@ -171,7 +171,21 @@
             </button>
           </div>
             
-            <ul class="classes">
+            <ul class="classes" th:remove="all-but-first">
+              <li th:each="subject: ${subjects}">
+                <div class="class">
+                  <div th:text="*{subject.getName()}">Matematyka</div>
+                  <button type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
+                  <button type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
+                </div>
+                <ul class="students">
+                  <li>
+                    <div>Kamil Nowak</div>
+                    <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                    <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                  </li>
+                </ul>
+              </li>
                 <li>
                     <div class="class">
                         <div>Matematyka</div>

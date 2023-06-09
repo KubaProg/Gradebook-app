@@ -14,3 +14,5 @@ VALUES (2,'dominik',4300,'szczepanik',2);
 INSERT INTO headmaster (id,name, surname, user_id)
 VALUES (3, 'michal','moryc',3);
 
+INSERT INTO Subject (teacher_id, name)
+VALUES (2, 'Mathematics') , (2, 'Physics'), (2, 'WALENIE KONIA');
