@@ -10,6 +10,8 @@ import java.util.Optional;
 @Repository
 public interface GradeRepository extends CrudRepository<Grade, Long> {
 
+
     Optional<List<Grade>> findGradesByStudentIdAndSubjectId(Long studentId, Long gradeId);
+
 
 }
