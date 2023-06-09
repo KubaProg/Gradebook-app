@@ -1,6 +1,4 @@
 package pl.polsl.gradebook.Web;
-
-import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
