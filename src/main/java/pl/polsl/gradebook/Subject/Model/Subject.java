@@ -1,10 +1,7 @@
 package pl.polsl.gradebook.Subject.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.polsl.gradebook.Teacher.Model.Teacher;
 
 @Entity
@@ -12,6 +9,7 @@ import pl.polsl.gradebook.Teacher.Model.Teacher;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Subject {
 
     @Id
