@@ -1,6 +1,7 @@
 package pl.polsl.gradebook.Subject.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Subject {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
+    @NotBlank
     private String name;
 
 }

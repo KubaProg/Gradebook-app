@@ -1,6 +1,7 @@
 package pl.polsl.gradebook.Grade.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import pl.polsl.gradebook.Student.Model.Student;
 import pl.polsl.gradebook.Subject.Model.Subject;
@@ -19,10 +20,11 @@ public class Grade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmp
+
     @OneToOne
     @JoinColumn(name = "subject_id" , referencedColumnName = "id")
     private Subject subject;
+
 
     @OneToOne
     @JoinColumn(name = "student_id" , referencedColumnName = "id")
@@ -32,7 +34,12 @@ public class Grade {
     @JoinColumn(name = "teacher_id" , referencedColumnName = "id")
     private Teacher teacher;
 
+
+    @NotBlank
+    @DecimalMin(value = "1")
+    @DecimalMax(value = "6")
     private BigDecimal numericalValue;
+
 
     private String description;
 
