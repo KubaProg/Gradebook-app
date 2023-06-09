@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dziennik Elektroniczny</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/styles/css/teacher-panel.css" th:href="@{/styles/css/teacher-panel.css}">
+    <script defer src="../static/js/teacherPanel.js" th:src="@{/js/teacherPanel.js}"></script>
+    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>$(function() { alert('hello') });</script> -->
+
+</head>
+<body>
+<!-- Modale -->
+<div class="modal fade" id="add-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Dodaj przedmiot</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Wpisz nazwę przedmiotu:
+        <input type="text" class="form-control add-class-input">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary add-class-cancel" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-primary add-class-submit">Dodaj</button>
+      </div>
+    </div>
+  </div>
+</div>    
+
+
+<div class="modal fade" id="add-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Dodaj ucznia</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Wpisz ucznia:
+          <input type="text" class="form-control add-student-input">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary add-student-cancel" data-dismiss="modal">Anuluj</button>
+          <button type="button" class="btn btn-primary add-student-submit">Dodaj</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="remove-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Usuń przedmiot</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Czy na pewno chcesz usunąc ten przedmiot?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary remove-class-cancel" data-dismiss="modal">Anuluj</button>
+          <button type="button" class="btn btn-primary remove-class-submit">Usuń</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="modal fade" id="remove-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Usuń ucznia</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Czy na pewno chcesz usunąc tego ucznia?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary remove-student-cancel" data-dismiss="modal">Anuluj</button>
+          <button type="button" class="btn btn-primary remove-student-submit">Usuń</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="modal fade" id="edit-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Informacje o uczniu</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="student-info">
+            <div class="student-name"></div>
+            <div class="student-grades-div">Oceny:
+              <ul class="student-grades">
+                <li>
+                  4
+                </li>
+                <li>
+                  5
+                </li>
+                <li>
+                  3
+                </li>
+                <li>
+                  6
+                </li>
+                <li>
+                  3
+                </li>
+                <li>
+                  3
+                </li>
+              </ul>
+            </div>
+            <div class="grade-info">
+              <p class="first">Wartość:</p>
+              <input type="text" class="form-control grade-value">
+              <p>Opis:</p>
+              <textarea name="text" wrap="soft" class="form-control grade-description"></textarea>
+            </div>
+          </div>
+          <div class="grade-editor">
+            <button type="button" class="btn btn-secondary delete-grade"></button>
+            <button type="button" class="btn edit-grade">Edytuj</button>
+            <button type="button" class="btn btn-primary add-grade" data-toggle="modal" data-target="#add-grade-modal"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="add-grade-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Dodaj ocenę</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Wpisz ocenę:
+          <input type="text" class="form-control add-grade-input">
+          Wpisz opis:
+          <textarea name="text" wrap="soft" class="form-control add-grade-description-input"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary add-grade-cancel" data-dismiss="modal">Anuluj</button>
+          <button type="button" class="btn btn-primary add-grade-submit">Dodaj</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Panel Nauczyciela -->
+    <div class="header">
+        <div class="logo">Dziennik Elektroniczny</div>
+    </div>
+    <div class="container">
+        <div class="menu">
+          <div class="menu-teacher-info">
+            <div>Jan Kowalski</div>
+            <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">
+                Dodaj przedmiot
+            </button>
+          </div>
+            
+            <ul class="classes">
+                <li>
+                    <div class="class">
+                        <div>Matematyka</div>
+                        <button type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
+                        <button type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
+                    </div>
+                    <ul class="students">
+                        <li>
+                          <div>Kamil Nowak</div>
+                          <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                          <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                        </li>
+                        <li>
+                          <div>Mariusz Pudzianowski</div>
+                          <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                          <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                        </li>
+                        <li>
+                          <div>Adam Małysz</div>
+                          <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                          <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <div class="class">
+                        <div>Informatyka</div>
+                        <button type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
+                        <button type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
+                    </div>
+                    <ul class="students">
+                      <li>
+                        <div>Kamil Nowak</div>
+                        <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                        <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                      </li>
+                      <li>
+                        <div>Mariusz Pudzianowski</div>
+                        <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                        <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                      </li>
+                      <li>
+                        <div>Adam Małysz</div>
+                        <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                        <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                      </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="class">
+                        <div>Biologia</div>
+                        <button type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
+                        <button type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
+                    </div>
+                    <ul class="students">
+                      <li>
+                        <div>Kamil Nowak</div>
+                        <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                        <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                      </li>
+                      <li>
+                        <div>Mariusz Pudzianowski</div>
+                        <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                        <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                      </li>
+                      <li>
+                        <div>Adam Małysz</div>
+                        <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                        <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                      </li>
+                  </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
