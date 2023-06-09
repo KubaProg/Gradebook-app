@@ -1,10 +1,13 @@
 package pl.polsl.gradebook.User.Service;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import pl.polsl.gradebook.User.Model.User;
 import pl.polsl.gradebook.User.Repository.UserRepository;
 import pl.polsl.gradebook.User.UserDto.UserCredentialsDto;
 import pl.polsl.gradebook.User.UserDto.UserCredentialsDtoMapper;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -21,6 +24,9 @@ public class UserService {
                 .map(UserCredentialsDtoMapper::map);
     }
 
-
+    public User findCurrentUser(){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByLogin(email).orElseThrow(NoSuchElementException::new);
+    }
 
 }

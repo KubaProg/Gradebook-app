@@ -5,7 +5,6 @@ VALUES (1,'jakub', '{bcrypt}$2a$12$YyPMqSXuWWX7nLzzyIW6O.Uj32KJO4h4VHK6YDcB00WmX
 COMMIT;
 
 
-
 INSERT INTO student (id,name, parent_number, surname, user_id)
 VALUES (1,'jakub','123456','opielka',1);
 
@@ -14,3 +13,4 @@ VALUES (2,'dominik',4300,'szczepanik',2);
 
 INSERT INTO headmaster (id,name, surname, user_id)
 VALUES (3, 'michal','moryc',3);
+
