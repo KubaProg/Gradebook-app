@@ -123,20 +123,20 @@ public class TeacherController {
     }
 
 
-
-    @GetMapping("/students/{id}")
-    public String showSubjectStudents(@PathVariable("id") Long id, Model model){
-
-        Optional<List<Student>> subjectStudents = studentRepository.findStudentsBySubjectsId(id);
-
-        if(subjectStudents.isPresent()){
-            List<Student> students = subjectStudents.get();
-            model.addAttribute("students", students);
-
-        }
-
-        return "teacher-panel";
-    }
+// nie dziala
+//    @GetMapping("/students/{id}")
+//    public String showSubjectStudents(@PathVariable("id") Long id, Model model){
+//
+//        Optional<List<Student>> subjectStudents = studentRepository.findStudentsBySubjectsId(id);
+//
+//        if(subjectStudents.isPresent()){
+//            List<Student> students = subjectStudents.get();
+//            model.addAttribute("students", students);
+//
+//        }
+//
+//        return "teacher-panel";
+//    }
 
     @GetMapping("/add-subject")
     public String addSubject(@RequestParam String subjectName)
@@ -149,6 +149,16 @@ public class TeacherController {
             Teacher teacher = teacherByUserId.get();
             subjectService.saveNewSubject(subjectName, teacher);
         }
+
+        return "teacher-panel";
+    }
+
+
+    @GetMapping("/students")
+    public String getAllStudents(Model model) {
+        Iterable<Student> students = studentRepository.findAll();
+
+        model.addAttribute("studentsList", students);
 
         return "teacher-panel";
     }

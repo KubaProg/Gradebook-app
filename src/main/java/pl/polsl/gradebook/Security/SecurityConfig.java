@@ -22,7 +22,7 @@ class SecurityConfig {
                         .requestMatchers("/").permitAll()
                 // będzie hasAnyRole("STUDENT","TEACHER","HEADMASTER") tak gdzie trzeba
                         .requestMatchers("/error/**").permitAll()
-                        .requestMatchers("/teacher-panel").hasRole("TEACHER")
+                        .requestMatchers("/teacher-panel/**").hasRole("TEACHER")
 //                .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .anyRequest().permitAll()
