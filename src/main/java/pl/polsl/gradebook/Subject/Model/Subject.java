@@ -7,7 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.*;
+import pl.polsl.gradebook.Student.Model.Student;
 import pl.polsl.gradebook.Teacher.Model.Teacher;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,5 +30,8 @@ public class Subject {
 
     @NotBlank
     private String name;
+
+    @ManyToMany(mappedBy = "subjects")
+    private List<Student> students;
 
 }

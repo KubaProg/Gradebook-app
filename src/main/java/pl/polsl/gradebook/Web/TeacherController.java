@@ -17,6 +17,8 @@ import pl.polsl.gradebook.User.Model.User;
 import pl.polsl.gradebook.User.Service.UserService;
 
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,10 +67,10 @@ public class TeacherController {
         Optional<List<Grade>> studentGrades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId);
 
         if(studentGrades.isPresent()) {
-            model.addAttribute("studentGrades", studentGrades);
+            model.addAttribute("studentGrades", studentGrades.get());
         }
 
-        return "redirect:teacher-panel";
+        return "teacher-panel";
     }
 
     @PostMapping("/add-student")
@@ -77,7 +79,7 @@ public class TeacherController {
 
 
 
-        return "redirect:teacher-panel";
+        return "teacher-panel";
     }
 
     @PostMapping("/grades")
@@ -94,7 +96,7 @@ public class TeacherController {
             gradeRepository.save(grade);
         }
 
-        return "redirect:teacher-panel";
+        return "teacher-panel";
     }
 
     @PostMapping("/grades/delete")
@@ -103,7 +105,7 @@ public class TeacherController {
 
         grade.ifPresent(value -> gradeRepository.delete(value));
 
-        return "redirect:teacher-panel";
+        return "teacher-panel";
     }
 
 
@@ -117,22 +119,23 @@ public class TeacherController {
             gradeRepository.save(existingGrade);
         }
 
-        return "redirect:teacher-panel";
+        return "teacher-panel";
     }
 
-    
 
-    @GetMapping("/students")
-    public String showSubjectStudents(@RequestParam Long id, Model model){
+
+    @GetMapping("/students/{id}")
+    public String showSubjectStudents(@PathVariable("id") Long id, Model model){
 
         Optional<List<Student>> subjectStudents = studentRepository.findStudentsBySubjectsId(id);
 
         if(subjectStudents.isPresent()){
             List<Student> students = subjectStudents.get();
-            model.addAttribute(students);
+            model.addAttribute("students", students);
+
         }
 
-        return "redirect:teacher-panel";
+        return "teacher-panel";
     }
 
     @GetMapping("/add-subject")
@@ -147,8 +150,10 @@ public class TeacherController {
             subjectService.saveNewSubject(subjectName, teacher);
         }
 
-        return "redirect:teacher-panel";
+        return "teacher-panel";
     }
+
+
 
 
 
