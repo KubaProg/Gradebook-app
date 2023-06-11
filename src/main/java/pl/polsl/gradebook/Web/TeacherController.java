@@ -9,6 +9,7 @@ import pl.polsl.gradebook.Grade.Model.Grade;
 import pl.polsl.gradebook.Grade.Repository.GradeRepository;
 import pl.polsl.gradebook.Student.Model.Student;
 import pl.polsl.gradebook.Student.Repository.StudentRepository;
+import pl.polsl.gradebook.Subject.Repository.SubjectRepository;
 import pl.polsl.gradebook.Subject.Service.SubjectService;
 import pl.polsl.gradebook.Teacher.Model.Teacher;
 import pl.polsl.gradebook.Teacher.Repository.TeacherRepository;
@@ -33,10 +34,12 @@ public class TeacherController {
     GradeRepository gradeRepository;
     SubjectService subjectService;
 
+    SubjectRepository subjectRepository;
+
 
 
     public TeacherController(UserService userService, TeacherRepository teacherRepository
-    , TeacherService teacherService, StudentRepository studentRepository, GradeRepository gradeRepository, SubjectService subjectService) {
+    , TeacherService teacherService, StudentRepository studentRepository, GradeRepository gradeRepository, SubjectService subjectService, SubjectRepository subjectRepository) {
 
         this.userService = userService;
         this.teacherRepository = teacherRepository;
@@ -44,6 +47,7 @@ public class TeacherController {
         this.studentRepository = studentRepository;
         this.gradeRepository = gradeRepository;
         this.subjectService = subjectService;
+        this.subjectRepository = subjectRepository;
     }
 
 
@@ -128,12 +132,14 @@ public class TeacherController {
     public String addSubject(@RequestParam String subjectName)
     {
         subjectService.saveNewSubject(subjectName);
-        return "teacher-panel";
+        return "redirect:/teacher-panel";
     }
 
-    @DeleteMapping
-    public String deleteSubject(){
-        return "chuj";
+    @PostMapping("/delete-subject")
+    public String deleteSubject(@RequestParam Long subjectId){
+        subjectRepository.deleteById(subjectId);
+
+        return "redirect:/teacher-panel";
     }
 
 
