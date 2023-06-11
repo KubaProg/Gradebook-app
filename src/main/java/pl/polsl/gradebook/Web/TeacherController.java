@@ -123,44 +123,23 @@ public class TeacherController {
     }
 
 
-// nie dziala
-//    @GetMapping("/students/{id}")
-//    public String showSubjectStudents(@PathVariable("id") Long id, Model model){
-//
-//        Optional<List<Student>> subjectStudents = studentRepository.findStudentsBySubjectsId(id);
-//
-//        if(subjectStudents.isPresent()){
-//            List<Student> students = subjectStudents.get();
-//            model.addAttribute("students", students);
-//
-//        }
-//
-//        return "teacher-panel";
-//    }
 
-    @GetMapping("/add-subject")
+    @PostMapping("/add-subject")
     public String addSubject(@RequestParam String subjectName)
     {
-
-        Long loggedUserId = userService.findCurrentUser().getId();
-        Optional<Teacher> teacherByUserId = teacherRepository.findTeacherByUserId(loggedUserId);
-
-        if(teacherByUserId.isPresent()){
-            Teacher teacher = teacherByUserId.get();
-            subjectService.saveNewSubject(subjectName, teacher);
-        }
-
+        subjectService.saveNewSubject(subjectName);
         return "teacher-panel";
     }
 
+    @DeleteMapping
+    public String deleteSubject(){
+        return "chuj";
+    }
 
-    @GetMapping("/students")
-    public String getAllStudents(Model model) {
-        Iterable<Student> students = studentRepository.findAll();
 
-        model.addAttribute("studentsList", students);
-
-        return "teacher-panel";
+    @ModelAttribute("allStudents")
+    public Iterable<Student> getAllStudents(Model model) {
+        return studentRepository.findAll();
     }
 
 
