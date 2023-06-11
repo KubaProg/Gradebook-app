@@ -85,10 +85,20 @@ public class TeacherController {
     public String addStudent(@RequestParam("studentId") Long studentId, @RequestParam("subjectId") Long subjectId)
     {
 
-        Student student = studentRepository.findById(studentId).get();
-        Subject subject = subjectRepository.findById(subjectId).get();
-        student.getSubjects().add(subject);
-        studentRepository.save(student);
+
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        Optional<Subject> subjectOptional = subjectRepository.findById(subjectId);
+
+        if (studentOptional.isPresent() && subjectOptional.isPresent()) {
+            Student student = studentOptional.get();
+            Subject subject = subjectOptional.get();
+
+            if (!student.getSubjects().contains(subject)){
+                student.getSubjects().add(subject);
+                studentRepository.save(student);
+            }
+
+        }
 
         return "redirect:/teacher-panel";
     }
