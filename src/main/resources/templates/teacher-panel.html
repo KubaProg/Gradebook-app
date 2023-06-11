@@ -62,7 +62,7 @@
     </div>
   </div>
   
-  <div class="modal fade" id="remove-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div  class="modal fade" id="remove-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -74,13 +74,17 @@
         <div class="modal-body">
           Czy na pewno chcesz usunąc ten przedmiot?
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" >
           <button type="button" class="btn btn-secondary remove-class-cancel" data-dismiss="modal">Anuluj</button>
-          <button type="button" class="btn btn-primary remove-class-submit">Usuń</button>
+          <form th:action="@{teacher-panel/delete-subject}" method="post" >
+            <input type="hidden" name="subjectId" id="subjectId" />
+            <button type="submit" class="btn btn-primary remove-class-submit">Usuń</button>
+          </form>
+
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 
   <div class="modal fade" id="remove-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -179,14 +183,11 @@
 
             <ul class="classes" th:remove="all-but-first">
               <li th:each="subject: ${subjects}">
-                <div class="class">
-                  <div th:value="*{subject.getId()}" th:text="*{subject.getName()}">Matematyka</div>
+                <div class="class" th:data-subject-id="${subject.getId()}">
+                  <div  th:value="*{subject.getId()}" th:text="*{subject.getName()}">Matematyka</div>
                   <button  type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
-<!--                  <button th:action="@{/teacher-panel/delete-subject/{subjectId}(subjectId=${subject.getId()})}"  type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>-->
-                  <form th:action="@{teacher-panel/delete-subject}" method="post">
-                    <input type="hidden" name="subjectId" th:value="${subject.getId()}" />
-                    <button type="submit" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716;</button>
-                  </form>
+                  <button onclick="setSubjectId(this)" type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
+
                 </div>
                 <ul class="students" >
                   <li th:each="student : ${subject.getStudents()}">
@@ -199,5 +200,12 @@
             </ul>
         </div>
     </div>
+  <script>
+    function setSubjectId(button) {
+      var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
+      document.getElementById("subjectId").value = subjectId;
+      document.getElementById("delete-subject-form").submit();
+    }
+  </script>
 </body>
 </html>
