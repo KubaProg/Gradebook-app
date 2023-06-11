@@ -47,16 +47,17 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form class="modal-body" >
-          <label for="class-name">Wybierz ucznia:</label>
-          <select id="class-name" class="form-control">
-            <option th:each="student : ${allStudents}" th:value="${student.getName()}" th:text="${student.getName()}"></option>
+        <form class='modal-body' id="add-student-form" th:action="@{/teacher-panel/add-student}" method="post">
+          <select id="class-name" name="selectedStudent" class="form-control">
+            <option th:each="student : ${allStudents}" th:value="${student.getName()}" th:text="${student.getName()} + ${' '} + ${student.getSurname()}"></option>
           </select>
+          <button type="submit" class="btn btn-primary add-student-submit">Dodaj</button>
         </form>
+
         <form class="modal-footer">
           <button type="button" class="btn btn-secondary add-student-cancel" data-dismiss="modal">Anuluj</button>
-          <button type="button" class="btn btn-primary add-student-submit">Dodaj</button>
         </form>
+
       </div>
     </div>
   </div>
@@ -175,7 +176,7 @@
                 Dodaj przedmiot
             </button>
           </div>
-            
+
             <ul class="classes" th:remove="all-but-first">
               <li th:each="subject: ${subjects}">
                 <div class="class">

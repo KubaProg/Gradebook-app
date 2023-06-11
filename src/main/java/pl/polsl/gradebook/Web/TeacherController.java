@@ -79,13 +79,14 @@ public class TeacherController {
     }
 
     @PostMapping("/add-student")
-    public String addStudent()
+    public String addStudent(@RequestParam String selectedStudent)
     {
 
+//        Subject subject = subjectRepository.findById(subjectId).get();
 
-
-        return "teacher-panel";
+        return "redirect:/teacher-panel";
     }
+
 
 
     @PostMapping("/delete-student")
