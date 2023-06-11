@@ -79,10 +79,17 @@ public class TeacherController {
     }
 
     @PostMapping("/add-student")
-    public String addStudent(@RequestParam String selectedStudent)
+    public String addStudent(@RequestParam("studentId") Long studentId, @RequestParam("subjectId") Long subjectId)
     {
 
-//        Subject subject = subjectRepository.findById(subjectId).get();
+        Subject subject = subjectRepository.findById(subjectId).get();
+        Student student = studentRepository.findById(studentId).get();
+
+        subject.getStudents().add(student);
+
+        System.out.println(subject.getStudents());
+
+        subjectRepository.save(subject);
 
         return "redirect:/teacher-panel";
     }

@@ -48,9 +48,13 @@
           </button>
         </div>
         <form class='modal-body' id="add-student-form" th:action="@{/teacher-panel/add-student}" method="post">
-          <select id="class-name" name="selectedStudent" class="form-control">
-            <option th:each="student : ${allStudents}" th:value="${student.getName()}" th:text="${student.getName()} + ${' '} + ${student.getSurname()}"></option>
+
+          <input type="hidden" name="subjectId" id="subjectForStudentId" />
+
+          <select id="class-name" name="studentId" class="form-control">
+            <option th:each="student : ${allStudents}" th:text="${student.getName()} + ${' '} + ${student.getSurname()}" th:value="${student.getId()}"></option>
           </select>
+
           <button type="submit" class="btn btn-primary add-student-submit">Dodaj</button>
         </form>
 
@@ -185,15 +189,16 @@
               <li th:each="subject: ${subjects}">
                 <div class="class" th:data-subject-id="${subject.getId()}">
                   <div  th:value="*{subject.getId()}" th:text="*{subject.getName()}">Matematyka</div>
-                  <button  type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
+                  <button onclick="setSubjectIdForStudent(this)"  type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
                   <button onclick="setSubjectId(this)" type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
 
                 </div>
+
                 <ul class="students" >
                   <li th:each="student : ${subject.getStudents()}">
                     <div th:text="*{student.getName()}">Kamil Nowak</div>
                     <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
-                    <button type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                    <button  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
                   </li>
                 </ul>
                 </li>
@@ -204,8 +209,15 @@
     function setSubjectId(button) {
       var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
       document.getElementById("subjectId").value = subjectId;
-      document.getElementById("delete-subject-form").submit();
     }
   </script>
+
+<script>
+  function setSubjectIdForStudent(button) {
+    var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
+    document.getElementById("subjectForStudentId").value = subjectId;
+  }
+</script>
+
 </body>
 </html>
