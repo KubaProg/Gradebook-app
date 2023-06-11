@@ -9,6 +9,7 @@ import pl.polsl.gradebook.Grade.Model.Grade;
 import pl.polsl.gradebook.Grade.Repository.GradeRepository;
 import pl.polsl.gradebook.Student.Model.Student;
 import pl.polsl.gradebook.Student.Repository.StudentRepository;
+import pl.polsl.gradebook.Subject.Model.Subject;
 import pl.polsl.gradebook.Subject.Repository.SubjectRepository;
 import pl.polsl.gradebook.Subject.Service.SubjectService;
 import pl.polsl.gradebook.Teacher.Model.Teacher;
@@ -126,8 +127,6 @@ public class TeacherController {
         return "teacher-panel";
     }
 
-
-
     @PostMapping("/add-subject")
     public String addSubject(@RequestParam String subjectName)
     {
@@ -136,11 +135,21 @@ public class TeacherController {
     }
 
     @PostMapping("/delete-subject")
-    public String deleteSubject(@RequestParam Long subjectId){
+    public String deleteSubject(@RequestParam Long subjectId) {
+        Subject subject = subjectRepository.findById(subjectId).get();
+
+        List<Student> students = subject.getStudents();
+
+        // Remove the subject from each student's list of subjects
+        for (Student student : students) {
+            student.getSubjects().remove(subject);
+        }
+
         subjectRepository.deleteById(subjectId);
 
         return "redirect:/teacher-panel";
     }
+
 
 
     @ModelAttribute("allStudents")
