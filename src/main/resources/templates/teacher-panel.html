@@ -54,14 +54,11 @@
           <select id="class-name" name="studentId" class="form-control">
             <option th:each="student : ${allStudents}" th:text="${student.getName()} + ${' '} + ${student.getSurname()}" th:value="${student.getId()}"></option>
           </select>
-
-          <button type="submit" class="btn btn-primary add-student-submit">Dodaj</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary add-student-cancel" data-dismiss="modal">Anuluj</button>
+            <button type="submit" class="btn btn-primary add-student-submit">Dodaj</button>
+          </div>
         </form>
-
-        <form class="modal-footer">
-          <button type="button" class="btn btn-secondary add-student-cancel" data-dismiss="modal">Anuluj</button>
-        </form>
-
       </div>
     </div>
   </div>
@@ -77,14 +74,13 @@
         </div>
         <div class="modal-body">
           Czy na pewno chcesz usunąc ten przedmiot?
-        </div>
-        <div class="modal-footer" >
-          <button type="button" class="btn btn-secondary remove-class-cancel" data-dismiss="modal">Anuluj</button>
-          <form th:action="@{teacher-panel/delete-subject}" method="post" >
-            <input type="hidden" name="subjectId" id="subjectId" />
-            <button type="submit" class="btn btn-primary remove-class-submit">Usuń</button>
-          </form>
-
+          <div class="modal-footer" >
+            <form th:action="@{teacher-panel/delete-subject}" method="post" >
+              <button type="button" class="btn btn-secondary remove-class-cancel" data-dismiss="modal">Anuluj</button>
+              <input type="hidden" name="subjectId" id="subjectId" />
+              <button type="submit" class="btn btn-primary remove-class-submit">Usuń</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -101,10 +97,10 @@
         </div>
         <div class="modal-body">
           Czy na pewno chcesz usunąc tego ucznia?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary remove-student-cancel" data-dismiss="modal">Anuluj</button>
-          <button type="button" class="btn btn-primary remove-student-submit">Usuń</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary remove-student-cancel" data-dismiss="modal">Anuluj</button>
+            <button type="button" class="btn btn-primary remove-student-submit">Usuń</button>
+          </div>
         </div>
       </div>
     </div>
@@ -136,12 +132,12 @@
               <textarea name="text" wrap="soft" readonly class="form-control grade-description"></textarea>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <div class="grade-editor">
-            <button type="button" class="btn btn-secondary delete-grade"></button>
-            <button type="button" class="btn edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button>
-            <button type="button" class="btn btn-primary add-grade" data-toggle="modal" data-target="#add-edit-grade-modal"></button>
+          <div class="modal-footer">
+            <div class="grade-editor">
+              <button type="button" class="btn btn-secondary delete-grade"></button>
+              <button type="button" class="btn edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button>
+              <button type="button" class="btn btn-primary add-grade" data-toggle="modal" data-target="#add-edit-grade-modal"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -162,11 +158,11 @@
           <input type="text" class="form-control add-grade-input">
           Wpisz opis:
           <textarea name="text" wrap="soft" class="form-control add-grade-description-input"></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary add-grade-cancel" data-dismiss="modal">Anuluj</button>
-          <button type="button" class="btn btn-primary add-grade-submit">Dodaj</button>
-          <button type="button" class="btn edit-grade-submit">Edytuj</button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary add-grade-cancel" data-dismiss="modal">Anuluj</button>
+            <button type="button" class="btn btn-primary add-grade-submit">Dodaj</button>
+            <button type="button" class="btn edit-grade-submit">Edytuj</button>
+          </div>
         </div>
       </div>
     </div>

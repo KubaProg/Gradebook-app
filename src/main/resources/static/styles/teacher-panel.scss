@@ -36,6 +36,7 @@ textarea[readonly] {
 .modal-body {
     background: #CCC;
     user-select: none;
+    padding-bottom: 0;
     font-family: fantasy
 }
 
@@ -43,7 +44,7 @@ textarea[readonly] {
     display: flex;
     justify-content: flex-end;
     background: #CCC;
-    padding: 15px;
+    padding: 15px 0 15px 15px;
     margin-top: 0px;
     border: none;
 }
@@ -57,20 +58,21 @@ textarea[readonly] {
 
 .btn-secondary {
     background: #680000;
+    width: 65px;
     color: #EEE;
     &:hover {
         background: #781111;
-        color: #000;
     }
 }
 
 .btn-primary {
     background: #006800;
+    width: 65px;
     border: 1px #006800 solid;
     color: #EEE;
     &:hover {
         background: #117811;
-        color: #000;
+        color: #333;
     }
     &:focus {
         background: #117811;
@@ -140,9 +142,12 @@ textarea[readonly] {
 .add-class {
     background: #006800;
     border: 1px #CCC solid;
-    border-radius: 1px;
+    border-radius: 5px;
     color: #EEE;
     font-size: 20px;
+    &:hover {
+        background: #117811;
+    }
 }
 
 .classes {
@@ -174,31 +179,51 @@ textarea[readonly] {
 .class {
     background: rgb(0, 151, 136);
     display: flex;
+    box-sizing: border-box;
     align-items: center;
     gap: 5px;
+    border: 1px #EEE solid;
     border-radius: 1px;
     color: #EEE;
     text-align: center;
     font-size: 40px;
+    transition: all 0.5s;
     div {
         width: calc(100% - 85px);
+    }
+    &:hover {
+        background: #EEE;
+        border: 1px rgb(0, 151, 136) solid;
+        color: rgb(0, 151, 136);
     }
 }
 
 .add-student {
     background: #006800;
+    &:hover {
+        background: #008800;
+    }
 }
 
 .remove-class {
     background: #680000;
+    &:hover {
+        background: #880000;
+    }
 }
 
 .remove-student {
     background: #680000;
+    &:hover {
+        background: #880000;
+    }
 }
 
 .edit-student {
     background: #686800;
+    &:hover {
+        background: #888800;
+    }
 }
 
 @keyframes expanding {
@@ -225,6 +250,7 @@ textarea[readonly] {
         border-radius: 0;
         gap: 5px;
         font-size: 70%;
+        transition: background-color 0.5s;
         div {
             width: calc(100% - 85px);
             padding-left: 1%;
@@ -247,18 +273,6 @@ textarea[readonly] {
         opacity: 1;
         filter: blur(0);
     }
-}
-
-#edit-student-modal .modal-content{
-    width: min(500px, 100%);
-    margin: auto;
-}
-
-#edit-student-modal .modal-body {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding-bottom: 0;
 }
 
 .student-info {
@@ -334,10 +348,19 @@ textarea[readonly] {
     resize: none;
 }
 
+#edit-student-modal .modal-content{
+    width: min(500px, 100%);
+    margin: auto;
+}
+
+#edit-student-modal .modal-footer{
+    padding: 15px 10px 15px 10px;
+}
+
 .grade-editor {
     flex: 1;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     button {
         width: 120px;
@@ -369,7 +392,7 @@ textarea[readonly] {
     color: #EEE;
     &:hover {
         background: #787800;
-        color: #000;
+        color: #333;
     }
 }
 
