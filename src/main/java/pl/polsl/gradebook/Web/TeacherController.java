@@ -9,6 +9,7 @@ import pl.polsl.gradebook.Grade.Model.Grade;
 import pl.polsl.gradebook.Grade.Repository.GradeRepository;
 import pl.polsl.gradebook.Student.Model.Student;
 import pl.polsl.gradebook.Student.Repository.StudentRepository;
+import pl.polsl.gradebook.Student.Service.StudentService;
 import pl.polsl.gradebook.Subject.Model.Subject;
 import pl.polsl.gradebook.Subject.Repository.SubjectRepository;
 import pl.polsl.gradebook.Subject.Service.SubjectService;
@@ -36,12 +37,14 @@ public class TeacherController {
     SubjectService subjectService;
 
     SubjectRepository subjectRepository;
+    StudentService studentService;
 
 
-
-    public TeacherController(UserService userService, TeacherRepository teacherRepository
-    , TeacherService teacherService, StudentRepository studentRepository, GradeRepository gradeRepository, SubjectService subjectService, SubjectRepository subjectRepository) {
-
+    public TeacherController(UserService userService, TeacherRepository teacherRepository,
+                             TeacherService teacherService, StudentRepository studentRepository,
+                             GradeRepository gradeRepository,
+                             SubjectService subjectService, SubjectRepository subjectRepository,
+                             StudentService studentService) {
         this.userService = userService;
         this.teacherRepository = teacherRepository;
         this.teacherService = teacherService;
@@ -49,8 +52,8 @@ public class TeacherController {
         this.gradeRepository = gradeRepository;
         this.subjectService = subjectService;
         this.subjectRepository = subjectRepository;
+        this.studentService = studentService;
     }
-
 
     @GetMapping
     public String showTeacherPage(Model model) {
@@ -82,14 +85,10 @@ public class TeacherController {
     public String addStudent(@RequestParam("studentId") Long studentId, @RequestParam("subjectId") Long subjectId)
     {
 
-        Subject subject = subjectRepository.findById(subjectId).get();
         Student student = studentRepository.findById(studentId).get();
-
-        subject.getStudents().add(student);
-
-        System.out.println(subject.getStudents());
-
-        subjectRepository.save(subject);
+        Subject subject = subjectRepository.findById(subjectId).get();
+        student.getSubjects().add(subject);
+        studentRepository.save(student);
 
         return "redirect:/teacher-panel";
     }
