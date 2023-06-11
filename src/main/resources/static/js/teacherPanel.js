@@ -55,11 +55,30 @@ document.querySelectorAll('.classes').forEach(element => {
             removeLi = e.target.closest('li');
         }
 
-        if (e.target.classList.contains('edit-student')) {
-            const studentName = e.target.closest('li').querySelector('div').innerHTML;
-            document.querySelector('.student-name').innerHTML = studentName;
-        }
+        // if (e.target.classList.contains('edit-student')) {
+        //     const studentName = e.target.closest('li').querySelector('div').innerHTML;
+        //     document.querySelector('.student-name').innerHTML = studentName;
+        // }
     });
+})
+
+document.querySelector('.student-grades li').addEventListener('click', (e) => {
+    if (!e.target.classList.contains('grade-highlight')){
+        e.target.classList.add('grade-highlight');
+    }
+    else {
+        e.target.classList.remove('grade-highlight');
+    }
+});
+
+document.querySelector('.edit-grade').addEventListener('click', (e) => {
+    document.querySelector('.edit-grade-submit').style.display = 'block';
+    document.querySelector('.add-grade-submit').style.display = 'none';
+})
+
+document.querySelector('.add-grade').addEventListener('click', (e) => {
+    document.querySelector('.add-grade-submit').style.display = 'block';
+    document.querySelector('.edit-grade-submit').style.display = 'none';
 })
 
 // document.querySelector('.remove-class-submit').addEventListener('click', e => {

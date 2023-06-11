@@ -8,6 +8,14 @@ body {
   margin: 0px;
 }
 
+input[readonly] {
+  pointer-events: none;
+}
+
+textarea[readonly] {
+  pointer-events: none;
+}
+
 .modal-header {
   background: rgb(0, 151, 136);
   display: flex;
@@ -35,6 +43,8 @@ body {
 }
 
 .modal-footer {
+  display: flex;
+  justify-content: flex-end;
   background: #CCC;
   padding: 15px;
   margin-top: 0px;
@@ -240,10 +250,16 @@ body {
     filter: blur(0);
   }
 }
+#edit-student-modal .modal-content {
+  width: min(500px, 100%);
+  margin: auto;
+}
+
 #edit-student-modal .modal-body {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 300px;
+  padding-bottom: 0;
 }
 
 .student-info {
@@ -252,12 +268,14 @@ body {
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 0;
+  padding: 0 10px 0 10px;
 }
 
 .student-name {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   margin-bottom: 10px;
-  text-align: center;
   font-size: 30px;
   font-family: Impact, fantasy;
 }
@@ -267,10 +285,10 @@ body {
 }
 
 .student-grades {
-  height: 170px;
   list-style-type: none;
   overflow-y: scroll;
   scrollbar-width: thin;
+  height: 170px;
   padding: 0;
   margin: 0;
   margin-right: 20px;
@@ -278,7 +296,9 @@ body {
 .student-grades li {
   background: rgb(0, 151, 136);
   display: block;
+  box-sizing: border-box;
   width: 100%;
+  height: 30px;
   margin-bottom: 5px;
   border-radius: 5px;
   color: #EEE;
@@ -286,26 +306,28 @@ body {
   font-family: Impact, fanstasy;
   font-size: 20px;
 }
+.student-grades li:hover {
+  background: rgb(0, 171, 166);
+}
+
+.grade-highlight {
+  background: rgb(0, 181, 176) !important;
+  border: 1px rgb(0, 131, 116) solid;
+}
+.grade-highlight:hover {
+  background: rgb(0, 191, 186) !important;
+}
 
 .grade-info {
   flex: 5;
   display: flex;
   flex-direction: column;
-  padding-right: 10px;
 }
 .grade-info p {
   margin: 10px 0 0 0;
 }
 .grade-info .first {
   margin-top: 0;
-}
-
-.delete-grade:before {
-  content: "Usuń ocenę";
-}
-
-.add-grade:before {
-  content: "Dodaj ocenę";
 }
 
 .grade-description {
@@ -316,12 +338,36 @@ body {
 .grade-editor {
   flex: 1;
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
 .grade-editor button {
-  width: 80%;
+  width: 120px;
+}
+
+.delete-grade:before {
+  content: "Usuń ocenę";
+}
+
+.edit-grade {
+  background: #686800;
+  color: #EEE;
+}
+.edit-grade:hover {
+  background: #787800;
+}
+
+.add-grade:before {
+  content: "Dodaj ocenę";
+}
+
+.edit-grade-submit {
+  background: #686800;
+  color: #EEE;
+}
+.edit-grade-submit:hover {
+  background: #787800;
+  color: #000;
 }
 
 @media (max-width: 600px) {
@@ -332,14 +378,6 @@ body {
     content: "Dodaj";
   }
 }
-.edit-grade {
-  background: #686800;
-  color: #EEE;
-}
-.edit-grade:hover {
-  background: #787800;
-}
-
 .modal-body .add-grade-description-input {
   height: 74px;
   resize: none;
