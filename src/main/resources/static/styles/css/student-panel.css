@@ -1,0 +1,322 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background: #121228;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+}
+
+.modal-header {
+  background: rgb(0, 151, 136);
+  display: flex;
+  border: none;
+}
+
+.modal-title {
+  flex: 1;
+  color: #EEE;
+  font-size: 20px;
+  font-family: Impact, fantasy;
+}
+
+.close {
+  opacity: 1;
+  color: #EEE;
+}
+
+.modal-body {
+  background: #CCC;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-family: fantasy;
+}
+
+.modal-footer {
+  background: #CCC;
+  padding: 15px;
+  margin-top: 0px;
+  border: none;
+}
+
+.btn:focus {
+  outline: none;
+  color: #EEE;
+}
+
+.btn-secondary {
+  background: #680000;
+  color: #EEE;
+}
+.btn-secondary:hover {
+  background: #781111;
+  color: #000;
+}
+
+.btn-primary {
+  background: #006800;
+  border: 1px #006800 solid;
+  color: #EEE;
+}
+.btn-primary:hover {
+  background: #117811;
+  color: #000;
+}
+.btn-primary:focus {
+  background: #117811;
+}
+
+.add-class-input {
+  margin-top: 10px;
+}
+
+.add-student-input {
+  margin-top: 10px;
+}
+
+.header {
+  background: #006168;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.logo {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 5%;
+  color: #DDD;
+  font-size: 30px;
+}
+
+.container {
+  flex: 1;
+  width: 100%;
+}
+
+.menu {
+  background: #CCC;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: 800px;
+  min-height: 600px;
+  padding: 20px;
+  margin-top: 50px;
+  border-radius: 2px;
+  font-size: 40px;
+  font-family: Impact, fantasy;
+  animation: fadeIn 1s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.menu-student-info {
+  background: #FAFAFA;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 10px;
+  border-radius: 1px;
+  font-size: 30px;
+}
+
+.menu-student-info-name {
+  flex: 1;
+}
+
+.add-class {
+  background: #006800;
+  border: 1px #CCC solid;
+  border-radius: 1px;
+  color: #EEE;
+  font-size: 20px;
+}
+
+.classes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+.classes li {
+  background: #EEE;
+  width: 100%;
+}
+.classes li button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px #005158 solid;
+  color: #EEE;
+  font-size: 20px;
+}
+
+.class {
+  background: rgb(0, 151, 136);
+  border-radius: 1px;
+  color: #EEE;
+  text-align: center;
+  font-size: 40px;
+}
+.class div {
+  width: calc(100% - 85px);
+}
+
+.add-student {
+  background: #006800;
+}
+
+.remove-class {
+  background: #680000;
+}
+
+.remove-student {
+  background: #680000;
+}
+
+.edit-student {
+  background: #686800;
+}
+
+@keyframes expanding {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 100%;
+  }
+}
+.grades {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, max-content));
+  justify-content: center;
+  gap: 5px;
+  visibility: hidden;
+  overflow: hidden;
+  list-style-type: none;
+  height: auto;
+  max-height: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: auto;
+  transition: all 0.5s;
+}
+.grades li {
+  background: #005158;
+  max-width: 50px;
+  height: 50px;
+  border-top: 1px #006168 dashed;
+  border-radius: 5px;
+  color: #EEE;
+  font-size: 70%;
+}
+
+.grade {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.show-grades {
+  visibility: visible;
+  padding: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+#edit-student-modal .modal-body {
+  display: flex;
+  width: 100%;
+  height: 300px;
+}
+
+.student-info {
+  flex: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0;
+}
+
+.student-name {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 30px;
+  font-family: Impact, fantasy;
+}
+
+.student-grades-div {
+  flex: 2;
+}
+
+.student-grades {
+  height: 170px;
+  list-style-type: none;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  padding: 0;
+  margin: 0;
+  margin-right: 20px;
+}
+.student-grades li {
+  background: rgb(0, 151, 136);
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  color: #EEE;
+  text-align: center;
+  font-family: Impact, fanstasy;
+  font-size: 20px;
+}
+
+.grade-info {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+}
+.grade-info p {
+  margin: 10px 0 0 0;
+}
+.grade-info .first {
+  margin-top: 0;
+}
+
+.grade-description {
+  flex: 1;
+  resize: none;
+}
+
+.modal-body .add-grade-description-input {
+  height: 74px;
+  resize: none;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}/*# sourceMappingURL=student-panel.css.map */

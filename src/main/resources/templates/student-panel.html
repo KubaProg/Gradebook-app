@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dziennik Elektroniczny</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/styles/css/student-panel.css" th:href="@{/styles/css/student-panel.css}">
+    <script defer src="../static/js/studentPanel.js" th:src="@{/js/studentPanel.js}"></script>
+    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>$(function() { alert('hello') });</script> -->
+
+</head>
+<body>
+<!-- Modale -->
+<div class="modal fade" id="add-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Dodaj przedmiot</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Wpisz nazwę przedmiotu:
+        <input type="text" class="form-control add-class-input">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary add-class-cancel" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-primary add-class-submit">Dodaj</button>
+      </div>
+    </div>
+  </div>
+</div>    
+
+  <div class="modal fade" id="edit-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Informacje o ocenie</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="grade-info">
+              <p class="first">Wartość:</p>
+              <input type="text" class="form-control grade-value">
+              <p>Opis:</p>
+              <textarea name="text" wrap="soft" class="form-control grade-description"></textarea>
+            </div>
+          <!-- <div class="grade-editor">
+            <button type="button" class="btn btn-secondary delete-grade"></button>
+            <button type="button" class="btn edit-grade">Edytuj</button>
+            <button type="button" class="btn btn-primary add-grade" data-toggle="modal" data-target="#add-grade-modal"></button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="add-grade-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Dodaj ocenę</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Wpisz ocenę:
+          <input type="text" class="form-control add-grade-input">
+          Wpisz opis:
+          <textarea name="text" wrap="soft" class="form-control add-grade-description-input"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary add-grade-cancel" data-dismiss="modal">Anuluj</button>
+          <button type="button" class="btn btn-primary add-grade-submit">Dodaj</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Panel Nauczyciela -->
+    <div class="header">
+        <div class="logo">Dziennik Elektroniczny</div>
+    </div>
+    <div class="container">
+        <div class="menu">
+          <div class="menu-student-info">
+            <div class="menu-student-info-name">Jan Kowalski</div>
+            <div class="menu-student-info-class">klasa 2C</div>
+            <!-- <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">
+                Dodaj przedmiot
+            </button> -->
+          </div>
+            
+            <ul class="classes">
+                <li>
+                    <div class="class">
+                      Matematyka
+                        <!-- <div>Matematyka</div>
+                        <button type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
+                        <button type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button> -->
+                    </div>
+                    <ul class="grades">
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">3</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">2</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">4</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">4</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">2</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">1</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">6</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">2</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">3</div>
+                        </li>
+                        <li>
+                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">2</div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                  <div class="class">
+                    Informatyka
+                      <!-- <div>Informatyka</div>
+                      <button type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
+                      <button type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button> -->
+                  </div>
+                  <ul class="grades">
+                      <li>
+                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                      </li>
+                      <li>
+                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                      </li>
+                      <li>
+                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">3</div>
+                      </li>
+                      <li>
+                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">4</div>
+                      </li>
+                      <li>
+                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">1</div>
+                      </li>
+                      <li>
+                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">4</div>
+                      </li>
+                      <li>
+                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                      </li>
+                  </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+body {
+  background: #CCC;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-header {
+  display: flex;
+}
+
+.menu-body {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.student-info {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.student-grades-div {
+  flex: 1;
+}
+
+.student-grades {
+  list-style-type: none;
+}
+.student-grades li:hover {
+  background: #333;
+  color: #EEE;
+}
+
+.grade-info {
+  flex: 3;
+  padding: 10px;
+}
+.grade-info input {
+  width: 100%;
+}
+.grade-info textarea {
+  width: 100%;
+  resize: none;
+}
+
+.menu-footer {
+  display: flex;
+}/*# sourceMappingURL=edit-student.css.map */
