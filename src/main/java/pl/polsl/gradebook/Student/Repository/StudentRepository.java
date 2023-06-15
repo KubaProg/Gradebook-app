@@ -14,4 +14,6 @@ public interface StudentRepository extends CrudRepository<Student, Long>
 
 Optional<List<Student>> findStudentsBySubjectsId(Long id);
 
+
+
 }

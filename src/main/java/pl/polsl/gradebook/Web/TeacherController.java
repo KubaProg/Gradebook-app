@@ -110,21 +110,6 @@ public class TeacherController {
 
 
 
-    @PostMapping("/delete-student")
-    public String deleteSubject(@RequestParam Long subjectId, @RequestParam Long studentId)
-    {
-
-        Subject subject = subjectRepository.findById(subjectId).get();
-        Student studentToRemove = studentRepository.findById(studentId).get();
-
-        subject.getStudents().remove(studentToRemove);
-
-        subjectRepository.save(subject);
-
-        return "redirect:/teacher-panel";
-    }
-
-
     @PostMapping("/grades")
     public String addGrade(@Valid Grade grade, Errors errors){
         System.out.println(grade);
@@ -184,6 +169,22 @@ public class TeacherController {
         }
 
         subjectRepository.deleteById(subjectId);
+
+        return "redirect:/teacher-panel";
+    }
+
+    @PostMapping("/delete-student")
+    public String deleteStudent(@RequestParam("subjectId") Long subjectId, @RequestParam("studentId") Long studentId)
+    {
+
+        Subject subject = subjectRepository.findById(subjectId).get();
+        Student studentToRemove = studentRepository.findById(studentId).get();
+
+        // both relationships need to be deleted
+        subject.getStudents().remove(studentToRemove);
+        studentToRemove.getSubjects().remove(subject);
+
+        subjectRepository.save(subject);
 
         return "redirect:/teacher-panel";
     }

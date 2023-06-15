@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -98,8 +98,12 @@
         <div class="modal-body">
           Czy na pewno chcesz usunąc tego ucznia?
           <div class="modal-footer">
+            <form th:action="@{teacher-panel/delete-student}" method="post">
+              <input type="hidden" id="delete-student-subject-id" name="subjectId">
+              <input type="hidden" id="delete-student-student-id" name="studentId">
             <button type="button" class="btn btn-secondary remove-student-cancel" data-dismiss="modal">Anuluj</button>
-            <button type="button" class="btn btn-primary remove-student-submit">Usuń</button>
+            <button type="submit" class="btn btn-primary remove-student-submit">Usuń</button>
+            </form>
           </div>
         </div>
       </div>
@@ -192,9 +196,11 @@
 
                 <ul class="students" >
                   <li th:each="student : ${subject.getStudents()}">
-                    <div th:text="*{student.getName()}">Kamil Nowak</div>
-                    <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
-                    <button  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                    <div class="student"  th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
+                      <div th:text="*{student.getName()}" >Kamil Nowak</div>
+                        <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                        <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                    </div>
                   </li>
                 </ul>
                 </li>
@@ -212,6 +218,15 @@
   function setSubjectIdForStudent(button) {
     var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
     document.getElementById("subjectForStudentId").value = subjectId;
+  }
+</script>
+
+<script>
+  function setSubjectIdAndStudentIdForDelete(button) {
+    var subjectId = button.parentNode.parentNode.querySelector(".student").getAttribute("data-subject-id");
+    var studentId = button.parentNode.parentNode.querySelector(".student").getAttribute("data-student-id");
+    document.getElementById("delete-student-subject-id").value = subjectId;
+    document.getElementById("delete-student-student-id").value = studentId;
   }
 </script>
 
