@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dziennik Elektroniczny</title>
+    <link rel="stylesheet" href="../static/styles/css/edit-student.css" th:href="@{/styles/css/edit-student.css}">
+    <script defer src="../static/js/editStudent.js" th:src="@{/js/editStudent.js}"></script>
 </head>
-<body>
 
+<body>
+    <div class="menu">
+        <div class="menu-header">
+            <h5 class="menu-title">Informacje o uczniu</h5>
+        </div>
+        <div class="menu-body">
+            <div class="student-info"><p id="studentName">Imie</p><p id="studentSurname">Nazwisko</p><p id="studentParentNumber">Tel rodzica:</p>
+            </div>
+            <div class="student-grades-div">Oceny:
+                <ul class="student-grades" th:each="grade : ${studentGrades}">
+                    <li th:text="${grade}">
+                      4
+                    </li>
+                </ul>
+            </div>
+            <div class="grade-info">
+                <p class="first">Wartość:</p>
+                <input type="text" readonly class="form-control grade-value">
+                <p>Opis:</p>
+                <textarea name="text" wrap="soft" readonly class="form-control grade-description"></textarea>
+            </div>
+            </div>
+                <div class="menu-footer">
+                    <div class="grade-editor">
+                    <button type="button" class="btn btn-secondary delete-grade">Usuń</button>
+                    <button type="button" class="btn edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button>
+                    <button type="button" class="btn btn-primary add-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Dodaj</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-</html>
