@@ -198,9 +198,9 @@
                   <li th:each="student : ${subject.getStudents()}">
                     <div class="student"  th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
                       <div th:text="*{student.getName() + ' ' + student.getSurname()}" >Kamil Nowak</div>
-                        <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
-                        <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
                     </div>
+                    <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                    <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
                   </li>
                 </ul>
                 </li>

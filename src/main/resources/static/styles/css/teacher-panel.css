@@ -255,7 +255,8 @@ textarea[readonly] {
   font-size: 70%;
   transition: background-color 0.5s;
 }
-.students li div {
+
+.student {
   width: calc(100% - 85px);
   padding-left: 1%;
 }

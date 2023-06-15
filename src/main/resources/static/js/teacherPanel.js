@@ -62,6 +62,18 @@ document.querySelectorAll('.classes').forEach(element => {
     });
 })
 
+document.querySelectorAll('.students').forEach(e => {
+    if (e.childElementCount < 1) {
+        console.log(e.childElementCount);
+        empty = document.createElement('li');
+        studentNameDiv = document.createElement('div');
+        studentNameDiv.insertAdjacentHTML('afterbegin', 'Brak uczniów');
+        studentNameDiv.classList.add('student');
+        empty.appendChild(studentNameDiv);
+        e.insertAdjacentElement('afterbegin', empty);
+    }
+})
+
 document.querySelector('.student-grades li').addEventListener('click', (e) => {
     if (!e.target.classList.contains('grade-highlight')){
         e.target.classList.add('grade-highlight');

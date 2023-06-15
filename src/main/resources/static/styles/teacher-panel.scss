@@ -251,11 +251,12 @@ textarea[readonly] {
         gap: 5px;
         font-size: 70%;
         transition: background-color 0.5s;
-        div {
-            width: calc(100% - 85px);
-            padding-left: 1%;
-        }
     }
+}
+
+.student {
+    width: calc(100% - 85px);
+    padding-left: 1%;
 }
 
 .show-students {
