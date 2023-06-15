@@ -77,6 +77,18 @@ public class TeacherController {
     }
 
 
+
+
+//    @GetMapping("/student-grades/{studentId}/{subjectId}")
+//    public String getStudentGrades(@PathVariable Long studentId, @PathVariable Long subjectId, Model model) {
+//        // Pobierz oceny ucznia na podstawie studentId
+//        Optional<List<Grade>> studentGrades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId);
+//
+//        studentGrades.ifPresent(grades -> model.addAttribute("studentGrades", grades));
+//
+//        return "teacher-panel";
+//    }
+
     @GetMapping("/student-grades/{studentId}/{subjectId}")
     public String getStudentGrades(@PathVariable Long studentId, @PathVariable Long subjectId, Model model) {
         // Pobierz oceny ucznia na podstawie studentId
@@ -84,7 +96,7 @@ public class TeacherController {
 
         studentGrades.ifPresent(grades -> model.addAttribute("studentGrades", grades));
 
-        return "teacher-panel";
+        return "redirect:/teacher-panel";
     }
 
     @PostMapping("/add-student")
