@@ -201,9 +201,9 @@
                       <div th:text="*{student.getName() + ' ' + student.getSurname()}" >Kamil Nowak</div>
                     <div class="studentInfo" th:data-student-name="${student.getName()}" th:data-student-surname="${student.getSurname()}" th:data-student-number="${student.getParent_number()}" th:data-student-id="${student.getId()}" >
                     <button onclick="setStudentInfoAndGrades(this)" type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                    </div>
                     <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
                   </div>
-                    </div>
                   </li>
                 </ul>
                 </li>
