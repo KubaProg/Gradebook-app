@@ -26,7 +26,7 @@ public class Grade {
     private Subject subject;
 
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "student_id" , referencedColumnName = "id")
     private Student student;
 

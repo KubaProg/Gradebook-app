@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.polsl.gradebook.Grade.Model.Grade;
 import pl.polsl.gradebook.Subject.Model.Subject;
 import pl.polsl.gradebook.User.Model.User;
 
@@ -31,9 +32,14 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private List<Subject> subjects;
 
+    @OneToMany(mappedBy = "student")
+    private List<Grade> grades;
+
     private String name;
 
     private String surname;
 
     private String parent_number;
+
+
 }

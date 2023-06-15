@@ -163,9 +163,17 @@ public class TeacherController {
         Subject subject = subjectRepository.findById(subjectId).get();
 
         List<Student> students = subject.getStudents();
-
+        
         // Remove the subject from each student's list of subjects
         for (Student student : students) {
+
+            List<Grade> gradesFromSubjectAndStudent = gradeRepository.findGradesByStudentIdAndSubjectId(student.getId(),subjectId).get();
+            for (Grade grade : gradesFromSubjectAndStudent ){
+                student.getGrades().remove(grade);
+                gradeRepository.deleteById(grade.getId());
+            }
+
+
             student.getSubjects().remove(subject);
         }
 

@@ -11,7 +11,8 @@ import java.util.Optional;
 public interface GradeRepository extends CrudRepository<Grade, Long> {
 
 
-    Optional<List<Grade>> findGradesByStudentIdAndSubjectId(Long studentId, Long gradeId);
+    Optional<List<Grade>> findGradesByStudentIdAndSubjectId(Long studentId, Long subjectId);
 
+    void removeGradesByStudentId(Long studentId);
 
 }

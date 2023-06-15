@@ -17,7 +17,7 @@ INSERT INTO headmaster (id,name, surname, user_id)
 VALUES (1, 'michal','moryc',3);
 
 INSERT INTO Subject (teacher_id, name)
-VALUES (1, 'Mathematics') , (1, 'Physics'), (1, 'WALENIE KONIA');
+VALUES (1, 'Mathematics') , (1, 'Physics'), (1, 'English');
 
 INSERT INTO student_subject (student_id, subject_id) VALUES (1, 3);
 
