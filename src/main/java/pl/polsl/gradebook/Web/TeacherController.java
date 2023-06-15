@@ -76,25 +76,21 @@ public class TeacherController {
         return teacherOptional.orElseGet(Teacher::new);
     }
 
+
     @GetMapping("/edit-student")
-    public String showEditStudentPage(@RequestParam Long studentId, @RequestParam Long subjectId){
+    public String showEditStudentPage(@RequestParam Long studentId, @RequestParam Long subjectId, Model model){
 
         Student student = studentRepository.findById(studentId).get();
+        List<Grade> grades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId).get();
+
+        model.addAttribute("grades", grades);
+        model.addAttribute("student",student);
+
 
         return "edit-student";
 
     }
 
-
-//    @GetMapping("/student-grades/{studentId}/{subjectId}")
-//    public String getStudentGrades(@PathVariable Long studentId, @PathVariable Long subjectId, Model model) {
-//        // Pobierz oceny ucznia na podstawie studentId
-//        Optional<List<Grade>> studentGrades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId);
-//
-//        studentGrades.ifPresent(grades -> model.addAttribute("studentGrades", grades));
-//
-//        return "teacher-panel";
-//    }
 
     @GetMapping("/student-grades/{studentId}/{subjectId}")
     public String getStudentGrades(@PathVariable Long studentId, @PathVariable Long subjectId, Model model) {

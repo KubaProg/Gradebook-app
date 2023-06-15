@@ -1,17 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dziennik Elektroniczny</title>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/styles/css/teacher-panel.css" th:href="@{/styles/css/teacher-panel.css}">
-    <script defer src="../static/js/teacherPanel.js" th:src="@{/js/teacherPanel.js}"></script>
-    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script>$(function() { alert('hello') });</script> -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dziennik Elektroniczny</title>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../static/styles/css/teacher-panel.css" th:href="@{/styles/css/teacher-panel.css}">
+  <script defer src="../static/js/teacherPanel.js" th:src="@{/js/teacherPanel.js}"></script>
+  <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>$(function() { alert('hello') });</script> -->
 
 </head>
 <body>
@@ -39,183 +40,187 @@
 
 
 <div class="modal fade" id="add-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Dodaj ucznia</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Dodaj ucznia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class='modal-body' id="add-student-form" th:action="@{/teacher-panel/add-student}" method="post">
+
+        <input type="hidden" name="subjectId" id="subjectForStudentId" />
+
+        <select id="class-name" name="studentId" class="form-control">
+          <option th:each="student : ${allStudents}" th:text="${student.getName()} + ${' '} + ${student.getSurname()}" th:value="${student.getId()}"></option>
+        </select>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary add-student-cancel" data-dismiss="modal">Anuluj</button>
+          <button type="submit" class="btn btn-primary add-student-submit">Dodaj</button>
         </div>
-        <form class='modal-body' id="add-student-form" th:action="@{/teacher-panel/add-student}" method="post">
+      </form>
+    </div>
+  </div>
+</div>
 
-          <input type="hidden" name="subjectId" id="subjectForStudentId" />
-
-          <select id="class-name" name="studentId" class="form-control">
-            <option th:each="student : ${allStudents}" th:text="${student.getName()} + ${' '} + ${student.getSurname()}" th:value="${student.getId()}"></option>
-          </select>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary add-student-cancel" data-dismiss="modal">Anuluj</button>
-            <button type="submit" class="btn btn-primary add-student-submit">Dodaj</button>
-          </div>
-        </form>
+<div  class="modal fade" id="remove-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Usuń przedmiot</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Czy na pewno chcesz usunąc ten przedmiot?
+        <div class="modal-footer" >
+          <form th:action="@{teacher-panel/delete-subject}" method="post" >
+            <button type="button" class="btn btn-secondary remove-class-cancel" data-dismiss="modal">Anuluj</button>
+            <input type="hidden" name="subjectId" id="subjectId" />
+            <button type="submit" class="btn btn-primary remove-class-submit">Usuń</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-  
-  <div  class="modal fade" id="remove-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Usuń przedmiot</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Czy na pewno chcesz usunąc ten przedmiot?
-          <div class="modal-footer" >
-            <form th:action="@{teacher-panel/delete-subject}" method="post" >
-              <button type="button" class="btn btn-secondary remove-class-cancel" data-dismiss="modal">Anuluj</button>
-              <input type="hidden" name="subjectId" id="subjectId" />
-              <button type="submit" class="btn btn-primary remove-class-submit">Usuń</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
 
-  <div class="modal fade" id="remove-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Usuń ucznia</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Czy na pewno chcesz usunąc tego ucznia?
-          <div class="modal-footer">
-            <form th:action="@{teacher-panel/delete-student}" method="post">
-              <input type="hidden" id="delete-student-subject-id" name="subjectId">
-              <input type="hidden" id="delete-student-student-id" name="studentId">
+<div class="modal fade" id="remove-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Usuń ucznia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Czy na pewno chcesz usunąc tego ucznia?
+        <div class="modal-footer">
+          <form th:action="@{teacher-panel/delete-student}" method="post">
+            <input type="hidden" id="delete-student-subject-id" name="subjectId">
+            <input type="hidden" id="delete-student-student-id" name="studentId">
             <button type="button" class="btn btn-secondary remove-student-cancel" data-dismiss="modal">Anuluj</button>
             <button type="submit" class="btn btn-primary remove-student-submit">Usuń</button>
-            </form>
-          </div>
+          </form>
         </div>
       </div>
     </div>
-  </div> 
+  </div>
+</div>
 
-  <div class="modal fade" id="edit-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Informacje o uczniu</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="student-info">
-            <div class="student-first-name"><p id="studentName">Imie</p><p id="studentSurname">Nazwisko</p><p id="studentParentNumber">Tel rodzica:</p></div>
-<!--            name="subjectId" id="subjectForStudentId"-->
-            <div class="student-grades-div">Oceny:
-              <ul class="student-grades" th:each="grade : ${studentGrades}">
-                <li th:text="${grade}">
-                  4
-                </li>
-              </ul>
-            </div>
-            <div class="grade-info">
-              <p class="first">Wartość:</p>
-              <input type="text" readonly class="form-control grade-value">
-              <p>Opis:</p>
-              <textarea name="text" wrap="soft" readonly class="form-control grade-description"></textarea>
-            </div>
+<div class="modal fade" id="edit-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Informacje o uczniu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="student-info">
+          <div class="student-first-name"><p id="studentName">Imie</p><p id="studentSurname">Nazwisko</p><p id="studentParentNumber">Tel rodzica:</p></div>
+          <!--            name="subjectId" id="subjectForStudentId"-->
+          <div class="student-grades-div">Oceny:
+            <ul class="student-grades" th:each="grade : ${studentGrades}">
+              <li th:text="${grade}">
+                4
+              </li>
+            </ul>
           </div>
-          <div class="modal-footer">
-            <div class="grade-editor">
-              <button type="button" class="btn btn-secondary delete-grade"></button>
-              <button type="button" class="btn edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button>
-              <button type="button" class="btn btn-primary add-grade" data-toggle="modal" data-target="#add-edit-grade-modal"></button>
-            </div>
+          <div class="grade-info">
+            <p class="first">Wartość:</p>
+            <input type="text" readonly class="form-control grade-value">
+            <p>Opis:</p>
+            <textarea name="text" wrap="soft" readonly class="form-control grade-description"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="grade-editor">
+            <button type="button" class="btn btn-secondary delete-grade"></button>
+            <button type="button" class="btn edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button>
+            <button type="button" class="btn btn-primary add-grade" data-toggle="modal" data-target="#add-edit-grade-modal"></button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal fade" id="add-edit-grade-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Dodaj ocenę</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Wpisz ocenę:
-          <input type="text" class="form-control add-grade-input">
-          Wpisz opis:
-          <textarea name="text" wrap="soft" class="form-control add-grade-description-input"></textarea>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary add-grade-cancel" data-dismiss="modal">Anuluj</button>
-            <button type="button" class="btn btn-primary add-grade-submit">Dodaj</button>
-            <button type="button" class="btn edit-grade-submit">Edytuj</button>
-          </div>
+<div class="modal fade" id="add-edit-grade-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Dodaj ocenę</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Wpisz ocenę:
+        <input type="text" class="form-control add-grade-input">
+        Wpisz opis:
+        <textarea name="text" wrap="soft" class="form-control add-grade-description-input"></textarea>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary add-grade-cancel" data-dismiss="modal">Anuluj</button>
+          <button type="button" class="btn btn-primary add-grade-submit">Dodaj</button>
+          <button type="button" class="btn edit-grade-submit">Edytuj</button>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 <!-- Panel Nauczyciela -->
-    <div class="header">
-        <div class="logo">Dziennik Elektroniczny</div>
+<div class="header">
+  <div class="logo">Dziennik Elektroniczny</div>
+</div>
+<div class="container">
+  <div class="menu">
+    <div class="menu-teacher-info">
+      <div th:text="*{currentTeacher.getName() + ' ' + currentTeacher.getSurname()}">Jan Kowalski</div>
+      <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">
+        Dodaj przedmiot
+      </button>
     </div>
-    <div class="container">
-        <div class="menu">
-          <div class="menu-teacher-info">
-            <div th:text="*{currentTeacher.getName() + ' ' + currentTeacher.getSurname()}">Jan Kowalski</div>
-            <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">
-                Dodaj przedmiot
-            </button>
-          </div>
 
-            <ul class="classes" th:remove="all-but-first">
-              <li th:each="subject: ${subjects}">
-                <div class="class" th:data-subject-id="${subject.getId()}">
-                  <div  th:value="*{subject.getId()}" th:text="*{subject.getName()}">Matematyka</div>
-                  <button onclick="setSubjectIdForStudent(this)"  type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
-                  <button onclick="setSubjectId(this)" type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
+    <ul class="classes" th:remove="all-but-first">
+      <li th:each="subject: ${subjects}">
+        <div class="class" th:data-subject-id="${subject.getId()}">
+          <div  th:value="*{subject.getId()}" th:text="*{subject.getName()}">Matematyka</div>
+          <button onclick="setSubjectIdForStudent(this)"  type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
+          <button onclick="setSubjectId(this)" type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
 
-                </div>
-
-                <ul class="students" >
-                  <li th:each="student : ${subject.getStudents()}">
-                    <div class="student"  th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
-                      <div class="student-name" th:text="*{student.getName() + ' ' + student.getSurname()}" >Kamil Nowak</div>
-                    <div class="student-options" th:data-student-name="${student.getName()}" th:data-student-surname="${student.getSurname()}" th:data-student-number="${student.getParent_number()}" th:data-student-id="${student.getId()}" >
-                    <button onclick="setStudentInfoAndGrades(this)" type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
-                    </div>
-                    <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
-                  </div>
-                  </li>
-                </ul>
-                </li>
-            </ul>
         </div>
-    </div>
-  <script>
-    function setSubjectId(button) {
-      var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
-      document.getElementById("subjectId").value = subjectId;
-    }
-  </script>
+
+        <ul class="students" >
+          <li th:each="student : ${subject.getStudents()}">
+            <div class="student"  th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
+              <div class="student-name" th:text="*{student.getName() + ' ' + student.getSurname()}" >Kamil Nowak</div>
+              <div class="student-options" th:data-student-name="${student.getName()}" th:data-student-surname="${student.getSurname()}" th:data-student-number="${student.getParent_number()}" th:data-student-id="${student.getId()}" >
+                <form th:action="@{/teacher-panel/edit-student}" method="get">
+                  <input name="subjectId" th:value="${subject.getId()}" type="hidden" class="form-control add-class-input">
+                  <input name="studentId" th:value="${student.getId()}" type="hidden" class="form-control add-class-input">
+                  <button type="submit" class="edit-student"> </button>
+                </form>
+              </div>
+              <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<script>
+  function setSubjectId(button) {
+    var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
+    document.getElementById("subjectId").value = subjectId;
+  }
+</script>
 <!--git-->
 <script>
   function setSubjectIdForStudent(button) {
