@@ -175,7 +175,7 @@
     <div class="container">
         <div class="menu">
           <div class="menu-teacher-info">
-            <div>Jan Kowalski</div>
+            <div th:text="*{currentTeacher.getName() + ' ' + currentTeacher.getSurname()}">Jan Kowalski</div>
             <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">
                 Dodaj przedmiot
             </button>

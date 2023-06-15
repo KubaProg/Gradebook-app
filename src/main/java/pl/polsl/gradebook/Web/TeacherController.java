@@ -69,14 +69,19 @@ public class TeacherController {
         return "teacher-panel";
     }
 
+    @ModelAttribute("currentTeacher")
+    public Teacher getLoggedInTeacher(){
+        Optional<Teacher> teacherOptional = teacherRepository.findById(userService.findCurrentUser().getId());
+        return teacherOptional.orElseGet(Teacher::new);
+    }
+
+
     @GetMapping("/student-grades/{studentId}/{subjectId}")
     public String getStudentGrades(@PathVariable Long studentId, @PathVariable Long subjectId, Model model) {
         // Pobierz oceny ucznia na podstawie studentId
         Optional<List<Grade>> studentGrades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId);
 
-        if(studentGrades.isPresent()) {
-            model.addAttribute("studentGrades", studentGrades.get());
-        }
+        studentGrades.ifPresent(grades -> model.addAttribute("studentGrades", grades));
 
         return "teacher-panel";
     }
@@ -186,7 +191,7 @@ public class TeacherController {
 
 
     @ModelAttribute("allStudents")
-    public Iterable<Student> getAllStudents(Model model) {
+    public Iterable<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
