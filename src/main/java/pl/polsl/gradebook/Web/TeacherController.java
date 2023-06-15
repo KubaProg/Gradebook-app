@@ -59,7 +59,7 @@ public class TeacherController {
     public String showTeacherPage(Model model) {
 
         User currentUser = userService.findCurrentUser();
-        Optional<Teacher> currentTeacher = teacherRepository.findById(currentUser.getId());
+        Optional<Teacher> currentTeacher = teacherRepository.findTeacherByUserId(currentUser.getId());
 
         if(currentTeacher.isPresent()){
             Teacher teacher = currentTeacher.get();
@@ -71,7 +71,8 @@ public class TeacherController {
 
     @ModelAttribute("currentTeacher")
     public Teacher getLoggedInTeacher(){
-        Optional<Teacher> teacherOptional = teacherRepository.findById(userService.findCurrentUser().getId());
+        User currentUser = userService.findCurrentUser();
+        Optional<Teacher> teacherOptional = teacherRepository.findTeacherByUserId(currentUser.getId());
         return teacherOptional.orElseGet(Teacher::new);
     }
 

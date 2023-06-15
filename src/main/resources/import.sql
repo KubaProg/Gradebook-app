@@ -11,18 +11,18 @@ VALUES (1,'jakub','123456','opielka',1),
        (2,'arek','567890','Banasik',4);
 
 INSERT INTO teacher (id,name,salary, surname, user_id)
-VALUES (2,'dominik',4300,'szczepanik',2);
+VALUES (1,'dominik',4300,'szczepanik',2);
 
 INSERT INTO headmaster (id,name, surname, user_id)
-VALUES (3, 'michal','moryc',3);
+VALUES (1, 'michal','moryc',3);
 
 INSERT INTO Subject (teacher_id, name)
-VALUES (2, 'Mathematics') , (2, 'Physics'), (2, 'WALENIE KONIA');
+VALUES (1, 'Mathematics') , (1, 'Physics'), (1, 'WALENIE KONIA');
 
 INSERT INTO student_subject (student_id, subject_id) VALUES (1, 3);
 
--- INSERT INTO grade (id,subject_id, student_id, teacher_id, numerical_value, description)
--- VALUES (1,3,1,1,4,'siemanko');
+INSERT INTO grade (id,subject_id, student_id, teacher_id, numerical_value, description)
+VALUES (1,3,1,1,4,'siemanko');
 
 
 
