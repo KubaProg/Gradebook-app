@@ -20,9 +20,10 @@ class SecurityConfig {
                         .requestMatchers("/images/**", "/styles/**", "js/**").permitAll()
                         .requestMatchers("/choose-account").permitAll()
                         .requestMatchers("/").permitAll()
-                // będzie hasAnyRole("STUDENT","TEACHER","HEADMASTER") tak gdzie trzeba
                         .requestMatchers("/error/**").permitAll()
                         .requestMatchers("/teacher-panel/**").hasRole("TEACHER")
+                        .requestMatchers("/edit-student").hasRole("TEACHER")
+                        .requestMatchers("/student-panel").hasRole("STUDENT")
 //                .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .anyRequest().permitAll()
