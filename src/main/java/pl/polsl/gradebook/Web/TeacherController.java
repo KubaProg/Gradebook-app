@@ -76,7 +76,14 @@ public class TeacherController {
         return teacherOptional.orElseGet(Teacher::new);
     }
 
+    @GetMapping("/edit-student")
+    public String showEditStudentPage(@RequestParam Long studentId, @RequestParam Long subjectId){
 
+        Student student = studentRepository.findById(studentId).get();
+
+        return "edit-student";
+
+    }
 
 
 //    @GetMapping("/student-grades/{studentId}/{subjectId}")

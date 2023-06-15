@@ -3,6 +3,7 @@ package pl.polsl.gradebook.Web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.polsl.gradebook.Student.Model.Student;
 import pl.polsl.gradebook.Student.Repository.StudentRepository;
 import pl.polsl.gradebook.Teacher.Model.Teacher;
@@ -39,6 +40,8 @@ public class StudentController {
 
         return "student-panel";
     }
+
+
 
 
 }
