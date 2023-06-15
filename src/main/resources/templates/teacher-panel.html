@@ -121,7 +121,8 @@
         </div>
         <div class="modal-body">
           <div class="student-info">
-            <div class="student-name"><p>Imie</p><p>Nazwisko</p><p>Tel rodzica:</p></div>
+            <div class="student-name"><p id="studentName">Imie</p><p id="studentSurname">Nazwisko</p><p id="studentParentNumber">Tel rodzica:</p></div>
+<!--            name="subjectId" id="subjectForStudentId"-->
             <div class="student-grades-div">Oceny:
               <ul class="student-grades" th:each="grade : ${studentGrades}">
                 <li th:text="${grade}">
@@ -199,8 +200,10 @@
                     <div class="student"  th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
                       <div th:text="*{student.getName() + ' ' + student.getSurname()}" >Kamil Nowak</div>
                     </div>
-                    <button type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
+                    <div class="studentInfo" th:data-student-name="${student.getName()}" th:data-student-surname="${student.getSurname()}" th:data-student-number="${student.getParent_number()}" >
+                    <button onclick="setStudentInfoAndGrades(this)" type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
                     <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+                  </div>
                   </li>
                 </ul>
                 </li>
@@ -213,10 +216,10 @@
       document.getElementById("subjectId").value = subjectId;
     }
   </script>
-
+<!--git-->
 <script>
   function setSubjectIdForStudent(button) {
-    var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
+    var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-student-id");
     document.getElementById("subjectForStudentId").value = subjectId;
   }
 </script>
@@ -227,6 +230,17 @@
     var studentId = button.parentNode.parentNode.querySelector(".student").getAttribute("data-student-id");
     document.getElementById("delete-student-subject-id").value = subjectId;
     document.getElementById("delete-student-student-id").value = studentId;
+  }
+</script>
+
+<script>
+  function setStudentInfoAndGrades(button) {
+    var studentName = button.parentNode.parentNode.querySelector(".studentInfo").getAttribute("data-student-name");
+    var studentSurname = button.parentNode.parentNode.querySelector(".studentInfo").getAttribute("data-student-surname");
+    var studentParentNumber = button.parentNode.parentNode.querySelector(".studentInfo").getAttribute("data-student-number");
+    document.getElementById("studentName").textContent = studentName;
+    document.getElementById("studentSurname").textContent = studentSurname;
+    document.getElementById("studentParentNumber").textContent = studentParentNumber;
   }
 </script>
 
