@@ -255,8 +255,21 @@ textarea[readonly] {
 }
 
 .student {
-    width: calc(100% - 85px);
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    gap: 5px;
     padding-left: 1%;
+}
+
+.student-name {
+    box-sizing: border-box;
+    width: calc(100% - 85px);
+}
+
+.student-options {
+    display: flex;
+    gap: 5px;
 }
 
 .show-students {
@@ -285,7 +298,7 @@ textarea[readonly] {
     padding: 0 10px 0 10px;
 }
 
-.student-name {
+.student-first-name {
     display: flex;
     justify-content: space-between;
     width: 100%;

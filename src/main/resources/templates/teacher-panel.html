@@ -121,7 +121,7 @@
         </div>
         <div class="modal-body">
           <div class="student-info">
-            <div class="student-name"><p id="studentName">Imie</p><p id="studentSurname">Nazwisko</p><p id="studentParentNumber">Tel rodzica:</p></div>
+            <div class="student-first-name"><p id="studentName">Imie</p><p id="studentSurname">Nazwisko</p><p id="studentParentNumber">Tel rodzica:</p></div>
 <!--            name="subjectId" id="subjectForStudentId"-->
             <div class="student-grades-div">Oceny:
               <ul class="student-grades" th:each="grade : ${studentGrades}">
@@ -198,8 +198,8 @@
                 <ul class="students" >
                   <li th:each="student : ${subject.getStudents()}">
                     <div class="student"  th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
-                      <div th:text="*{student.getName() + ' ' + student.getSurname()}" >Kamil Nowak</div>
-                    <div class="studentInfo" th:data-student-name="${student.getName()}" th:data-student-surname="${student.getSurname()}" th:data-student-number="${student.getParent_number()}" th:data-student-id="${student.getId()}" >
+                      <div class="student-name" th:text="*{student.getName() + ' ' + student.getSurname()}" >Kamil Nowak</div>
+                    <div class="student-options" th:data-student-name="${student.getName()}" th:data-student-surname="${student.getSurname()}" th:data-student-number="${student.getParent_number()}" th:data-student-id="${student.getId()}" >
                     <button onclick="setStudentInfoAndGrades(this)" type="button" class="edit-student" data-toggle="modal" data-target="#edit-student-modal">&#x2699</button>
                     </div>
                     <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
