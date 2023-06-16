@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<form method="post">
+<form method="post" th:object="${grade}" novalidate>
 
 <div class="menu">
     <div class="menu-header">
@@ -32,9 +32,9 @@
         </div>
         <div class="grade-info">
             <p class="first">Wartość:</p>
-            <input type="text" name="gradeValue" class="form-control grade-value">
+            <input type="text" th:field="*{numericalValue}"  class="form-control grade-value">
             <p>Opis:</p>
-            <textarea  name="gradeDescription" wrap="soft"  class="form-control grade-description"></textarea>
+            <textarea  th:field="*{description}" wrap="soft"  class="form-control grade-description"></textarea>
             <input type="hidden" name="subjectId" th:value="${subject.getId()}" />
             <input type="hidden" name="studentId" th:value="${student.getId()}"/>
         </div>

@@ -21,8 +21,8 @@ VALUES (1, 'Mathematics') , (1, 'Physics'), (1, 'English');
 
 INSERT INTO student_subject (student_id, subject_id) VALUES (1, 3);
 
-INSERT INTO grade (id,subject_id, student_id, teacher_id, numerical_value, description)
-VALUES (1,3,1,1,4,'siemanko');
+INSERT INTO grade (subject_id, student_id, teacher_id, numerical_value, description)
+VALUES (3,1,1,4,'siemanko');
 --
 --
 

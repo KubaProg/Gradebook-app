@@ -93,33 +93,41 @@ public class TeacherController {
 
     }
 
+    @ModelAttribute
+    public Grade getGrade(){
+        return new Grade();
+    }
+
     @PostMapping("/addGrade")
     public String addGradeToStudent(@RequestParam Long studentId, @RequestParam Long subjectId,
-                                    @RequestParam double gradeValue, @RequestParam String gradeDescription,Model model){
+                                    @Valid  Grade grade,Model model, Errors errors){
 
-        Teacher teacher = teacherRepository.findTeacherByUserId(userService.findCurrentUser().getId()).get();
-        Student student = studentRepository.findById(studentId).get();
-        Subject subject = subjectRepository.findById(subjectId).get();
-        List<Grade> grades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId).get();
-
-        Grade grade = new Grade();
-        grade.setStudent(student);
-        grade.setSubject(subject);
-        grade.setTeacher(teacher);
-        grade.setDescription(gradeDescription);
-        grade.setNumericalValue(BigDecimal.valueOf(gradeValue));
-
-        gradeRepository.save(grade);
-
-        model.addAttribute("grades", grades);
-        model.addAttribute("student",student);
-        model.addAttribute("subject",subject);
-        model.addAttribute("subjectId", subjectId);
-        model.addAttribute("studentId", studentId);
+        if(!errors.hasErrors()) {
+            Teacher teacher = teacherRepository.findTeacherByUserId(userService.findCurrentUser().getId()).get();
+            Student student = studentRepository.findById(studentId).get();
+            Subject subject = subjectRepository.findById(subjectId).get();
+            List<Grade> grades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId).get();
 
 
+            grade.setStudent(student);
+            grade.setSubject(subject);
+            grade.setTeacher(teacher);
+
+
+
+            gradeRepository.save(grade);
+
+            model.addAttribute("grades", grades);
+            model.addAttribute("student", student);
+            model.addAttribute("subject", subject);
+            model.addAttribute("subjectId", subjectId);
+            model.addAttribute("studentId", studentId);
+
+            return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
+        }
 
         return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
+
 
     }
 
@@ -131,7 +139,7 @@ public class TeacherController {
                 gradeRepository.deleteById(gradeId);
             }
 
-            return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
+
         }
 
         return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;

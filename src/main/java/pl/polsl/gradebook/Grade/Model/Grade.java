@@ -12,18 +12,11 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Grade {
 
-    public Grade(){};
 
-    public Grade(Long id, Subject subject, Student student, Teacher teacher, BigDecimal numericalValue, String description) {
-        this.id = id;
-        this.subject = subject;
-        this.student = student;
-        this.teacher = teacher;
-        this.numericalValue = numericalValue;
-        this.description = description;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +41,7 @@ public class Grade {
     @DecimalMax(value = "6")
     private BigDecimal numericalValue;
 
-
+    @NotBlank
     private String description;
 
 
