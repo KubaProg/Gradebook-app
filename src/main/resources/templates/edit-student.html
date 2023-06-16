@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dziennik Elektroniczny</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../static/styles/css/edit-student.css" th:href="@{/styles/css/edit-student.css}">
     <script defer src="../static/js/editStudent.js" th:src="@{/js/editStudent.js}"></script>
 </head>
@@ -33,9 +36,9 @@
     </div>
     <div class="menu-footer">
         <div class="grade-editor">
-            <button type="button" class="btn btn-secondary delete-grade">Usuń</button>
-            <button type="button" class="btn edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button>
-            <button type="button" class="btn btn-primary add-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Dodaj</button>
+            <button type="button" class="delete-grade">Usuń</button>
+            <button type="button" class="edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button>
+            <button type="button" class="add-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Dodaj</button>
         </div>
     </div>
 </div>

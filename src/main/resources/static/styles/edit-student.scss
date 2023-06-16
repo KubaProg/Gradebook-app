@@ -1,58 +1,177 @@
 body {
-    background: #CCC;
+    background: #121226;;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 85vh;
 }
 
+input[readonly] {
+    pointer-events: none;
+}
+
+textarea[readonly] {
+    pointer-events: none;
+}
+
+
 .menu {
+    background: #EEE;
     display: flex;
     flex-direction: column;
 }
 
 .menu-header {
+    background: rgb(0, 151, 136);
     display: flex;
+    padding: 15px;
+    h5 {
+        flex: 1;
+    }
+}
+
+.return {
+    color: #333;
+    font-size: 20px;
+    font-family: Impact, fantasy;
+}
+
+.menu-title {
+    margin: 0;
+    color: #EEE;
+    font-size: 26px;
+    font-family: Impact, fantasy;
 }
 
 .menu-body {
     display: flex;
     flex-wrap: wrap;
+    padding: 10px 10px 0 10px;
 }
 
 .student-info {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    font-size: 20px;
+    font-family: Impact, fantasy;
 }
 
 .student-grades-div {
     flex: 1;
+    padding: 10px;
 }
 
 .student-grades {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 130px;
+    max-height: 180px;
+    gap: 1px;
     list-style-type: none;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    padding: 0;
+    margin: 0;
     li {
+        background: rgb(0, 151, 136);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        color: #EEE;
         &:hover {
-            background: #333;
-            color: #EEE;
+            background: rgb(0, 171, 166);
         }
+        p {
+            user-select: none;
+            margin: 0;
+            font-size: 20px;
+            color: #EEE;
+            font-family: Impact, fantasy;
+        }
+    }
+}
+
+.grade-highlight {
+    background: rgb(0, 181, 176) !important;
+    border: 1px rgb(0, 101, 86) solid;
+    &:hover {
+        background: rgb(0, 191, 186) !important;
     }
 }
 
 .grade-info {
     flex: 3;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0 10px;
     input {
         width: 100%;
     }
     textarea {
+        flex: 1;
         width: 100%;
         resize: none;
     }
 }
 
 .menu-footer {
+    padding: 15px;
+}
+
+.grade-editor {
     display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+button {
+    width: 105px;
+    height: 34px;
+    border: none;
+    border-radius: 5px;
+    color: #EEE;
+    font-size: 14px;
+    &:hover {
+        color: #333;
+    }
+}
+
+.add-grade {
+    background: #006800;
+    border: 1px #006800 solid;
+    &:hover {
+        background: #117811;
+    }
+    &:focus {
+        background: #118811;
+    }
+}
+
+.edit-grade {
+    background: #686800;
+    border: 1px #686800 solid;
+    &:hover {
+        background: #787800;
+    }
+    &:focus {
+        background: #888800;
+    }
+}
+
+.delete-grade {
+    background: #680000;
+    border: 1px #680000 solid;
+    &:hover {
+        background: #880000;
+    }
+    &:focus {
+        background: #990000;
+    }
 }
 
 
