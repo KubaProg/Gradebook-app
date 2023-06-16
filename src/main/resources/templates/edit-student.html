@@ -15,7 +15,7 @@
         <h5 class="menu-title">Informacje o uczniu</h5>
     </div>
     <div class="menu-body">
-        <div class="student-info"><p id="studentName">Imie</p><p id="studentSurname">Nazwisko</p><p id="studentParentNumber">Tel rodzica:</p>
+        <div class="student-info"><p id="studentName" th:text="${'Imię:' + ' ' + student.getName()}">: </p><p id="studentSurname" th:text="${'Nazwisko:' + ' ' + student.getSurname()}">Nazwisko: </p><p id="studentParentNumber" th:text="${'Tel rodzica:' + ' ' + student.getParent_number()}">Tel rodzica: </p>
         </div>
         <div class="student-grades-div">Oceny:
             <ul class="student-grades" th:each="grade : ${grades}">
