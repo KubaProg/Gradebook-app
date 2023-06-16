@@ -204,7 +204,7 @@
                 <form th:action="@{/teacher-panel/edit-student}" method="get">
                   <input name="subjectId" th:value="${subject.getId()}" type="hidden" class="form-control add-class-input">
                   <input name="studentId" th:value="${student.getId()}" type="hidden" class="form-control add-class-input">
-                  <button type="submit" class="edit-student"> </button>
+                  <button type="submit" class="edit-student">&#x2699</button>
                 </form>
               </div>
               <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
