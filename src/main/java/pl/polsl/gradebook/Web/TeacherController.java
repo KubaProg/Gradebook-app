@@ -123,6 +123,20 @@ public class TeacherController {
 
     }
 
+    @PostMapping("deleteGrade")
+    public String deleteGrade(@RequestParam Long subjectId, @RequestParam Long studentId, @RequestParam Optional<List<Long>> selectedGradesId ){
+
+        if (selectedGradesId.isPresent()){
+            for (Long gradeId : selectedGradesId.get()){
+                gradeRepository.deleteById(gradeId);
+            }
+
+            return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
+        }
+
+        return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
+    }
+
 
 
 

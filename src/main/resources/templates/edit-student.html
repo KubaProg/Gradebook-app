@@ -25,6 +25,7 @@
         <div class="student-grades-div">Oceny:
             <ul class="student-grades" th:each="grade : ${grades}">
                 <li>
+                    <input type="checkbox" name="selectedGradesId" th:value="${grade.id}">
                     <p  th:text="${grade.getNumericalValue()}">3</p>
                 </li>
             </ul>
