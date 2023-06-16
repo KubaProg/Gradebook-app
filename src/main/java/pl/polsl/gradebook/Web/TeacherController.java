@@ -3,6 +3,8 @@ package pl.polsl.gradebook.Web;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import pl.polsl.gradebook.Grade.Model.Grade;
@@ -99,8 +101,7 @@ public class TeacherController {
     }
 
     @PostMapping("/addGrade")
-    public String addGradeToStudent(@RequestParam Long studentId, @RequestParam Long subjectId,
-                                    @Valid  Grade grade,Model model, Errors errors){
+    public String addGradeToStudent(@Valid Grade grade,Errors errors, @RequestParam Long studentId, @RequestParam Long subjectId){
 
         if(!errors.hasErrors()) {
             Teacher teacher = teacherRepository.findTeacherByUserId(userService.findCurrentUser().getId()).get();
@@ -116,18 +117,17 @@ public class TeacherController {
 
 
             gradeRepository.save(grade);
+// czy to jest na pewno potrzebne ???
+//            model.addAttribute("grades", grades);
+//            model.addAttribute("student", student);
+//            model.addAttribute("subject", subject);
+//            model.addAttribute("subjectId", subjectId);
+//            model.addAttribute("studentId", studentId);
 
-            model.addAttribute("grades", grades);
-            model.addAttribute("student", student);
-            model.addAttribute("subject", subject);
-            model.addAttribute("subjectId", subjectId);
-            model.addAttribute("studentId", studentId);
-
-            return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
+            
         }
 
         return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
-
 
     }
 

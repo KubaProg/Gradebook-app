@@ -23,8 +23,8 @@
         <div class="student-info"><p id="studentName" th:text="${'Imię:' + ' ' + student.getName()}">: </p><p id="studentSurname" th:text="${'Nazwisko:' + ' ' + student.getSurname()}">Nazwisko: </p><p id="studentParentNumber" th:text="${'Tel rodzica:' + ' ' + student.getParent_number()}">Tel rodzica: </p>
         </div>
         <div class="student-grades-div">Oceny:
-            <ul class="student-grades" th:each="grade : ${grades}">
-                <li>
+            <ul class="student-grades" >
+                <li th:each="grade : ${grades}">
                     <input type="checkbox" name="selectedGradesId" th:value="${grade.id}">
                     <p  th:text="${grade.getNumericalValue()}">3</p>
                 </li>
