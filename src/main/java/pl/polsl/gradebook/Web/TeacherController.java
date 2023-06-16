@@ -138,8 +138,6 @@ public class TeacherController {
             for (Long gradeId : selectedGradesId.get()){
                 gradeRepository.deleteById(gradeId);
             }
-
-
         }
 
         return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
@@ -183,45 +181,8 @@ public class TeacherController {
 
 
 
-    @PostMapping("/grades")
-    public String addGrade(@Valid Grade grade, Errors errors){
-        System.out.println(grade);
-
-        Long loggedUserId = userService.findCurrentUser().getId();
-        Optional<Teacher> teacher = teacherRepository.findTeacherByUserId(loggedUserId);
-
-        teacher.ifPresent(grade::setTeacher);
-
-        // add here all information about grade
-        if(!errors.hasErrors()){
-            gradeRepository.save(grade);
-        }
-
-        return "teacher-panel";
-    }
-
-    @PostMapping("/grades/delete")
-    public String deleteGrade(@RequestParam("gradeId") Long gradeId) {
-        Optional<Grade> grade = gradeRepository.findById(gradeId);
-
-        grade.ifPresent(value -> gradeRepository.delete(value));
-
-        return "teacher-panel";
-    }
 
 
-    @PostMapping("/grades/edit")
-    public String editGrade(@RequestParam("gradeId") Long gradeId, @RequestParam("newGradeValue") BigDecimal newGradeValue) {
-        Optional<Grade> grade = gradeRepository.findById(gradeId);
-
-        if (grade.isPresent()) {
-            Grade existingGrade = grade.get();
-            existingGrade.setNumericalValue(newGradeValue);
-            gradeRepository.save(existingGrade);
-        }
-
-        return "teacher-panel";
-    }
 
     @PostMapping("/add-subject")
     public String addSubject(@RequestParam String subjectName)
