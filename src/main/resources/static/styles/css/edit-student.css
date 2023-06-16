@@ -1,9 +1,9 @@
 body {
   background: #121226;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 85vh;
+  width: 100vw;
 }
 
 input[readonly] {
@@ -18,12 +18,29 @@ textarea[readonly] {
   pointer-events: none;
 }
 
+.header {
+  background: #006168;
+  width: 100%;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.logo {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 5%;
+  color: #DDD;
+  font-size: 30px;
+}
+
 .menu {
   background: #EEE;
   display: flex;
   flex-direction: column;
   max-width: 600px;
   min-height: 391px;
+  margin-top: 100px;
 }
 
 .menu-header {
@@ -74,6 +91,7 @@ textarea[readonly] {
 
 .student-grades {
   display: flex;
+  align-content: flex-start;
   overflow-y: scroll;
   scrollbar-width: thin;
   flex-wrap: wrap;
