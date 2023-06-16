@@ -28,9 +28,9 @@
         <div class="modal-body">
             <div class="grade-info">
               <p class="first">Wartość:</p>
-              <input type="text" class="form-control grade-value">
+              <input type="text" class="form-control grade-value" id="grade-value">
               <p>Opis:</p>
-              <textarea name="text" wrap="soft" class="form-control grade-description"></textarea>
+              <textarea name="text" wrap="soft" class="form-control grade-description" id="grade-description"></textarea>
             </div>
           </div>
         </div>
@@ -61,13 +61,23 @@
                         <button type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button> -->
                     </div>
                     <ul class="grades">
-                        <li th:each="grade : ${currentStudent.getGrades()}" th:if="${grade.subject.id == subject.id}">
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal" th:text="*{grade.getNumericalValue()}">5</div>
+                        <li th:each="grade : ${currentStudent.getGrades()}" th:if="${grade.subject.id == subject.id}" th:data-grade-value="${grade.getNumericalValue()}" th:data-grade-description="${grade.getDescription()}">
+                            <button onclick="setValueAndDescriptionOfGrade(this)" class="btn btn-info grade" data-toggle="modal" data-target="#grade-description-modal" th:text="*{grade.getNumericalValue()}"></button>
                         </li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
+
+<script>
+    function setValueAndDescriptionOfGrade(button) {
+        var gradeValue = button.parentNode.getAttributeNode("data-grade-value").value
+        var gradeDescription = button.parentNode.getAttributeNode("data-grade-description").value
+        document.getElementById("grade-value").value = gradeValue;
+        document.getElementById("grade-description").value = gradeDescription;
+    }
+</script>
+
 </body>
 </html>
