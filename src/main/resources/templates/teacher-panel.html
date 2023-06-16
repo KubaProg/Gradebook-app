@@ -11,8 +11,6 @@
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../static/styles/css/teacher-panel.css" th:href="@{/styles/css/teacher-panel.css}">
   <script defer src="../static/js/teacherPanel.js" th:src="@{/js/teacherPanel.js}"></script>
-  <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script>$(function() { alert('hello') });</script> -->
 
 </head>
 <body>
@@ -105,69 +103,6 @@
             <button type="button" class="btn btn-secondary remove-student-cancel" data-dismiss="modal">Anuluj</button>
             <button type="submit" class="btn btn-primary remove-student-submit">Usuń</button>
           </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="edit-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Informacje o uczniu</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="student-info">
-          <div class="student-first-name"><p id="studentName">Imie</p><p id="studentSurname">Nazwisko</p><p id="studentParentNumber">Tel rodzica:</p></div>
-          <!--            name="subjectId" id="subjectForStudentId"-->
-          <div class="student-grades-div">Oceny:
-            <ul class="student-grades" th:each="grade : ${studentGrades}">
-              <li th:text="${grade}">
-                4
-              </li>
-            </ul>
-          </div>
-          <div class="grade-info">
-            <p class="first">Wartość:</p>
-            <input type="text" readonly class="form-control grade-value">
-            <p>Opis:</p>
-            <textarea name="text" wrap="soft" readonly class="form-control grade-description"></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <div class="grade-editor">
-            <button type="button" class="btn btn-secondary delete-grade"></button>
-            <button type="button" class="btn edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button>
-            <button type="button" class="btn btn-primary add-grade" data-toggle="modal" data-target="#add-edit-grade-modal"></button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="add-edit-grade-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Dodaj ocenę</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Wpisz ocenę:
-        <input type="text" class="form-control add-grade-input">
-        Wpisz opis:
-        <textarea name="text" wrap="soft" class="form-control add-grade-description-input"></textarea>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary add-grade-cancel" data-dismiss="modal">Anuluj</button>
-          <button type="button" class="btn btn-primary add-grade-submit">Dodaj</button>
-          <button type="button" class="btn edit-grade-submit">Edytuj</button>
         </div>
       </div>
     </div>

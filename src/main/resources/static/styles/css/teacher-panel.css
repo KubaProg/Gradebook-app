@@ -1,4 +1,3 @@
-@charset "UTF-8";
 body {
   background: #121228;
   display: flex;
@@ -6,14 +5,6 @@ body {
   height: 100vh;
   padding: 0px;
   margin: 0px;
-}
-
-input[readonly] {
-  pointer-events: none;
-}
-
-textarea[readonly] {
-  pointer-events: none;
 }
 
 .modal-header {
@@ -229,14 +220,6 @@ textarea[readonly] {
   background: #888800;
 }
 
-@keyframes expanding {
-  from {
-    height: 0%;
-  }
-  to {
-    height: 100%;
-  }
-}
 .students {
   visibility: hidden;
   overflow: hidden;
@@ -289,135 +272,4 @@ textarea[readonly] {
     opacity: 1;
     filter: blur(0);
   }
-}
-.student-info {
-  flex: 3;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 0;
-  padding: 0 10px 0 10px;
-}
-
-.student-first-name {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 10px;
-  font-size: 30px;
-  font-family: Impact, fantasy;
-}
-
-.student-grades-div {
-  flex: 2;
-}
-
-.student-grades {
-  list-style-type: none;
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  height: 170px;
-  padding: 0;
-  margin: 0;
-  margin-right: 20px;
-}
-.student-grades li {
-  background: rgb(0, 151, 136);
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  height: 30px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  color: #EEE;
-  text-align: center;
-  font-family: Impact, fanstasy;
-  font-size: 20px;
-}
-.student-grades li:hover {
-  background: rgb(0, 171, 166);
-}
-
-.grade-highlight {
-  background: rgb(0, 181, 176) !important;
-  border: 1px rgb(0, 131, 116) solid;
-}
-.grade-highlight:hover {
-  background: rgb(0, 191, 186) !important;
-}
-
-.grade-info {
-  flex: 5;
-  display: flex;
-  flex-direction: column;
-}
-.grade-info p {
-  margin: 10px 0 0 0;
-}
-.grade-info .first {
-  margin-top: 0;
-}
-
-.grade-description {
-  flex: 1;
-  resize: none;
-}
-
-#edit-student-modal .modal-content {
-  width: min(500px, 100%);
-  margin: auto;
-}
-
-#edit-student-modal .modal-footer {
-  padding: 15px 10px 15px 10px;
-}
-
-.grade-editor {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.grade-editor button {
-  width: 120px;
-}
-
-.delete-grade:before {
-  content: "Usuń ocenę";
-}
-
-.edit-grade {
-  background: #686800;
-  color: #EEE;
-}
-.edit-grade:hover {
-  background: #787800;
-}
-
-.add-grade:before {
-  content: "Dodaj ocenę";
-}
-
-.edit-grade-submit {
-  background: #686800;
-  color: #EEE;
-}
-.edit-grade-submit:hover {
-  background: #787800;
-  color: #333;
-}
-
-@media (max-width: 600px) {
-  .delete-grade:before {
-    content: "Usuń";
-  }
-  .add-grade:before {
-    content: "Dodaj";
-  }
-}
-.modal-body .add-grade-description-input {
-  height: 74px;
-  resize: none;
-  overflow-y: scroll;
-  scrollbar-width: thin;
 }/*# sourceMappingURL=teacher-panel.css.map */

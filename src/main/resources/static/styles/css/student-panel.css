@@ -44,41 +44,6 @@ body {
   border: none;
 }
 
-.btn:focus {
-  outline: none;
-  color: #EEE;
-}
-
-.btn-secondary {
-  background: #680000;
-  color: #EEE;
-}
-.btn-secondary:hover {
-  background: #781111;
-  color: #000;
-}
-
-.btn-primary {
-  background: #006800;
-  border: 1px #006800 solid;
-  color: #EEE;
-}
-.btn-primary:hover {
-  background: #117811;
-  color: #000;
-}
-.btn-primary:focus {
-  background: #117811;
-}
-
-.add-class-input {
-  margin-top: 10px;
-}
-
-.add-student-input {
-  margin-top: 10px;
-}
-
 .header {
   background: #006168;
   height: 50px;
@@ -134,14 +99,6 @@ body {
   flex: 1;
 }
 
-.add-class {
-  background: #006800;
-  border: 1px #CCC solid;
-  border-radius: 1px;
-  color: #EEE;
-  font-size: 20px;
-}
-
 .classes {
   display: flex;
   flex-direction: column;
@@ -179,30 +136,6 @@ body {
   width: calc(100% - 85px);
 }
 
-.add-student {
-  background: #006800;
-}
-
-.remove-class {
-  background: #680000;
-}
-
-.remove-student {
-  background: #680000;
-}
-
-.edit-student {
-  background: #686800;
-}
-
-@keyframes expanding {
-  from {
-    height: 0%;
-  }
-  to {
-    height: 100%;
-  }
-}
 .grades {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(50px, max-content));
@@ -250,28 +183,6 @@ body {
     filter: blur(0);
   }
 }
-#edit-student-modal .modal-body {
-  display: flex;
-  width: 100%;
-  height: 300px;
-}
-
-.student-info {
-  flex: 3;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 0;
-}
-
-.student-name {
-  width: 100%;
-  margin-bottom: 10px;
-  text-align: center;
-  font-size: 30px;
-  font-family: Impact, fantasy;
-}
-
 .student-grades-div {
   flex: 2;
 }
@@ -312,11 +223,4 @@ body {
 .grade-description {
   flex: 1;
   resize: none;
-}
-
-.modal-body .add-grade-description-input {
-  height: 74px;
-  resize: none;
-  overflow-y: scroll;
-  scrollbar-width: thin;
 }/*# sourceMappingURL=student-panel.css.map */

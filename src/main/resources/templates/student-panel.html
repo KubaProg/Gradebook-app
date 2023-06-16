@@ -16,28 +16,7 @@
 </head>
 <body>
 <!-- Modale -->
-<div class="modal fade" id="add-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Dodaj przedmiot</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Wpisz nazwę przedmiotu:
-        <input type="text" class="form-control add-class-input">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary add-class-cancel" data-dismiss="modal">Anuluj</button>
-        <button type="button" class="btn btn-primary add-class-submit">Dodaj</button>
-      </div>
-    </div>
-  </div>
-</div>    
-
-  <div class="modal fade" id="edit-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="grade-description-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -53,34 +32,7 @@
               <p>Opis:</p>
               <textarea name="text" wrap="soft" class="form-control grade-description"></textarea>
             </div>
-          <!-- <div class="grade-editor">
-            <button type="button" class="btn btn-secondary delete-grade"></button>
-            <button type="button" class="btn edit-grade">Edytuj</button>
-            <button type="button" class="btn btn-primary add-grade" data-toggle="modal" data-target="#add-grade-modal"></button> -->
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="add-grade-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Dodaj ocenę</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Wpisz ocenę:
-          <input type="text" class="form-control add-grade-input">
-          Wpisz opis:
-          <textarea name="text" wrap="soft" class="form-control add-grade-description-input"></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary add-grade-cancel" data-dismiss="modal">Anuluj</button>
-          <button type="button" class="btn btn-primary add-grade-submit">Dodaj</button>
         </div>
       </div>
     </div>
@@ -110,43 +62,43 @@
                     </div>
                     <ul class="grades">
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">3</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">3</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">2</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">2</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">4</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">4</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">4</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">4</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">2</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">2</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">1</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">1</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">6</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">6</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">2</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">2</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">3</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">3</div>
                         </li>
                         <li>
-                          <div class="grade" data-toggle="modal" data-target="#edit-student-modal">2</div>
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">2</div>
                         </li>
                     </ul>
                 </li>
@@ -159,25 +111,25 @@
                   </div>
                   <ul class="grades">
                       <li>
-                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
                       </li>
                       <li>
-                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
                       </li>
                       <li>
-                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">3</div>
+                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">3</div>
                       </li>
                       <li>
-                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">4</div>
+                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">4</div>
                       </li>
                       <li>
-                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">1</div>
+                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">1</div>
                       </li>
                       <li>
-                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">4</div>
+                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">4</div>
                       </li>
                       <li>
-                        <div class="grade" data-toggle="modal" data-target="#edit-student-modal">5</div>
+                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
                       </li>
                   </ul>
                 </li>
