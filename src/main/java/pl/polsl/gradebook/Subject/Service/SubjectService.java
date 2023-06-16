@@ -9,6 +9,7 @@ import pl.polsl.gradebook.Teacher.Service.TeacherService;
 import pl.polsl.gradebook.User.Model.User;
 import pl.polsl.gradebook.User.Service.UserService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,15 +21,13 @@ public class SubjectService
     TeacherRepository teacherRepository;
 
     public SubjectService(SubjectRepository subjectRepository, UserService userService,
-                          TeacherRepository teacherRepository)
-    {
+                          TeacherRepository teacherRepository) {
         this.subjectRepository = subjectRepository;
         this.userService = userService;
         this.teacherRepository = teacherRepository;
     }
 
-    public Subject saveNewSubject(String subjectName)
-{
+    public Subject saveNewSubject(String subjectName) {
 
     User currentUser = userService.findCurrentUser();
     Teacher currentTeacher = teacherRepository.findTeacherByUserId(currentUser.getId()).get();
@@ -41,5 +40,7 @@ public class SubjectService
 
     return subjectRepository.save(subjectToSave);
 }
+
+
 
 }

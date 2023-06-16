@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,7 +45,7 @@
     <div class="container">
         <div class="menu">
           <div class="menu-student-info">
-            <div class="menu-student-info-name">Jan Kowalski</div>
+            <div class="menu-student-info-name" th:text="*{currentStudent.getName() + ' ' + currentStudent.getSurname()}">Jan Kowalski</div>
             <div class="menu-student-info-class">klasa 2C</div>
             <!-- <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">
                 Dodaj przedmiot
@@ -53,85 +53,18 @@
           </div>
             
             <ul class="classes">
-                <li>
-                    <div class="class">
+                <li th:each="subject : ${subjects}">
+                    <div class="class" th:text="*{subject.getName()}">
                       Matematyka
                         <!-- <div>Matematyka</div>
                         <button type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
                         <button type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button> -->
                     </div>
                     <ul class="grades">
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">3</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">2</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">4</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">4</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">2</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">1</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">6</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">2</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">3</div>
-                        </li>
-                        <li>
-                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal">2</div>
+                        <li th:each="grade : ${currentStudent.getGrades()}" th:if="${grade.subject.id == subject.id}">
+                          <div class="grade" data-toggle="modal" data-target="#grade-description-modal" th:text="*{grade.getNumericalValue()}">5</div>
                         </li>
                     </ul>
-                </li>
-                <li>
-                  <div class="class">
-                    Informatyka
-                      <!-- <div>Informatyka</div>
-                      <button type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
-                      <button type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button> -->
-                  </div>
-                  <ul class="grades">
-                      <li>
-                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
-                      </li>
-                      <li>
-                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
-                      </li>
-                      <li>
-                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">3</div>
-                      </li>
-                      <li>
-                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">4</div>
-                      </li>
-                      <li>
-                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">1</div>
-                      </li>
-                      <li>
-                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">4</div>
-                      </li>
-                      <li>
-                        <div class="grade" data-toggle="modal" data-target="#grade-description-modal">5</div>
-                      </li>
-                  </ul>
                 </li>
             </ul>
         </div>
