@@ -13,6 +13,8 @@
 </head>
 
 <body>
+<form method="post">
+
 <div class="menu">
     <div class="menu-header">
         <h5 class="menu-title">Informacje o uczniu</h5>
@@ -29,19 +31,22 @@
         </div>
         <div class="grade-info">
             <p class="first">Wartość:</p>
-            <input type="text" readonly class="form-control grade-value">
+            <input type="text" name="gradeValue" class="form-control grade-value">
             <p>Opis:</p>
-            <textarea name="text" wrap="soft" readonly class="form-control grade-description"></textarea>
+            <textarea  name="gradeDescription" wrap="soft"  class="form-control grade-description"></textarea>
+            <input type="hidden" name="subjectId" th:value="${subject.getId()}" />
+            <input type="hidden" name="studentId" th:value="${student.getId()}"/>
         </div>
     </div>
     <div class="menu-footer">
         <div class="grade-editor">
-            <button type="button" class="delete-grade">Usuń</button>
-            <button type="button" class="edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button>
-            <button type="button" class="add-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Dodaj</button>
+            <button type="submit" th:formaction="'/teacher-panel/addGrade'"  class="add-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Dodaj</button>
+            <button type="submit" th:formaction="'/teacher-panel/deleteGrade'" class="delete-grade">Usuń</button>
+            <button type="submit" th:formaction="'/teacher-panel/editGrade'" class="edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button>
         </div>
     </div>
 </div>
 </div>
 </div>
+</form>
 </body>

@@ -82,14 +82,48 @@ public class TeacherController {
 
         Student student = studentRepository.findById(studentId).get();
         List<Grade> grades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId).get();
+        Subject subject = subjectRepository.findById(subjectId).get();
 
         model.addAttribute("grades", grades);
         model.addAttribute("student",student);
+        model.addAttribute("subject",subject);
 
 
         return "edit-student";
 
     }
+
+    @PostMapping("/addGrade")
+    public String addGradeToStudent(@RequestParam Long studentId, @RequestParam Long subjectId,
+                                    @RequestParam double gradeValue, @RequestParam String gradeDescription,Model model){
+
+        Teacher teacher = teacherRepository.findTeacherByUserId(userService.findCurrentUser().getId()).get();
+        Student student = studentRepository.findById(studentId).get();
+        Subject subject = subjectRepository.findById(subjectId).get();
+        List<Grade> grades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId).get();
+
+        Grade grade = new Grade();
+        grade.setStudent(student);
+        grade.setSubject(subject);
+        grade.setTeacher(teacher);
+        grade.setDescription(gradeDescription);
+        grade.setNumericalValue(BigDecimal.valueOf(gradeValue));
+
+        gradeRepository.save(grade);
+
+        model.addAttribute("grades", grades);
+        model.addAttribute("student",student);
+        model.addAttribute("subject",subject);
+        model.addAttribute("subjectId", subjectId);
+        model.addAttribute("studentId", studentId);
+
+
+
+        return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
+
+    }
+
+
 
 
     @GetMapping("/student-grades/{studentId}/{subjectId}")
@@ -98,6 +132,7 @@ public class TeacherController {
         Optional<List<Grade>> studentGrades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId);
 
         studentGrades.ifPresent(grades -> model.addAttribute("studentGrades", grades));
+
 
         return "redirect:/teacher-panel";
     }
