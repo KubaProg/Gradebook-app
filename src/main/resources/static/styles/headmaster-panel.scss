@@ -1,0 +1,259 @@
+body {
+    background: #121228;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 0px;
+    margin:0px;
+}
+
+.modal-header {
+    background: rgb(0, 151, 136);
+    display: flex;
+    border: none;
+}
+
+.modal-title {
+    flex: 1;
+    color: #EEE;
+    font-size: 20px;
+    font-family: Impact, fantasy;
+}
+
+.close {
+    opacity: 1;
+    color: #EEE;
+}
+
+.modal-body {
+    background: #CCC;
+    user-select: none;
+    padding-bottom: 0;
+    font-family: fantasy
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    background: #CCC;
+    padding: 15px 0 15px 15px;
+    margin-top: 0px;
+    border: none;
+}
+
+.btn-secondary {
+    background: #680000;
+    width: 65px;
+    color: #EEE;
+    &:hover {
+        background: #781111;
+    }
+}
+
+.btn-primary {
+    background: #006800;
+    width: 65px;
+    border: 1px #006800 solid;
+    color: #EEE;
+    &:hover {
+        background: #117811;
+        color: #333;
+    }
+    &:focus {
+        background: #117811;
+    }
+}
+
+.add-class-input {
+    margin-top: 10px;
+}
+
+.add-teacher-input {
+    margin-top: 10px;
+}
+
+.header{
+    background: #006168;
+    height:50px;
+    flex-shrink: 0;
+}
+
+.logo{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 5%;
+    color:#DDD;
+    font-size: 30px;
+}
+
+.container {
+    flex: 1;
+    width: 100%;
+}
+
+.menu{
+    background: #CCC;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-width: 800px;
+    min-height: 600px;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 2px;
+    font-size: 40px;
+    font-family:Impact, fantasy;
+    animation: fadeIn 1s;
+    user-select: none;
+}
+
+.menu-teacher-info {
+    background: #FAFAFA;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    padding: 10px;
+    border-radius: 1px;
+    font-size: 30px;
+    div {
+        flex: 1;
+    }
+}
+
+.add-class {
+    background: #006800;
+    border: 1px #CCC solid;
+    border-radius: 5px;
+    color: #EEE;
+    font-size: 20px;
+    &:hover {
+        background: #117811;
+    }
+}
+
+.add {
+    background: #006800;
+    &:hover {
+        background: #008800;
+    }
+}
+
+.remove {
+    background: #680000;
+    &:hover {
+        background: #880000;
+    }
+}
+
+.edit {
+    background: #686800;
+    &:hover {
+        background: #888800;
+    }
+}
+
+.classes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    li {
+        background: #EEE;
+        width: 100%;
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border: 1px #005158 solid;
+            color: #EEE;
+            font-size: 20px;
+        }
+    }
+}
+
+.class {
+    background: rgb(0, 151, 136);
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 5px;
+    border: 1px #EEE solid;
+    border-radius: 1px;
+    color: #EEE;
+    text-align: center;
+    font-size: 40px;
+    transition: all 0.5s;
+    div {
+        width: calc(100% - 85px);
+    }
+    &:hover {
+        background: #EEE;
+        border: 1px rgb(0, 151, 136) solid;
+        color: rgb(0, 151, 136);
+    }
+}
+
+.teachers {
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    padding-left: 0px;
+    transition: all 0.5s;
+    li {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        border-top: 1px #006168 dashed;
+        border-radius: 0;
+        gap: 5px;
+        font-size: 70%;
+        transition: background-color 0.5s;
+    }
+}
+
+.teacher {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    gap: 5px;
+    padding-left: 1%;
+}
+
+.teacher-name {
+    box-sizing: border-box;
+    width: calc(100% - 85px);
+}
+
+.teacher-options {
+    display: flex;
+    gap: 5px;
+}
+
+.show-teachers {
+    visibility: visible;
+    max-height: none;
+    padding: 10px 0 10px 0;
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+        filter: blur(5px);
+    }
+    to{
+        opacity: 1;
+        filter: blur(0);
+    }
+}
