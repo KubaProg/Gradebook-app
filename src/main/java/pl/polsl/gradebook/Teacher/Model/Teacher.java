@@ -22,11 +22,11 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Subject> subjects;
 
     private String name;

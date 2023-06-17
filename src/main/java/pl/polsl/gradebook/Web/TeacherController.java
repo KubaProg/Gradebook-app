@@ -3,8 +3,6 @@ package pl.polsl.gradebook.Web;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
-
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import pl.polsl.gradebook.Grade.Model.Grade;
@@ -21,9 +19,6 @@ import pl.polsl.gradebook.Teacher.Service.TeacherService;
 import pl.polsl.gradebook.User.Model.User;
 import pl.polsl.gradebook.User.Service.UserService;
 
-import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +32,6 @@ public class TeacherController {
     StudentRepository studentRepository;
     GradeRepository gradeRepository;
     SubjectService subjectService;
-
     SubjectRepository subjectRepository;
     StudentService studentService;
 
@@ -90,9 +84,7 @@ public class TeacherController {
         model.addAttribute("student",student);
         model.addAttribute("subject",subject);
 
-
         return "edit-student";
-
     }
 
     @ModelAttribute
@@ -109,22 +101,12 @@ public class TeacherController {
             Subject subject = subjectRepository.findById(subjectId).get();
             List<Grade> grades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId).get();
 
-
             grade.setStudent(student);
             grade.setSubject(subject);
             grade.setTeacher(teacher);
 
-
-
             gradeRepository.save(grade);
-// czy to jest na pewno potrzebne ???
-//            model.addAttribute("grades", grades);
-//            model.addAttribute("student", student);
-//            model.addAttribute("subject", subject);
-//            model.addAttribute("subjectId", subjectId);
-//            model.addAttribute("studentId", studentId);
 
-            
         }
 
         return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
@@ -153,14 +135,12 @@ public class TeacherController {
 
         studentGrades.ifPresent(grades -> model.addAttribute("studentGrades", grades));
 
-
         return "redirect:/teacher-panel";
     }
 
     @PostMapping("/add-student")
     public String addStudent(@RequestParam("studentId") Long studentId, @RequestParam("subjectId") Long subjectId)
     {
-
 
         Optional<Student> studentOptional = studentRepository.findById(studentId);
         Optional<Subject> subjectOptional = subjectRepository.findById(subjectId);
@@ -178,11 +158,6 @@ public class TeacherController {
 
         return "redirect:/teacher-panel";
     }
-
-
-
-
-
 
     @PostMapping("/add-subject")
     public String addSubject(@RequestParam String subjectName)
@@ -231,15 +206,10 @@ public class TeacherController {
         return "redirect:/teacher-panel";
     }
 
-
-
     @ModelAttribute("allStudents")
     public Iterable<Student> getAllStudents() {
         return studentRepository.findAll();
     }
-
-
-
 
 
 }

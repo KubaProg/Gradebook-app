@@ -24,6 +24,7 @@ class SecurityConfig {
                         .requestMatchers("/teacher-panel/**").hasRole("TEACHER")
                         .requestMatchers("/edit-student").hasRole("TEACHER")
                         .requestMatchers("/student-panel").hasRole("STUDENT")
+                        .requestMatchers("/headmaster-panel").hasRole("HEADMASTER")
 //                .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .anyRequest().permitAll()

@@ -1,7 +1,10 @@
 package pl.polsl.gradebook.Headmaster.Model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.polsl.gradebook.User.Model.User;
 
 @Entity
@@ -22,4 +25,6 @@ public class Headmaster {
     private String name;
 
     private String surname;
+
+
 }

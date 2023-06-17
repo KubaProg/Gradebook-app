@@ -24,7 +24,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" class="modal-body" action="/add-subject" th:action="@{/headmaster-panel/add-subject}">
+      <form method="post" class="modal-body" action="/add-subject">
         Wpisz nazwę przedmiotu:
         <input name="subjectName" type="text" class="form-control add-class-input">
         <div class="modal-footer">
@@ -46,12 +46,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form class='modal-body' id="add-teacher-form" th:action="@{/headmaster-panel/add-teacher}" method="post">
+      <form class='modal-body' id="add-teacher-form" method="post">
 
         <input type="hidden" name="subjectId" id="subjectForTeacherId" />
 
         <select id="class-name" name="teacherId" class="form-control">
-          <option th:each="teacher : ${allTeachers}" th:text="${teacher.getName()} + ${' '} + ${teacher.getSurname()}" th:value="${teacher.getId()}"></option>
+          <option ></option>
         </select>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
@@ -72,11 +72,11 @@
         </button>
       </div>
       <div class="modal-body">
-        Czy na pewno chcesz usunąc ten przedmiot?
+        Czy na pewno chcesz usunąc tego nauczyciela?
         <div class="modal-footer" >
-          <form th:action="@{headmaster-panel/delete-subject}" method="post" >
+          <form method="post" th:action="@{headmaster-panel/delete-teacher}" >
             <button type="button" class="btn btn-secondary remove-class-cancel" data-dismiss="modal">Anuluj</button>
-            <input type="hidden" name="subjectId" id="subjectId" />
+            <input type="hidden" name="teacherId" id="teacherId" />
             <button type="submit" class="btn btn-primary">Usuń</button>
           </form>
         </div>
@@ -97,9 +97,8 @@
       <div class="modal-body">
         Czy na pewno chcesz usunąc tego nauczyciela?
         <div class="modal-footer">
-          <form th:action="@{headmaster-panel/delete-teacher}" method="post">
-            <input type="hidden" id="delete-teacher-subject-id" name="subjectId">
-            <input type="hidden" id="delete-teacher-teacher-id" name="teacherId">
+          <form method="post">
+            <input type="hidden" id="delete-teacher-id" name="teacherId">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
             <button type="submit" class="btn btn-primary">Usuń</button>
           </form>
@@ -116,33 +115,33 @@
 <div class="container">
   <div class="menu">
     <div class="menu-teacher-info">
-      <div th:text="*{currentTeacher.getName() + ' ' + currentTeacher.getSurname()}">Jan Kowalski</div>
+      <div th:text="*{currentHeadMaster.getName() + ' ' + currentHeadMaster.getSurname()}">Jan Kowalski</div>
       <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">
         Dodaj przedmiot
       </button>
     </div>
 
-    <ul class="classes" th:remove="all-but-first">
-      <li th:each="subject: ${subjects}">
-        <div class="class" th:data-subject-id="${subject.getId()}">
-          <div  th:value="*{subject.getId()}" th:text="*{subject.getName()}">Matematyka</div>
-          <button onclick="setSubjectIdForTeacher(this)"  type="button" class="add" data-toggle="modal" data-target="#add-teacher-modal">&#x271A</button>
-          <button onclick="setSubjectId(this)" type="button" class="remove" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
+    <ul class="classes" >
+      <li th:each="teacher : ${teachers}">
+        <div class="class" th:data-teacher-id="${teacher.getId()}">
+          <div th:text="*{teacher.getName() + ' ' + teacher.getSurname()}">Nauczyciel</div>
+          <button   type="button" class="add" data-toggle="modal" data-target="#add-teacher-modal">&#x271A</button>
+          <button onclick="setTeacherId(this)" type="button" class="remove" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
 
         </div>
 
         <ul class="teachers" >
-          <li th:each="teacher : ${subject.getTeachers()}">
-            <div class="teacher"  th:data-teacher-id="${teacher.getId()}" th:data-subject-id="${subject.getId()}">
-              <div class="teacher-name" th:text="*{teacher.getName() + ' ' + teacher.getSurname()}" >Kamil Nowak</div>
-              <div class="teacher-options" th:data-teacher-name="${teacher.getName()}" th:data-teacher-surname="${teacher.getSurname()}" th:data-teacher-number="${teacher.getParent_number()}" th:data-teacher-id="${teacher.getId()}" >
-                <form th:action="@{/headmaster-panel/edit-teacher}" method="get">
-                  <input name="subjectId" th:value="${subject.getId()}" type="hidden" class="form-control add-class-input">
-                  <input name="teacherId" th:value="${teacher.getId()}" type="hidden" class="form-control add-class-input">
+          <li th:each="subject : ${teacher.getSubjects()}">
+            <div class="teacher"  >
+              <div class="teacher-name" th:text="*{subject.getName()}" >Przedmiot</div>
+              <div class="teacher-options"  >
+                <form method="get">
+                  <input name="subjectId"  type="hidden" class="form-control add-class-input">
+                  <input name="teacherId"  type="hidden" class="form-control add-class-input">
                   <button type="submit" class="edit">&#x2699</button>
                 </form>
               </div>
-              <button onclick="setSubjectIdAndTeacherIdForDelete(this)"  type="button" class="remove" data-toggle="modal" data-target="#remove-teacher-modal">&#x2716</button>
+              <button   type="button" class="remove" data-toggle="modal" data-target="#remove-teacher-modal">&#x2716</button>
             </div>
           </li>
         </ul>
@@ -150,39 +149,13 @@
     </ul>
   </div>
 </div>
-<script>
-  function setSubjectId(button) {
-    var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
-    document.getElementById("subjectId").value = subjectId;
-  }
-</script>
-<!--git-->
-<script>
-  function setSubjectIdForTeacher(button) {
-    var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
-    document.getElementById("subjectForTeacherId").value = subjectId;
-  }
-</script>
 
 <script>
-  function setSubjectIdAndTeacherIdForDelete(button) {
-    var subjectId = button.parentNode.parentNode.querySelector(".teacher").getAttribute("data-subject-id");
-    var teacherId = button.parentNode.parentNode.querySelector(".teacher").getAttribute("data-teacher-id");
-    document.getElementById("delete-teacher-subject-id").value = subjectId;
-    document.getElementById("delete-teacher-teacher-id").value = teacherId;
+  function setTeacherId(button) {
+    var teacherId = button.parentNode.getAttributeNode("data-teacher-id").value;
+    document.getElementById("teacherId").value = teacherId;
   }
-</script>
 
-<script>
-  function setTeacherInfoAndGrades(button) {
-    var teacherName = button.parentNode.parentNode.querySelector(".teacherInfo").getAttribute("data-teacher-name");
-    var teacherSurname = button.parentNode.parentNode.querySelector(".teacherInfo").getAttribute("data-teacher-surname");
-    var teacherParentNumber = button.parentNode.parentNode.querySelector(".teacherInfo").getAttribute("data-teacher-number");
-    var teacherId = button.parentNode.parentNode.querySelector(".teacherInfo").getAttribute("data-teacher-id");
-    document.getElementById("teacherName").textContent = teacherName;
-    document.getElementById("teacherSurname").textContent = teacherSurname;
-    document.getElementById("teacherParentNumber").textContent = teacherParentNumber;
-  }
 </script>
 
 </body>
