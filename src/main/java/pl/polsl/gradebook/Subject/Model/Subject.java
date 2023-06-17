@@ -24,14 +24,14 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
     @NotBlank
     private String name;
 
-    @ManyToMany(mappedBy = "subjects",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "subjects")
     private List<Student> students;
 
 }

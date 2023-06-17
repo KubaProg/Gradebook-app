@@ -13,6 +13,9 @@ public interface GradeRepository extends CrudRepository<Grade, Long> {
 
     Optional<List<Grade>> findGradesByStudentIdAndSubjectId(Long studentId, Long subjectId);
 
+    List<Grade> findGradesBySubjectId(Long subjectId);
+
     void removeGradesByStudentId(Long studentId);
+
 
 }

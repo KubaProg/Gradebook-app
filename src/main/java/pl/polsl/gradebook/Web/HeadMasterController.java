@@ -3,13 +3,17 @@ package pl.polsl.gradebook.Web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.polsl.gradebook.Grade.Model.Grade;
+import pl.polsl.gradebook.Grade.Repository.GradeRepository;
 import pl.polsl.gradebook.Headmaster.Model.Headmaster;
 import pl.polsl.gradebook.Headmaster.Repository.HeadMasterRepository;
 import pl.polsl.gradebook.Student.Model.Student;
+import pl.polsl.gradebook.Student.Repository.StudentRepository;
 import pl.polsl.gradebook.Subject.Model.Subject;
+import pl.polsl.gradebook.Subject.Repository.SubjectRepository;
 import pl.polsl.gradebook.Teacher.Model.Teacher;
 import pl.polsl.gradebook.Teacher.Repository.TeacherRepository;
 import pl.polsl.gradebook.User.Model.User;
+import pl.polsl.gradebook.User.Repository.UserRepository;
 import pl.polsl.gradebook.User.Service.UserService;
 
 import java.util.List;
@@ -23,10 +27,22 @@ public class HeadMasterController {
     TeacherRepository teacherRepository;
     HeadMasterRepository headMasterRepository;
 
-    public HeadMasterController(UserService userService, TeacherRepository teacherRepository, HeadMasterRepository headMasterRepository) {
+    GradeRepository gradeRepository;
+
+    StudentRepository studentRepository;
+
+    SubjectRepository subjectRepository;
+
+    UserRepository userRepository;
+
+    public HeadMasterController(UserService userService, TeacherRepository teacherRepository, HeadMasterRepository headMasterRepository, GradeRepository gradeRepository, StudentRepository studentRepository, SubjectRepository subjectRepository, UserRepository userRepository) {
         this.userService = userService;
         this.teacherRepository = teacherRepository;
         this.headMasterRepository = headMasterRepository;
+        this.gradeRepository = gradeRepository;
+        this.studentRepository = studentRepository;
+        this.subjectRepository = subjectRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -65,27 +81,36 @@ public class HeadMasterController {
 
     @PostMapping("/delete-teacher")
     public String deleteTeacher(@RequestParam Long teacherId) {
-//        Optional<Teacher> teacher = teacherRepository.findById(teacherId);
-        teacherRepository.deleteById(teacherId);
-//        if (teacher.isPresent()) {
-//
-//            List<Subject> subjectsToRemove = teacher.get().getSubjects();
-//
-//            // removing subjects of teacher
-//            for (Subject subject : subjectsToRemove) {
-//
-//                List<Grade> gradesFromSubjectAndStudent = gradeRepository.findGradesByStudentIdAndSubjectId(student.getId(), subjectId).get();
-//                for (Grade grade : gradesFromSubjectAndStudent) {
-//                    student.getGrades().remove(grade);
-//                    gradeRepository.deleteById(grade.getId());
-//                }
-//
-//
-//                student.getSubjects().remove(subject);
-//            }
-//
-//            subjectRepository.deleteById(subjectId);
-//        }
+        Optional<Teacher> teacherToDelete = teacherRepository.findById(teacherId);
+
+        if (teacherToDelete.isPresent()) {
+            Teacher teacher = teacherToDelete.get();
+            List<Subject> subjectsToRemove = teacher.getSubjects();
+
+            // removing subjects of teacher
+           for (Subject subject : subjectsToRemove) {
+
+               List<Student> students = subject.getStudents();
+
+               
+               for (Student student : students) {
+
+                   List<Grade> gradesFromSubjectAndStudent = gradeRepository.findGradesByStudentIdAndSubjectId(student.getId(), subject.getId()).get();
+                   for (Grade grade : gradesFromSubjectAndStudent ){
+                       student.getGrades().remove(grade);
+                       gradeRepository.deleteById(grade.getId());
+                   }
+
+
+                   student.getSubjects().remove(subject);
+               }
+
+               subjectRepository.deleteById(subject.getId());
+            }
+
+           teacherRepository.deleteById(teacher.getId());
+           userRepository.deleteById(teacher.getUser().getId());
+        }
 
         return "redirect:/headmaster-panel";
     }
