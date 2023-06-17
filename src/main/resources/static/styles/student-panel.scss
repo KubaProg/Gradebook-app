@@ -108,16 +108,6 @@ body {
     li {
         background: #EEE;
         width: 100%;
-        button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 30px;
-            height: 30px;
-            border: 1px #005158 solid;
-            color: #EEE;
-            font-size: 20px;
-        }
     }
 }
 
@@ -150,18 +140,20 @@ body {
         background: #005158;
         max-width: 50px;
         height: 50px;
-        border-top: 1px #006168 dashed;
         border-radius: 5px;
         color: #EEE;
-        font-size: 70%;
     }
 }
 
 .grade {
+    background: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 25px;
 }
 
 .show-grades {

@@ -62,7 +62,7 @@
                     </div>
                     <ul class="grades">
                         <li th:each="grade : ${currentStudent.getGrades()}" th:if="${grade.subject.id == subject.id}" th:data-grade-value="${grade.getNumericalValue()}" th:data-grade-description="${grade.getDescription()}">
-                            <button onclick="setValueAndDescriptionOfGrade(this)" class="btn btn-info grade" data-toggle="modal" data-target="#grade-description-modal" th:text="*{grade.getNumericalValue()}"></button>
+                            <button onclick="setValueAndDescriptionOfGrade(this)" class="grade" data-toggle="modal" data-target="#grade-description-modal" th:text="*{grade.getNumericalValue()}"></button>
                         </li>
                     </ul>
                 </li>
