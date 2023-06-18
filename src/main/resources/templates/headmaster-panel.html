@@ -24,17 +24,18 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form th:action="@{headmaster-panel/add-teacher}" method="post" class="modal-body" action="/add-subject">
+      <form novalidate th:object="${teacherInfo}" th:action="@{/headmaster-panel/add-teacher}" method="post" class="modal-body">
         Imię:
-        <input name="teacherName" type="text" class="form-control add-class-input">
+        <input th:field="*{name}" id="name" type="text" class="form-control add-class-input">
+        <p th:errors="*{name}" class="error">Błędy związane z imieniem</p>
         Nazwisko:
-        <input name="teacherSurname" type="text" class="form-control add-class-input">
+        <input th:field="*{surname}"  type="text" class="form-control add-class-input">
         Pensja:
-        <input name="teacherSalary" type="text" class="form-control add-class-input">
+        <input th:field="*{salary}"  type="text" class="form-control add-class-input">
         Login:
-        <input name="teacherLogin" type="text" class="form-control add-class-input">
+        <input th:field="*{login}"  type="text" class="form-control add-class-input">
         Hasło:
-        <input name="teacherPassword" type="text" class="form-control add-class-input">
+        <input th:field="*{password}" type="text" class="form-control add-class-input">
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="btn btn-primary">Dodaj</button>

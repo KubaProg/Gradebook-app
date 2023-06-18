@@ -3,6 +3,7 @@ package pl.polsl.gradebook.Web;
 import jakarta.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import pl.polsl.gradebook.Grade.Model.Grade;
@@ -13,6 +14,8 @@ import pl.polsl.gradebook.Student.Model.Student;
 import pl.polsl.gradebook.Student.Repository.StudentRepository;
 import pl.polsl.gradebook.Subject.Model.Subject;
 import pl.polsl.gradebook.Subject.Repository.SubjectRepository;
+import pl.polsl.gradebook.Teacher.Dto.TeacherDtoMapper;
+import pl.polsl.gradebook.Teacher.Dto.TeacherRegisterDto;
 import pl.polsl.gradebook.Teacher.Model.Teacher;
 import pl.polsl.gradebook.Teacher.Repository.TeacherRepository;
 import pl.polsl.gradebook.User.Model.User;
@@ -150,30 +153,31 @@ public class HeadMasterController {
     }
 
 
+    @ModelAttribute("teacherInfo")
+    public TeacherRegisterDto getTeacherInfo(){
+        return new TeacherRegisterDto();
+    }
+
+
     @PostMapping("/add-teacher")
-    public String addTeacher(@RequestParam String teacherName, @RequestParam String teacherSurname,
-                             @RequestParam String teacherSalary, @RequestParam String teacherLogin,
-                             @RequestParam String teacherPassword)
+    public String addTeacher(@Valid TeacherRegisterDto teacherInfo, Errors errors, Model model)
     {
 
-        User user = new User();
-        user.setLogin(teacherLogin);
-        user.setPassword(passwordEncoder.encode(teacherPassword));
-        user.setRole("TEACHER");
+        if(!errors.hasErrors()) {
 
+            User user = TeacherDtoMapper.mapDtoToUser(teacherInfo);
+            user.setPassword(passwordEncoder.encode(teacherInfo.getPassword()));
+            User savedUser = userRepository.save(user);
 
-        User savedUser = userRepository.save(user);
+            Teacher teacher = TeacherDtoMapper.mapDtoToTeacher(teacherInfo);
+            teacher.setUser(savedUser);
+            teacherRepository.save(teacher);
 
-        Teacher teacher = new Teacher();
-        teacher.setName(teacherName);
-        teacher.setSurname(teacherSurname);
-        teacher.setSalary(BigDecimal.valueOf(Double.parseDouble(teacherSalary)));
-        teacher.setUser(savedUser);
+            return "redirect:/headmaster-panel";
+        }
 
-        teacherRepository.save(teacher);
+        return "headmaster-panel";
 
-
-    return "redirect:/headmaster-panel";
 
     }
 
