@@ -18,6 +18,10 @@ textarea[readonly] {
 }
 
 .modal-dialog {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%) !important;
     width: 300px;
 }
 
@@ -47,7 +51,7 @@ textarea[readonly] {
     padding-bottom: 0;
     font-family: fantasy;
     textarea {
-        height: 150px;
+        height: 154px;
         resize: none;
     }
     p {
@@ -70,18 +74,35 @@ textarea[readonly] {
 
 .header{
     background: #006168;
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 50px;
     flex-shrink: 0;
+    color:#EEE;
+    form {
+        margin-right: 5%;
+    }
 }
 
 .logo{
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    flex: 1;
     margin-left: 5%;
-    color:#DDD;
     font-size: 30px;
+}
+
+.logout {
+    background: #680000;
+    width: 105px;
+    height: 34px;
+    border: 1px #005158 solid;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: Impact, fantasy;
+    &:hover {
+        background: #880000;
+        color: #333;
+    }
 }
 
 .menu {
@@ -89,7 +110,6 @@ textarea[readonly] {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 580px;
     max-width: 600px;
     min-height: 391px;
     margin-top: 100px;
@@ -157,33 +177,39 @@ textarea[readonly] {
 
 .student-grades-div {
     flex: 1;
-    max-width: 160px;
+    min-width: 220px;
+    max-width: 261px;
     height: 220px;
     padding: 10px;
 }
 
 .student-grades {
+    background: rgb(204, 204, 204);
     display: flex;
     align-content: flex-start;
     overflow-y: scroll;
-    scrollbar-width: thin;
     flex-wrap: wrap;
     gap: 1px;
     list-style-type: none;
-    height: 95%;
-    padding: 0;
-    margin: 0;
+    height: 90%;
+    padding: 10px;
+    margin-top: 10px;
 }
 
 .grade {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     box-sizing: border-box;
     width: 40px;
     height: 40px;
     border-radius: 5px;
     color: #EEE;
+    button {
+        background: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
     p {
         user-select: none;
         margin: 0;
@@ -238,7 +264,7 @@ textarea[readonly] {
 
 .grade-highlight {
     background: rgb(0, 121, 106);
-    border: 1px #FFF solid;
+    border: 1px rgb(204, 204, 204) solid;
     &:hover {
         background: rgb(0, 151, 136);
     }
@@ -255,6 +281,7 @@ textarea[readonly] {
         flex: 1;
         resize: none;
         width: 100%;
+        padding: 10px;
         border: none;
         &:focus {
             box-shadow: none;
@@ -265,9 +292,9 @@ textarea[readonly] {
 
 .menu-footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
-    padding: 15px;
+    padding: 15px 20px 15px 20px;
 }
 
 button {

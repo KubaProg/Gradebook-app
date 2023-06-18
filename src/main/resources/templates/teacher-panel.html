@@ -112,9 +112,13 @@
 <!-- Panel Nauczyciela -->
 <div class="header">
   <div class="logo">Dziennik Elektroniczny</div>
+  <form th:action="@{/logout}" method="get">
+    <button type="submit" class="logout">Wyloguj</button>
+  </form>
 </div>
 <div class="container">
   <div class="menu">
+    <div class="panel-info">Panel Nauczyciela</div>
     <div class="menu-teacher-info">
       <div th:text="*{currentTeacher.getName() + ' ' + currentTeacher.getSurname()}">Jan Kowalski</div>
       <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">

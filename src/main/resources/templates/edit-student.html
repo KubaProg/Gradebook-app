@@ -38,7 +38,7 @@
                 <option value="6" >6</option>
             </select>
         <p>Opis:</p>
-            <textarea th:field="*{description}" type="range" class="form-control"></textarea>
+            <textarea maxlength="175" th:field="*{description}" type="range" class="form-control"></textarea>
         <div class="modal-footer">
           <button type="button" class="delete" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="add">Dodaj</button>
@@ -51,6 +51,9 @@
 
 <div class="header">
     <div class="logo">Dziennik Elektroniczny</div>
+    <form th:action="@{/logout}" method="get">
+      <button type="submit" class="logout">Wyloguj</button>
+    </form>
 </div>
 <form method="post" th:object="${grade}" novalidate>
 

@@ -38,12 +38,16 @@
     </div>
   </div>
 
-<!-- Panel Nauczyciela -->
+<!-- Panel Ucznia -->
     <div class="header">
-        <div class="logo">Dziennik Elektroniczny</div>
+      <div class="logo">Dziennik Elektroniczny</div>
+      <form th:action="@{/logout}" method="get">
+        <button type="submit" class="logout">Wyloguj</button>
+      </form>
     </div>
     <div class="container">
         <div class="menu">
+          <div class="panel-info">Panel Ucznia</div>
           <div class="menu-student-info">
             <div class="menu-student-info-name" th:text="*{currentStudent.getName() + ' ' + currentStudent.getSurname()}">Jan Kowalski</div>
             <div class="menu-student-info-class">klasa 2C</div>

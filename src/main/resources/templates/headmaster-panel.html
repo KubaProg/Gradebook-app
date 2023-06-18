@@ -120,9 +120,13 @@
 <!-- Panel Dyrektora -->
 <div class="header">
   <div class="logo">Dziennik Elektroniczny</div>
+  <form th:action="@{/logout}" method="get">
+    <button type="submit" class="logout">Wyloguj</button>
+  </form>
 </div>
 <div class="container">
   <div class="menu">
+    <div class="panel-info">Panel Dyrektora</div>
     <div class="menu-headmaster-info">
       <div th:text="*{currentHeadMaster.getName() + ' ' + currentHeadMaster.getSurname()}">Jan Kowalski</div>
       <button type="button" class="add-teacher" data-toggle="modal" data-target="#add-teacher-modal">
