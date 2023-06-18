@@ -27,19 +27,19 @@ public class SubjectService
         this.teacherRepository = teacherRepository;
     }
 
-    public Subject saveNewSubject(String subjectName) {
+    public Subject saveNewSubject(Subject subject) {
 
     User currentUser = userService.findCurrentUser();
     Teacher currentTeacher = teacherRepository.findTeacherByUserId(currentUser.getId()).get();
 
 
     Subject subjectToSave = Subject.builder()
-                .name(subjectName)
+                .name(subject.getName())
                 .teacher(currentTeacher)
                 .build();
 
     return subjectRepository.save(subjectToSave);
-}
+    }
 
 
 

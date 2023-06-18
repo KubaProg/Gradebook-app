@@ -24,9 +24,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" class="modal-body" action="/add-subject" th:action="@{/teacher-panel/add-subject}">
+      <form method="post" class="modal-body" th:object="${subject}" th:action="@{/teacher-panel/add-subject}">
         Wpisz nazwę przedmiotu:
-        <input name="subjectName" type="text" class="form-control add-class-input">
+        <input th:field="*{name}" type="text" class="form-control add-class-input">
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary add-class-cancel" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="btn btn-primary add-class-submit">Dodaj</button>

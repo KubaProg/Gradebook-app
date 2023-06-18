@@ -160,10 +160,14 @@ public class TeacherController {
     }
 
     @PostMapping("/add-subject")
-    public String addSubject(@RequestParam String subjectName)
+    public String addSubject(@Valid Subject subject, Errors errors)
     {
-        subjectService.saveNewSubject(subjectName);
-        return "redirect:/teacher-panel";
+        if (!errors.hasErrors()) {
+            subjectService.saveNewSubject(subject);
+            return "redirect:/teacher-panel";
+        }
+
+        return "teacher-panel";
     }
 
     @PostMapping("/delete-subject")
@@ -209,6 +213,11 @@ public class TeacherController {
     @ModelAttribute("allStudents")
     public Iterable<Student> getAllStudents() {
         return studentRepository.findAll();
+    }
+
+    @ModelAttribute("subject")
+    public Subject getSubject(){
+        return new Subject();
     }
 
 
