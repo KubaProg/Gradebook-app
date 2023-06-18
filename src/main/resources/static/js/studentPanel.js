@@ -1,24 +1,7 @@
-document.querySelectorAll('.grades li').forEach((e) => {
-    if (e.querySelector('.grade').innerHTML == 1) {
-        e.style.background = '#680000';
-    }
-    else if (e.querySelector('.grade').innerHTML == 2) {
-        e.style.background = '#884400';
-    }
-    else if (e.querySelector('.grade').innerHTML == 3) {
-        e.style.background = '#888800';
-    }
-    else if (e.querySelector('.grade').innerHTML == 4) {
-        e.style.background = '#558855';
-    }
-    else if (e.querySelector('.grade').innerHTML == 5) {
-        e.style.background = '#116811';
-    }
-    else if (e.querySelector('.grade').innerHTML == 6) {
-        e.style.background = '#111188';
-    }
+document.querySelectorAll('.grade').forEach((e) => {
+    let num = parseInt(e.querySelector('button').innerHTML);
+    e.classList.add(`grade${num}`);
 });
-// const listWidth = listGrades.clientWidth;
 
 var noneTimeout = 0;
 document.querySelectorAll('.classes').forEach(element => {
@@ -57,24 +40,14 @@ document.querySelectorAll('.classes').forEach(element => {
     });
 })
 
-// document.querySelectorAll('.classes').forEach(element => {
-//     element.addEventListener('mouseover', e => {
-//         if (e.target.tagName.toLowerCase() == 'div' || e.target.tagName.toLowerCase() == 'a'){
-//             const listGrades = e.target.closest('li').querySelector('.grades');
-
-//             const elementsInRow = Math.floor((listGrades.clientWidth - 15) / 55);
-//             const rows = Math.ceil(listGrades.childElementCount / elementsInRow)
-//             if (listGrades.classList.contains('show-grades')){
-//                 $(document).ready(function() {
-//                     listGrades.style.height = 50 * rows + 5 * (rows - 1) + 20 + 'px';
-//                 });
-//             }
-//         }
-//     });
-// })
-
-// document.querySelector('.remove-student-submit').addEventListener('click', e => {
-//     removeUl.removeChild(removeLi);
-//     $('#remove-student-modal').modal('hide');
-//     studentList.style.height = studentList.childElementCount*50 + 20 + 'px';
-// });
+document.querySelectorAll('.grades').forEach(e => {
+    if (e.childElementCount < 1) {
+        console.log(e.childElementCount);
+        empty = document.createElement('li');
+        empty.insertAdjacentHTML('afterbegin', 'Brak ocen');
+        empty.style.width = '200%';
+        empty.style.color = '#000';
+        empty.style.fontSize = '30px';
+        e.insertAdjacentElement('afterbegin', empty);
+    }
+})

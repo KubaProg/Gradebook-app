@@ -110,20 +110,28 @@ body {
   margin-top: 30px;
   margin-bottom: 50px;
 }
-.classes li {
+.classes > li {
   background: #EEE;
   width: 100%;
 }
 
 .class {
   background: rgb(0, 151, 136);
+  box-sizing: border-box;
+  border: 1px #EEE solid;
   border-radius: 1px;
   color: #EEE;
   text-align: center;
   font-size: 40px;
+  transition: all 0.5s;
 }
 .class div {
   width: calc(100% - 85px);
+}
+.class:hover {
+  background: #EEE;
+  border: 1px rgb(0, 151, 136) solid;
+  color: rgb(0, 151, 136);
 }
 
 .grades {
@@ -141,15 +149,15 @@ body {
   margin-left: auto;
   transition: all 0.5s;
 }
-.grades li {
-  background: #005158;
+
+.grade {
   max-width: 50px;
   height: 50px;
   border-radius: 5px;
   color: #EEE;
 }
 
-.grade {
+.grade-button {
   background: none;
   display: flex;
   justify-content: center;
@@ -158,6 +166,54 @@ body {
   height: 100%;
   border: none;
   font-size: 25px;
+}
+
+.grade1 {
+  background: #680000;
+  transition: all 100ms;
+}
+.grade1:hover {
+  background: #990000;
+}
+
+.grade2 {
+  background: #884400;
+  transition: all 100ms;
+}
+.grade2:hover {
+  background: #995500;
+}
+
+.grade3 {
+  background: #888800;
+  transition: all 100ms;
+}
+.grade3:hover {
+  background: #999900;
+}
+
+.grade4 {
+  background: #558855;
+  transition: all 100ms;
+}
+.grade4:hover {
+  background: #669966;
+}
+
+.grade5 {
+  background: #116811;
+  transition: all 100ms;
+}
+.grade5:hover {
+  background: #228822;
+}
+
+.grade6 {
+  background: #111188;
+  transition: all 100ms;
+}
+.grade6:hover {
+  background: #2222AA;
 }
 
 .show-grades {

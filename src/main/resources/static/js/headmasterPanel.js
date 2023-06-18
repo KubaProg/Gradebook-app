@@ -23,7 +23,7 @@ document.querySelectorAll('.classes').forEach(e => {
         classNameDiv = document.createElement('div');
         classNameDiv.insertAdjacentHTML('afterbegin', 'Brak przedmiotów');
         classNameDiv.classList.add('class');
-        empty.appendChild(teacherNameDiv);
+        empty.appendChild(classNameDiv);
         e.insertAdjacentElement('afterbegin', empty);
     }
 })
