@@ -1,6 +1,8 @@
 package pl.polsl.gradebook.Web;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import pl.polsl.gradebook.Grade.Model.Grade;
 import pl.polsl.gradebook.Grade.Repository.GradeRepository;
@@ -16,6 +18,7 @@ import pl.polsl.gradebook.User.Model.User;
 import pl.polsl.gradebook.User.Repository.UserRepository;
 import pl.polsl.gradebook.User.Service.UserService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +53,7 @@ public class HeadMasterController {
     {
         return "headmaster-panel";
     }
+
 
     @ModelAttribute("teachers")
     public Iterable<Teacher> getAllTeachers(){
@@ -137,6 +141,21 @@ public class HeadMasterController {
         subjectRepository.deleteById(subjectId);
 
         return "redirect:/headmaster-panel";
+    }
+
+
+    @PostMapping("/add-teacher")
+    public String addTeacher(@RequestParam String teacherName, @RequestParam String teacherSurname, @RequestParam String teacherSalary){
+
+        Teacher teacher = new Teacher();
+        teacher.setName(teacherName);
+        teacher.setSurname(teacherSurname);
+        teacher.setSalary(BigDecimal.valueOf(Double.parseDouble(teacherSalary)));
+
+        teacherRepository.save(teacher);
+
+    return "redirect:/headmaster-panel";
+
     }
 
 }

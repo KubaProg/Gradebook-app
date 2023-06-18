@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<!-- Modale -->
+<!-- Modale DO DODAWANIA NAUCZYCIELA PRZEZ DYREKTORA-->
 <div class="modal fade" id="add-teacher-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -24,9 +24,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" class="modal-body" action="/add-subject">
-        Wpisz Imię nauczyciela
-        <input name="subjectName" type="text" class="form-control add-teacher-input">
+      <form th:action="@{headmaster-panel/add-teacher}" method="post" class="modal-body" action="/add-subject">
+        Imię:
+        <input name="teacherName" type="text" class="form-control add-class-input">
+        Nazwisko:
+        <input name="teacherSurname" type="text" class="form-control add-class-input">
+        Pensja:
+        <input name="teacherSalary" type="text" class="form-control add-class-input">
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="btn btn-primary">Dodaj</button>
