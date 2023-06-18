@@ -10,8 +10,8 @@ INSERT INTO student (id,name, parent_number, surname, user_id)
 VALUES (1,'jakub','123456','opielka',1),
        (2,'arek','567890','Banasik',4);
 
-INSERT INTO teacher (id,name,salary, surname, user_id)
-VALUES (1,'dominik',4300,'szczepanik',2);
+INSERT INTO teacher (name,salary, surname, user_id)
+VALUES ('dominik',4300,'szczepanik',2);
 
 INSERT INTO headmaster (id,name, surname, user_id)
 VALUES (1, 'michal','moryc',3);
