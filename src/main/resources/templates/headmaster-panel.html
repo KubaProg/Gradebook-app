@@ -15,18 +15,18 @@
 </head>
 <body>
 <!-- Modale -->
-<div class="modal fade" id="add-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="add-teacher-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Dodaj przedmiot</h5>
+        <h5 class="modal-title">Dodaj nauczyciela</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <form method="post" class="modal-body" action="/add-subject">
-        Wpisz nazwę przedmiotu:
-        <input name="subjectName" type="text" class="form-control add-class-input">
+        Wpisz Imię nauczyciela
+        <input name="subjectName" type="text" class="form-control add-teacher-input">
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="btn btn-primary">Dodaj</button>
@@ -37,11 +37,11 @@
 </div>
 
 
-<div class="modal fade" id="add-teacher-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="add-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Dodaj nauczyciela</h5>
+        <h5 class="modal-title">Dodaj przedmiot</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -62,7 +62,7 @@
   </div>
 </div>
 
-<div  class="modal fade" id="remove-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div  class="modal fade" id="remove-teacher-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -75,7 +75,7 @@
         Czy na pewno chcesz usunąc tego nauczyciela?
         <div class="modal-footer" >
           <form method="post" th:action="@{headmaster-panel/delete-teacher}" >
-            <button type="button" class="btn btn-secondary remove-class-cancel" data-dismiss="modal">Anuluj</button>
+            <button type="button" class="btn btn-secondary remove-teacher-cancel" data-dismiss="modal">Anuluj</button>
             <input type="hidden" name="teacherId" id="teacherId" />
             <button type="submit" class="btn btn-primary">Usuń</button>
           </form>
@@ -85,11 +85,11 @@
   </div>
 </div>
 
-<div class="modal fade" id="remove-teacher-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="remove-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Usuń nauczyciela</h5>
+        <h5 class="modal-title">Usuń przedmiot</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -114,34 +114,26 @@
 </div>
 <div class="container">
   <div class="menu">
-    <div class="menu-teacher-info">
+    <div class="menu-headmaster-info">
       <div th:text="*{currentHeadMaster.getName() + ' ' + currentHeadMaster.getSurname()}">Jan Kowalski</div>
-      <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">
+      <button type="button" class="add-teacher" data-toggle="modal" data-target="#add-teacher-modal">
         Dodaj nauczyciela
       </button>
     </div>
 
-    <ul class="classes" >
+    <ul class="teachers" >
       <li th:each="teacher : ${teachers}">
-        <div class="class" th:data-teacher-id="${teacher.getId()}">
+        <div class="teacher" th:data-teacher-id="${teacher.getId()}">
           <div th:text="*{teacher.getName() + ' ' + teacher.getSurname()}">Nauczyciel</div>
-          <button   type="button" class="add" data-toggle="modal" data-target="#add-teacher-modal">&#x271A</button>
-          <button onclick="setTeacherId(this)" type="button" class="remove" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
-
+          <button   type="button" class="add" data-toggle="modal" data-target="#add-class-modal">&#x271A</button>
+          <button onclick="setTeacherId(this)" type="button" class="remove" data-toggle="modal" data-target="#remove-teacher-modal">&#x2716</button>
         </div>
 
-        <ul class="teachers" >
+        <ul class="classes" >
           <li th:each="subject : ${teacher.getSubjects()}">
-            <div class="teacher" th:data-subject-id="${subject.getId()}">
-              <div class="teacher-name" th:text="*{subject.getName()}" >Przedmiot</div>
-              <div class="teacher-options"  >
-                <form method="get">
-                  <input name="subjectId"  type="hidden" class="form-control add-class-input">
-                  <input name="teacherId"  type="hidden" class="form-control add-class-input">
-                  <button type="submit" class="edit">&#x2699</button>
-                </form>
-              </div>
-              <button onclick="setSubjectIdForDelete(this)"  type="button" class="remove" data-toggle="modal" data-target="#remove-teacher-modal">&#x2716</button>
+            <div class="class" th:data-subject-id="${subject.getId()}">
+              <div class="class-name" th:text="*{subject.getName()}" >Przedmiot</div>
+              <button onclick="setSubjectIdForDelete(this)"  type="button" class="remove" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
             </div>
           </li>
         </ul>

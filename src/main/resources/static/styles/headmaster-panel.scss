@@ -64,11 +64,11 @@ body {
     }
 }
 
-.add-class-input {
+.add-teacher-input {
     margin-top: 10px;
 }
 
-.add-teacher-input {
+.add-class-input {
     margin-top: 10px;
 }
 
@@ -111,7 +111,7 @@ body {
     user-select: none;
 }
 
-.menu-teacher-info {
+.menu-headmaster-info {
     background: #FAFAFA;
     display: flex;
     justify-content: center;
@@ -124,7 +124,7 @@ body {
     }
 }
 
-.add-class {
+.add-teacher {
     background: #006800;
     border: 1px #CCC solid;
     border-radius: 5px;
@@ -156,7 +156,7 @@ body {
     }
 }
 
-.classes {
+.teachers {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -182,7 +182,7 @@ body {
     }
 }
 
-.class {
+.teacher {
     background: rgb(0, 151, 136);
     display: flex;
     box-sizing: border-box;
@@ -204,7 +204,7 @@ body {
     }
 }
 
-.teachers {
+.classes {
     visibility: hidden;
     overflow: hidden;
     height: 0;
@@ -223,7 +223,7 @@ body {
     }
 }
 
-.teacher {
+.class {
     display: flex;
     box-sizing: border-box;
     width: 100%;
@@ -231,17 +231,12 @@ body {
     padding-left: 1%;
 }
 
-.teacher-name {
+.class-name {
     box-sizing: border-box;
-    width: calc(100% - 85px);
+    width: calc(100% - 51px);
 }
 
-.teacher-options {
-    display: flex;
-    gap: 5px;
-}
-
-.show-teachers {
+.show-classes {
     visibility: visible;
     max-height: none;
     padding: 10px 0 10px 0;
