@@ -22,23 +22,29 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" class="modal-body" action="/add-grade" th:action="@{/edit-student/add-grade}">
+        <div class="gradeAdd"  th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
+      <form th:object="${grade}" method="post" class="modal-body" action="/add-grade" th:action="@{/teacher-panel/add-grade}">
+
+          <input type="hidden" id="add-grade-subject-id" name="subjectId" th:value="${subject.getId()}">
+          <input type="hidden" id="add-grade-student-id" name="studentId" th:value="${student.getId()}">
+
         <p>Wartość:</p>
-            <select class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
+            <select th:field="*{numericalValue}" class="form-control">
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+                <option value="3" >3</option>
+                <option value="4" >4</option>
+                <option value="5" >5</option>
+                <option value="6" >6</option>
             </select>
         <p>Opis:</p>
-            <textarea name="subjectName" type="range" class="form-control"></textarea>
+            <textarea th:field="*{description}" type="range" class="form-control"></textarea>
         <div class="modal-footer">
           <button type="button" class="delete" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="add">Dodaj</button>
         </div>
       </form>
+        </div>
     </div>
   </div>
 </div>
@@ -74,10 +80,21 @@
     </div>
     <div class="menu-footer">
         <button type="submit" th:formaction="'/teacher-panel/deleteGrade'" class="delete">Usuń ocenę</button>
-        <button type="button" class="add" data-toggle="modal" data-target="#add-grade-modal">Dodaj ocenę</button>
+        <button onclick="setSubjectIdAndStudentIdForAddGrade(this)" type="button" class="add" data-toggle="modal" data-target="#add-grade-modal">Dodaj ocenę</button>
     </div>
 </div>
-</div>
-</div>
+
+
 </form>
+
+<script>
+    function setSubjectIdAndStudentIdForAddGrade(button) {
+        var subjectId = button.parentNode.parentNode.querySelector(".gradeAdd").getAttribute("data-subject-id");
+        var studentId = button.parentNode.parentNode.querySelector(".gradeAdd").getAttribute("data-student-id");
+        document.getElementById("add-grade-subject-id").value = subjectId;
+        document.getElementById("add-grade-student-id").value = studentId;
+    }
+</script>
+
 </body>
+</html>

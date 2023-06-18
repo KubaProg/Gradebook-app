@@ -92,7 +92,7 @@ public class TeacherController {
         return new Grade();
     }
 
-    @PostMapping("/addGrade")
+    @PostMapping("/add-grade")
     public String addGradeToStudent(@Valid Grade grade,Errors errors, @RequestParam Long studentId, @RequestParam Long subjectId){
 
         if(!errors.hasErrors()) {
