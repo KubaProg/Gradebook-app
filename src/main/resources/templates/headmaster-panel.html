@@ -95,10 +95,10 @@
         </button>
       </div>
       <div class="modal-body">
-        Czy na pewno chcesz usunąc tego nauczyciela?
+        Czy na pewno chcesz usunąć ten przedmiot?
         <div class="modal-footer">
-          <form method="post">
-            <input type="hidden" id="delete-teacher-id" name="teacherId">
+          <form method="post" th:action="@{headmaster-panel/delete-subject}">
+            <input type="hidden" id="subject-delete-subjectid" name="subjectId">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
             <button type="submit" class="btn btn-primary">Usuń</button>
           </form>
@@ -117,7 +117,7 @@
     <div class="menu-teacher-info">
       <div th:text="*{currentHeadMaster.getName() + ' ' + currentHeadMaster.getSurname()}">Jan Kowalski</div>
       <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">
-        Dodaj przedmiot
+        Dodaj nauczyciela
       </button>
     </div>
 
@@ -132,7 +132,7 @@
 
         <ul class="teachers" >
           <li th:each="subject : ${teacher.getSubjects()}">
-            <div class="teacher"  >
+            <div class="teacher" th:data-subject-id="${subject.getId()}">
               <div class="teacher-name" th:text="*{subject.getName()}" >Przedmiot</div>
               <div class="teacher-options"  >
                 <form method="get">
@@ -141,7 +141,7 @@
                   <button type="submit" class="edit">&#x2699</button>
                 </form>
               </div>
-              <button   type="button" class="remove" data-toggle="modal" data-target="#remove-teacher-modal">&#x2716</button>
+              <button onclick="setSubjectIdForDelete(this)"  type="button" class="remove" data-toggle="modal" data-target="#remove-teacher-modal">&#x2716</button>
             </div>
           </li>
         </ul>
@@ -154,6 +154,11 @@
   function setTeacherId(button) {
     var teacherId = button.parentNode.getAttributeNode("data-teacher-id").value;
     document.getElementById("teacherId").value = teacherId;
+  }
+
+  function setSubjectIdForDelete(button) {
+    var subjectId = button.parentNode.getAttributeNode("data-subject-id").value;
+    document.getElementById("subject-delete-subjectid").value = subjectId;
   }
 
 </script>

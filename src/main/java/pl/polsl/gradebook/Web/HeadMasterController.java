@@ -115,4 +115,32 @@ public class HeadMasterController {
         return "redirect:/headmaster-panel";
     }
 
+
+    // zduplikowany kod
+    @PostMapping("/delete-subject")
+    public String deleteSubject(@RequestParam Long subjectId) {
+        Subject subject = subjectRepository.findById(subjectId).get();
+
+        List<Student> students = subject.getStudents();
+
+        // Remove the subject from each student's list of subjects
+        for (Student student : students) {
+
+            List<Grade> gradesFromSubjectAndStudent = gradeRepository.findGradesByStudentIdAndSubjectId(student.getId(),subjectId).get();
+            for (Grade grade : gradesFromSubjectAndStudent ){
+                student.getGrades().remove(grade);
+                gradeRepository.deleteById(grade.getId());
+            }
+
+
+            student.getSubjects().remove(subject);
+        }
+
+
+
+        subjectRepository.deleteById(subjectId);
+
+        return "redirect:/headmaster-panel";
+    }
+
 }
