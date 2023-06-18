@@ -13,6 +13,36 @@
 </head>
 
 <body>
+<div class="modal fade" id="add-grade-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Dodaj ocenę</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" class="modal-body" action="/add-grade" th:action="@{/edit-student/add-grade}">
+        <p>Wartość:</p>
+            <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+        <p>Opis:</p>
+            <textarea name="subjectName" type="range" class="form-control"></textarea>
+        <div class="modal-footer">
+          <button type="button" class="delete" data-dismiss="modal">Anuluj</button>
+          <button type="submit" class="add">Dodaj</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="header">
     <div class="logo">Dziennik Elektroniczny</div>
 </div>
@@ -24,32 +54,27 @@
         <h5 class="menu-title">Informacje o uczniu</h5>
     </div>
     <div class="menu-body">
-        <div class="student-info"><p id="studentName" th:text="${'Imię:' + ' ' + student.getName()}">: </p><p id="studentParentNumber" th:text="${'Tel rodzica:' + ' ' + student.getParent_number()}">Tel rodzica: </p>
+        <div class="student-info"><p id="studentName" th:text="${'Imię:' + ' ' + student.getName()}">Imię: </p><p id="studentParentNumber" th:text="${'Tel rodzica:' + ' ' + student.getParent_number()}">Tel rodzica: </p>
             <p id="studentSurname" th:text="${'Nazwisko:' + ' ' + student.getSurname()}">Nazwisko: </p>
         </div>
         <div class="student-grades-div">Oceny:
-            <ul class="student-grades" >
-                <li th:each="grade : ${grades}">
+            <ul class="student-grades">
+                <li class="grade" th:each="grade : ${grades}">
                     <input type="checkbox" name="selectedGradesId" th:value="${grade.id}">
                     <p  th:text="${grade.getNumericalValue()}">3</p>
                 </li>
             </ul>
         </div>
         <div class="grade-info">
-            <p class="first">Wartość:</p>
-            <input type="text" th:field="*{numericalValue}"  class="form-control grade-value">
-            <p>Opis:</p>
+            <p>Informacja o ocenie:</p>
             <textarea  th:field="*{description}" wrap="soft"  class="form-control grade-description"></textarea>
             <input type="hidden" name="subjectId" th:value="${subject.getId()}" />
             <input type="hidden" name="studentId" th:value="${student.getId()}"/>
         </div>
     </div>
     <div class="menu-footer">
-        <div class="grade-editor">
-            <button type="submit" th:formaction="'/teacher-panel/deleteGrade'" class="delete-grade">Usuń</button>
-            <button type="submit" th:formaction="'/teacher-panel/addGrade'"  class="add-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Dodaj</button>
-            <!-- <button type="submit" th:formaction="'/teacher-panel/editGrade'" class="edit-grade" data-toggle="modal" data-target="#add-edit-grade-modal">Edytuj</button> -->
-        </div>
+        <button type="submit" th:formaction="'/teacher-panel/deleteGrade'" class="delete">Usuń ocenę</button>
+        <button type="button" class="add" data-toggle="modal" data-target="#add-grade-modal">Dodaj ocenę</button>
     </div>
 </div>
 </div>

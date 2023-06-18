@@ -3,7 +3,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
 }
 
 input[readonly] {
@@ -16,6 +15,59 @@ input[type=checkbox] {
 
 textarea[readonly] {
   pointer-events: none;
+}
+
+.modal-dialog {
+  width: 300px;
+}
+
+.modal-header {
+  background: rgb(0, 151, 136);
+  display: flex;
+  border: none;
+}
+
+.modal-title {
+  flex: 1;
+  color: #EEE;
+  font-size: 20px;
+  font-family: Impact, fantasy;
+}
+
+.close {
+  opacity: 1;
+  width: 30px;
+  color: #EEE;
+}
+
+.modal-body {
+  background: #CCC;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  padding-top: 1px;
+  padding-bottom: 0;
+  font-family: fantasy;
+}
+.modal-body textarea {
+  height: 150px;
+  resize: none;
+}
+.modal-body p {
+  margin: 10px 0px 0px 0px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  background: #CCC;
+  padding: 15px 0 15px 15px;
+  margin-top: 0px;
+  border: none;
+}
+.modal-footer button {
+  width: 65px;
 }
 
 .header {
@@ -39,6 +91,7 @@ textarea[readonly] {
   position: relative;
   display: flex;
   flex-direction: column;
+  min-width: 580px;
   max-width: 600px;
   min-height: 391px;
   margin-top: 100px;
@@ -123,8 +176,8 @@ textarea[readonly] {
   padding: 0;
   margin: 0;
 }
-.student-grades li {
-  background: rgb(0, 151, 136);
+
+.grade {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -134,10 +187,7 @@ textarea[readonly] {
   border-radius: 5px;
   color: #EEE;
 }
-.student-grades li:hover {
-  background: rgb(0, 171, 166);
-}
-.student-grades li p {
+.grade p {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -147,12 +197,60 @@ textarea[readonly] {
   font-family: Impact, fantasy;
 }
 
+.grade1 {
+  background: #680000;
+  transition: all 100ms;
+}
+.grade1:hover {
+  background: #990000;
+}
+
+.grade2 {
+  background: #884400;
+  transition: all 100ms;
+}
+.grade2:hover {
+  background: #995500;
+}
+
+.grade3 {
+  background: #888800;
+  transition: all 100ms;
+}
+.grade3:hover {
+  background: #999900;
+}
+
+.grade4 {
+  background: #558855;
+  transition: all 100ms;
+}
+.grade4:hover {
+  background: #669966;
+}
+
+.grade5 {
+  background: #116811;
+  transition: all 100ms;
+}
+.grade5:hover {
+  background: #228822;
+}
+
+.grade6 {
+  background: #111188;
+  transition: all 100ms;
+}
+.grade6:hover {
+  background: #2222AA;
+}
+
 .grade-highlight {
-  background: rgb(0, 181, 176) !important;
-  border: 1px rgb(0, 101, 86) solid;
+  background: rgb(0, 121, 106);
+  border: 1px #FFF solid;
 }
 .grade-highlight:hover {
-  background: rgb(0, 191, 186) !important;
+  background: rgb(0, 151, 136);
 }
 
 .grade-info {
@@ -162,23 +260,23 @@ textarea[readonly] {
   max-width: 450px;
   padding: 10px 10px 0 10px;
 }
-.grade-info input {
-  width: 100%;
-}
 .grade-info textarea {
+  background: #CCC;
   flex: 1;
-  width: 100%;
   resize: none;
+  width: 100%;
+  border: none;
+}
+.grade-info textarea:focus {
+  box-shadow: none;
+  outline: none;
 }
 
 .menu-footer {
-  padding: 15px;
-}
-
-.grade-editor {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  padding: 15px;
 }
 
 button {
@@ -193,35 +291,24 @@ button:hover {
   color: #333;
 }
 
-.add-grade {
+.add {
   background: #006800;
   border: 1px #006800 solid;
 }
-.add-grade:hover {
+.add:hover {
   background: #117811;
 }
-.add-grade:focus {
+.add:focus {
   background: #118811;
 }
 
-.edit-grade {
-  background: #686800;
-  border: 1px #686800 solid;
-}
-.edit-grade:hover {
-  background: #787800;
-}
-.edit-grade:focus {
-  background: #888800;
-}
-
-.delete-grade {
+.delete {
   background: #680000;
   border: 1px #680000 solid;
 }
-.delete-grade:hover {
+.delete:hover {
   background: #880000;
 }
-.delete-grade:focus {
+.delete:focus {
   background: #990000;
 }/*# sourceMappingURL=edit-student.css.map */

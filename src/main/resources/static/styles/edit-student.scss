@@ -3,7 +3,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
 }
 
 input[readonly] {
@@ -16,6 +15,57 @@ input[type = "checkbox"] {
 
 textarea[readonly] {
     pointer-events: none;
+}
+
+.modal-dialog {
+    width: 300px;
+}
+
+.modal-header {
+    background: rgb(0, 151, 136);
+    display: flex;
+    border: none;
+}
+
+.modal-title {
+    flex: 1;
+    color: #EEE;
+    font-size: 20px;
+    font-family: Impact, fantasy;
+}
+
+.close {
+    opacity: 1;
+    width: 30px;
+    color: #EEE;
+}
+
+.modal-body {
+    background: #CCC;
+    user-select: none;
+    padding-top: 1px;
+    padding-bottom: 0;
+    font-family: fantasy;
+    textarea {
+        height: 150px;
+        resize: none;
+    }
+    p {
+        margin: 10px 0px 0px 0px;
+    }
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    background: #CCC;
+    padding: 15px 0 15px 15px;
+    margin-top: 0px;
+    border: none;
+    button {
+        width: 65px;
+    }
 }
 
 .header{
@@ -39,6 +89,7 @@ textarea[readonly] {
     position: relative;
     display: flex;
     flex-direction: column;
+    min-width: 580px;
     max-width: 600px;
     min-height: 391px;
     margin-top: 100px;
@@ -122,34 +173,74 @@ textarea[readonly] {
     height: 95%;
     padding: 0;
     margin: 0;
-    li {
-        background: rgb(0, 151, 136);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-sizing: border-box;
-        width: 40px;
-        height: 40px;
-        border-radius: 5px;
+}
+
+.grade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    color: #EEE;
+    p {
+        user-select: none;
+        margin: 0;
+        font-size: 20px;
         color: #EEE;
-        &:hover {
-            background: rgb(0, 171, 166);
-        }
-        p {
-            user-select: none;
-            margin: 0;
-            font-size: 20px;
-            color: #EEE;
-            font-family: Impact, fantasy;
-        }
+        font-family: Impact, fantasy;
+    }
+}
+
+.grade1 {
+    background: #680000;
+    transition: all 100ms;
+    &:hover {
+        background: #990000;
+    }
+}
+.grade2 {
+    background: #884400;
+    transition: all 100ms;
+    &:hover {
+        background: #995500;
+    }
+}
+.grade3 {
+    background: #888800;
+    transition: all 100ms;
+    &:hover {
+        background: #999900;
+    }
+}
+.grade4 {
+    background: #558855;
+    transition: all 100ms;
+    &:hover {
+        background: #669966;
+    }
+}
+.grade5 {
+    background: #116811;
+    transition: all 100ms;
+    &:hover {
+        background: #228822;
+    }
+}
+.grade6 {
+    background: #111188;
+    transition: all 100ms;
+    &:hover {
+        background: #2222AA;
     }
 }
 
 .grade-highlight {
-    background: rgb(0, 181, 176) !important;
-    border: 1px rgb(0, 101, 86) solid;
+    background: rgb(0, 121, 106);
+    border: 1px #FFF solid;
     &:hover {
-        background: rgb(0, 191, 186) !important;
+        background: rgb(0, 151, 136);
     }
 }
 
@@ -159,24 +250,24 @@ textarea[readonly] {
     flex-direction: column;
     max-width: 450px;
     padding: 10px 10px 0 10px;
-    input {
-        width: 100%;
-    }
     textarea {
+        background: #CCC;
         flex: 1;
-        width: 100%;
         resize: none;
+        width: 100%;
+        border: none;
+        &:focus {
+            box-shadow: none;
+            outline: none;
+        }
     }
 }
 
 .menu-footer {
-    padding: 15px;
-}
-
-.grade-editor {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    padding: 15px;
 }
 
 button {
@@ -191,7 +282,7 @@ button {
     }
 }
 
-.add-grade {
+.add {
     background: #006800;
     border: 1px #006800 solid;
     &:hover {
@@ -202,18 +293,7 @@ button {
     }
 }
 
-.edit-grade {
-    background: #686800;
-    border: 1px #686800 solid;
-    &:hover {
-        background: #787800;
-    }
-    &:focus {
-        background: #888800;
-    }
-}
-
-.delete-grade {
+.delete {
     background: #680000;
     border: 1px #680000 solid;
     &:hover {
@@ -223,5 +303,3 @@ button {
         background: #990000;
     }
 }
-
-

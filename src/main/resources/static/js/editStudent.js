@@ -1,3 +1,8 @@
+document.querySelectorAll('.grade').forEach((e) => {
+    let num = parseInt(e.querySelector('p').innerHTML);
+    e.classList.add(`grade${num}`);
+});
+
 document.querySelectorAll('.student-grades li').forEach(element => {
     element.addEventListener('click', (e) => {
         if (!e.target.closest('li').classList.contains('grade-highlight')){
