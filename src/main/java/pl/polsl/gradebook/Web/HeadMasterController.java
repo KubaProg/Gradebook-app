@@ -45,6 +45,12 @@ public class HeadMasterController {
         this.userRepository = userRepository;
     }
 
+    @GetMapping
+    public String showHeadmasterPage()
+    {
+        return "headmaster-panel";
+    }
+
     @ModelAttribute("teachers")
     public Iterable<Teacher> getAllTeachers(){
         User currentUser = userService.findCurrentUser();
