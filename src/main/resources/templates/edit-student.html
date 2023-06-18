@@ -65,15 +65,17 @@
         </div>
         <div class="student-grades-div">Oceny:
             <ul class="student-grades">
-                <li class="grade" th:each="grade : ${grades}">
-                    <input type="checkbox" name="selectedGradesId" th:value="${grade.id}">
-                    <p  th:text="${grade.getNumericalValue()}">3</p>
+                <li class="grade" th:each="grade : ${grades}" th:data-grade-description="${grade.getDescription()}">
+                    <button type="button" onclick="setGradeDescription(this)" >
+                        <input type="checkbox" name="selectedGradesId" th:value="${grade.id}">
+                        <p  th:text="${grade.getNumericalValue()}">3</p>
+                    </button>
                 </li>
             </ul>
         </div>
         <div class="grade-info">
             <p>Informacja o ocenie:</p>
-            <textarea  th:field="*{description}" wrap="soft"  class="form-control grade-description"></textarea>
+            <textarea   wrap="soft"  class="form-control-plaintext grade-description" id="grade-description" readonly></textarea>
             <input type="hidden" name="subjectId" th:value="${subject.getId()}" />
             <input type="hidden" name="studentId" th:value="${student.getId()}"/>
         </div>
@@ -94,6 +96,25 @@
         document.getElementById("add-grade-subject-id").value = subjectId;
         document.getElementById("add-grade-student-id").value = studentId;
     }
+
+    function setGradeDescription(button) {
+        var gradeDescription = button.parentNode.getAttribute("data-grade-description");
+        var gradeDescriptionElement = document.getElementById("grade-description");
+
+        if (button.classList.contains("clicked")) {
+            button.classList.remove("clicked");
+            gradeDescriptionElement.value = "";
+        } else {
+            var clickedButton = document.querySelector(".grade button.clicked");
+            if (clickedButton) {
+                clickedButton.classList.remove("clicked");
+            }
+            button.classList.add("clicked");
+            gradeDescriptionElement.value = gradeDescription;
+        }
+    }
+
+
 </script>
 
 </body>
