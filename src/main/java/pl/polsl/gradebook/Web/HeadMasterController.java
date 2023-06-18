@@ -1,6 +1,7 @@
 package pl.polsl.gradebook.Web;
 
 import jakarta.validation.Valid;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +38,12 @@ public class HeadMasterController {
     SubjectRepository subjectRepository;
 
     UserRepository userRepository;
+    PasswordEncoder passwordEncoder;
 
-    public HeadMasterController(UserService userService, TeacherRepository teacherRepository, HeadMasterRepository headMasterRepository, GradeRepository gradeRepository, StudentRepository studentRepository, SubjectRepository subjectRepository, UserRepository userRepository) {
+    public HeadMasterController(UserService userService, TeacherRepository teacherRepository,
+                                HeadMasterRepository headMasterRepository, GradeRepository gradeRepository,
+                                StudentRepository studentRepository, SubjectRepository subjectRepository,
+                                UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.teacherRepository = teacherRepository;
         this.headMasterRepository = headMasterRepository;
@@ -46,6 +51,7 @@ public class HeadMasterController {
         this.studentRepository = studentRepository;
         this.subjectRepository = subjectRepository;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -145,14 +151,27 @@ public class HeadMasterController {
 
 
     @PostMapping("/add-teacher")
-    public String addTeacher(@RequestParam String teacherName, @RequestParam String teacherSurname, @RequestParam String teacherSalary){
+    public String addTeacher(@RequestParam String teacherName, @RequestParam String teacherSurname,
+                             @RequestParam String teacherSalary, @RequestParam String teacherLogin,
+                             @RequestParam String teacherPassword)
+    {
+
+        User user = new User();
+        user.setLogin(teacherLogin);
+        user.setPassword(passwordEncoder.encode(teacherPassword));
+        user.setRole("TEACHER");
+
+
+        User savedUser = userRepository.save(user);
 
         Teacher teacher = new Teacher();
         teacher.setName(teacherName);
         teacher.setSurname(teacherSurname);
         teacher.setSalary(BigDecimal.valueOf(Double.parseDouble(teacherSalary)));
+        teacher.setUser(savedUser);
 
         teacherRepository.save(teacher);
+
 
     return "redirect:/headmaster-panel";
 
