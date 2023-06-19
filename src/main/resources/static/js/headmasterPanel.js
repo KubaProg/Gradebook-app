@@ -1,3 +1,16 @@
+document.querySelectorAll('.error ul li p').forEach(e => {
+    const error = e.innerHTML.split(': ');
+    console.log(error[0]);
+    document.querySelector(`#${error[0]}` + 'p').innerHTML = '&#128162' + error[1];
+});
+
+document.querySelector('.add-teacher-cancel').addEventListener('click', element => {
+    document.querySelectorAll('#add-teacher-modal p').forEach(e => {
+        e.innerHTML = '';
+    });
+});
+
+
 document.querySelectorAll('.teachers').forEach(element => {
     element.addEventListener('click', e => {
         teacherList = $(e.target).parents('li').last().find('.classes').first()[0];

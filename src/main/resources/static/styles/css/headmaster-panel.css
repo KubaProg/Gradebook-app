@@ -33,6 +33,13 @@ body {
   padding-bottom: 0;
   font-family: fantasy;
 }
+.modal-body input {
+  margin: 0;
+}
+.modal-body p {
+  color: red;
+  opacity: 0.7;
+}
 
 .modal-footer {
   display: flex;
@@ -64,14 +71,6 @@ body {
 }
 .btn-primary:focus {
   background: #117811;
-}
-
-.add-teacher-input {
-  margin-top: 10px;
-}
-
-.add-class-input {
-  margin-top: 10px;
 }
 
 .header {
@@ -274,6 +273,10 @@ body {
   visibility: visible;
   max-height: none;
   padding: 10px 0 10px 0;
+}
+
+.error {
+  display: none;
 }
 
 @keyframes fadeIn {
