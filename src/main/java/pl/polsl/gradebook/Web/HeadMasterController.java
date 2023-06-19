@@ -1,10 +1,13 @@
 package pl.polsl.gradebook.Web;
 
 import jakarta.validation.Valid;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import pl.polsl.gradebook.Grade.Model.Grade;
 import pl.polsl.gradebook.Grade.Repository.GradeRepository;
@@ -163,7 +166,11 @@ public class HeadMasterController {
     public String addTeacher(@Valid TeacherRegisterDto teacherInfo, Errors errors, Model model)
     {
 
-        if(!errors.hasErrors()) {
+
+        if(userService.isLoginDuplicated(teacherInfo.getLogin())){
+            return "duplicated-login-message";
+        }
+        else if(!errors.hasErrors()) {
 
             User user = TeacherDtoMapper.mapDtoToUser(teacherInfo);
             user.setPassword(passwordEncoder.encode(teacherInfo.getPassword()));
@@ -175,6 +182,9 @@ public class HeadMasterController {
 
             return "redirect:/headmaster-panel";
         }
+
+        model.addAttribute("errors", errors.getAllErrors().stream()
+                .map(error -> ((FieldError) error).getField() + ": " + error.getDefaultMessage()));
 
         return "headmaster-panel";
 

@@ -27,7 +27,6 @@
       <form novalidate th:object="${teacherInfo}" th:action="@{/headmaster-panel/add-teacher}" method="post" class="modal-body">
         Imię:
         <input th:field="*{name}" id="name" type="text" class="form-control add-class-input">
-        <p th:errors="*{name}" class="error">Błędy związane z imieniem</p>
         Nazwisko:
         <input th:field="*{surname}"  type="text" class="form-control add-class-input">
         Pensja:

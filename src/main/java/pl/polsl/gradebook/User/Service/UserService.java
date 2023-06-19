@@ -29,4 +29,8 @@ public class UserService {
         return userRepository.findByLogin(email).orElseThrow(NoSuchElementException::new);
     }
 
+    public boolean isLoginDuplicated(String login){
+        return userRepository.findByLogin(login).isPresent();
+    }
+
 }
