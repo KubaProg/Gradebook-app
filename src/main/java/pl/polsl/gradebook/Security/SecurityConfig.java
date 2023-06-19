@@ -36,8 +36,10 @@ class SecurityConfig {
         // Config for logging out
         http.logout(logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout/**", HttpMethod.GET.name()))
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/choose-account") //czyli ze trafia na landing page
         );
+
+
 
         return http.build();
     }

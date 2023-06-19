@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>403 FORBIDDEN</title>
@@ -32,11 +32,32 @@
       color: #333;
     }
 
+    button a {
+      display: inline-block;
+      padding: 30px 60px;
+      background-color: #4CAF50;
+      color: #fff;
+      font-size: 18px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button a:hover {
+      background-color: #45a049;
+    }
+
   </style>
 </head>
 <body>
 <i class="fa-solid fa-face-frown error-icon"></i>
-<h1>SOMETHING WENT WRONG</h1>
-<h2>You see that because of the error: 403 FORBIDDEN</h2>
+<h1>Nie masz dostępu do tych zasobów.</h1>
+<h2>Widzisz to ze względu na błąd: 403 FORBIDDEN</h2>
+
+
+<button>
+  <a th:href="@{/logout}">ROZUMIEM</a>
+</button>
+
 </body>
 </html>
