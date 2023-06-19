@@ -164,10 +164,10 @@ public class TeacherController {
     {
         if (!errors.hasErrors()) {
             subjectService.saveNewSubject(subject);
-            return "redirect:/teacher-panel";
+
         }
 
-        return "teacher-panel";
+        return "redirect:/teacher-panel";
     }
 
     @PostMapping("/delete-subject")

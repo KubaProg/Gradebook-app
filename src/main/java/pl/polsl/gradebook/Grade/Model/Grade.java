@@ -42,6 +42,8 @@ public class Grade {
     private BigDecimal numericalValue;
 
     @NotBlank
+    @Size(min = 1, message = "{validation.name.size.too_short}")
+    @Size(max = 175, message = "{validation.name.size.too_long}")
     private String description;
 
 
