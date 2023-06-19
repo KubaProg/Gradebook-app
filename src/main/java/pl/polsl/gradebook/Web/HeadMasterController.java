@@ -166,10 +166,12 @@ public class HeadMasterController {
     public String addTeacher(@Valid TeacherRegisterDto teacherInfo, Errors errors, Model model)
     {
 
-
-        if(userService.isLoginDuplicated(teacherInfo.getLogin())){
-            return "duplicated-login-message";
+        if (userService.isLoginDuplicated(teacherInfo.getLogin())) {
+            String fieldName = "login";
+            String errorMessage = "Login already exists"; // Customize the error message as needed
+            errors.rejectValue(fieldName, "", errorMessage);
         }
+
         else if(!errors.hasErrors()) {
 
             User user = TeacherDtoMapper.mapDtoToUser(teacherInfo);

@@ -40,6 +40,16 @@
           <button type="submit" class="btn btn-primary">Dodaj</button>
         </div>
       </form>
+
+
+      <div class="error">
+        <ul>
+          <li th:each="error: ${errors}">
+            <p th:text="${error}"></p>
+          </li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </div>
@@ -92,6 +102,14 @@
     </div>
   </div>
 </div>
+
+<!--<div class="error" style="display: none">-->
+<!--  <ul>-->
+<!--    <li th:each="error: ${errors}">-->
+<!--    <p th:text="${error}"></p>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</div>-->
 
 <div class="modal fade" id="remove-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
