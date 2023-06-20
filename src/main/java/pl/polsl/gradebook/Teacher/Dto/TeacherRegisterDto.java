@@ -26,7 +26,7 @@ public class TeacherRegisterDto {
     @DecimalMin(value = "1000", message = "Wartość musi być większa lub równa 1000")
     @DecimalMax(value = "200000", message = "Wartość musi być mniejsza lub równa 200000")
     @Digits(integer = 10, fraction = 2, message = "Nieprawidłowy format")
-    @NotNull(message = "Pole nie może być puste")
+    @NotNull(message = "Pole puste lub nieprawidłowy format")
     private BigDecimal salary;
 
     @NotBlank(message = "Pole nie może być puste!")

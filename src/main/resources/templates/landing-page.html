@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Gradebook</title>
 </head>
 <body>
   <h1>LANDING PAGE</h1>
+  <form novalidate th:object="${teacherInfo}" th:action="@{/landing-page/sendMail}" method="post" class="modal-body">
+      Imię:
+      <input th:field="*{name}" type="text" class="form-control">
+      <p id="namep"></p>
+      Nazwisko:
+      <input th:field="*{surname}"  type="text" class="form-control">
+      <p id="surnamep"></p>
+      Pensja:
+      <input th:field="*{salary}"  type="number" class="form-control">
+      <p id="salaryp"></p>
+      Login:
+      <input th:field="*{login}"  type="text" class="form-control">
+      <p id="loginp"></p>
+      Hasło:
+      <input th:field="*{password}" type="text" class="form-control">
+      <p id="passwordp"></p>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary add-teacher-cancel" data-dismiss="modal">Anuluj</button>
+          <button type="submit" class="btn btn-primary">Dodaj</button>
+      </div>
+  </form>
+
 </body>
 </html>
