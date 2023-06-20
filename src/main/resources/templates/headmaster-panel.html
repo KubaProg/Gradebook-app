@@ -27,19 +27,19 @@
       <form novalidate th:object="${teacherInfo}" th:action="@{/headmaster-panel/add-teacher}" method="post" class="modal-body">
         Imię:
         <input th:field="*{name}" type="text" class="form-control">
-        <p id="namep"></p>
+        <p id="name-teacher-error"></p>
         Nazwisko:
         <input th:field="*{surname}"  type="text" class="form-control">
-        <p id="surnamep"></p>
+        <p id="surname-teacher-error"></p>
         Pensja:
         <input th:field="*{salary}"  type="number" class="form-control">
-        <p id="salaryp"></p>
+        <p id="salary-teacher-error"></p>
         Login:
         <input th:field="*{login}"  type="text" class="form-control">
-        <p id="loginp"></p>
+        <p id="login-teacher-error"></p>
         Hasło:
         <input th:field="*{password}" type="password" class="form-control">
-        <p id="passwordp"></p>
+        <p id="password-teacher-error"></p>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary add-teacher-cancel" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="btn btn-primary">Dodaj</button>
@@ -71,16 +71,19 @@
       <form novalidate th:object="${teacherInfo}" th:action="@{/headmaster-panel/add-teacher}" method="post" class="modal-body">
         Imię:
         <input th:field="*{name}" type="text" class="form-control">
-        <p id="namep"></p>
+        <p id="name-student-error"></p>
         Nazwisko:
         <input th:field="*{surname}"  type="text" class="form-control">
-        <p id="surnamep"></p>
+        <p id="surname-student-error"></p>
+        Numer rodzica:
+        <input type="text" class="form-control">
+        <p id="number-student-error"></p>
         Login:
         <input th:field="*{login}"  type="text" class="form-control">
-        <p id="loginp"></p>
+        <p id="login-student-error"></p>
         Hasło:
         <input th:field="*{password}" type="password" class="form-control">
-        <p id="passwordp"></p>
+        <p id="password-student-error"></p>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary add-teacher-cancel" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="btn btn-primary">Dodaj</button>
@@ -158,11 +161,11 @@
     <div class="panel-info">Panel Dyrektora</div>
     <div class="menu-headmaster-info">
       <div th:text="*{currentHeadMaster.getName() + ' ' + currentHeadMaster.getSurname()}">Jan Kowalski</div>
-      <button type="button" class="add-someone" data-toggle="modal" data-target="#add-student-modal">
+      <button type="button" class="add-someone" title="Dodaj nowego ucznia" data-toggle="modal" data-target="#add-student-modal">
         &#x271A
         <img src="../static/images/student.png" th:src="@{/images/student.png}">
       </button>
-      <button type="button" class="add-someone" data-toggle="modal" data-target="#add-teacher-modal">
+      <button type="button" class="add-someone" title="Dodaj nowego nauczyciela" data-toggle="modal" data-target="#add-teacher-modal">
         &#x271A
         <img src="../static/images/teacherW.png" th:src="@{/images/teacherW.png}">
       </button>
@@ -172,14 +175,14 @@
       <li th:each="teacher : ${teachers}">
         <div class="teacher" th:data-teacher-id="${teacher.getId()}">
           <div th:text="*{teacher.getName() + ' ' + teacher.getSurname()}">Nauczyciel</div>
-          <button onclick="setTeacherId(this)" type="button" class="remove" data-toggle="modal" data-target="#remove-teacher-modal">&#x2716</button>
+          <button onclick="setTeacherId(this)" type="button" class="remove" title="Usuń nauczyciela" data-toggle="modal" data-target="#remove-teacher-modal">&#x2716</button>
         </div>
 
         <ul class="classes" >
           <li th:each="subject : ${teacher.getSubjects()}">
             <div class="class" th:data-subject-id="${subject.getId()}">
               <div class="class-name" th:text="*{subject.getName()}" >Przedmiot</div>
-              <button onclick="setSubjectIdForDelete(this)"  type="button" class="remove" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
+              <button onclick="setSubjectIdForDelete(this)"  type="button" class="remove" title="Usuń przedmiot" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
             </div>
           </li>
         </ul>

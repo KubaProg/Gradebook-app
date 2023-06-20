@@ -130,8 +130,8 @@
       <li th:each="subject: ${subjects}">
         <div class="class" th:data-subject-id="${subject.getId()}">
           <div  th:value="*{subject.getId()}" th:text="*{subject.getName()}">Matematyka</div>
-          <button onclick="setSubjectIdForStudent(this)"  type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
-          <button onclick="setSubjectId(this)" type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
+          <button onclick="setSubjectIdForStudent(this)"  type="button" class="add-student" title="Dodaj nowego ucznia do zajęć" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
+          <button onclick="setSubjectId(this)" type="button" class="remove-class" title="Usuń zajęcia z listy" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button>
 
         </div>
 
@@ -143,10 +143,10 @@
                 <form th:action="@{/teacher-panel/edit-student}" method="get">
                   <input name="subjectId" th:value="${subject.getId()}" type="hidden" class="form-control add-class-input">
                   <input name="studentId" th:value="${student.getId()}" type="hidden" class="form-control add-class-input">
-                  <button type="submit" class="edit-student">&#x2699</button>
+                  <button type="submit" class="edit-student" title="Dodaj/Usuń ocenę i wyświetl informacje o uczniu" title="">&#x2699</button>
                 </form>
               </div>
-              <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
+              <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" title="Usuń ucznia z zajęć" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>
             </div>
           </li>
         </ul>

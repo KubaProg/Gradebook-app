@@ -1,8 +1,9 @@
 document.querySelectorAll('.modal').forEach(modal => {
     modalJQ = $(modal);
+    let who = modal.getAttribute('id');
     document.querySelectorAll('.error ul li p').forEach(e => {
         const error = e.innerHTML.split(': ');
-        modal.querySelector(`#${error[0]}` + 'p').innerHTML = '&#128162' + error[1];
+        modal.querySelector(`#${error[0]}` + `-${who.split('-')[1]}-` + 'error').innerHTML = '&#128162' + error[1];
         modal.classList.remove('fade');
         modalJQ.modal('show');
         modal.classList.remove('in');
