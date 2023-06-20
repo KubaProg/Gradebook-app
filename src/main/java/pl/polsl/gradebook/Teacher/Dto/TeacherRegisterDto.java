@@ -23,9 +23,10 @@ public class TeacherRegisterDto {
     @NotBlank(message = "Pole nie może być puste!")
     private String surname;
 
+    @DecimalMin(value = "1000", message = "Wartość musi być większa lub równa 1000")
+    @DecimalMax(value = "200000", message = "Wartość musi być mniejsza lub równa 200000")
+    @Digits(integer = 10, fraction = 2, message = "Nieprawidłowy format")
     @NotNull(message = "Pole nie może być puste")
-    @DecimalMin(value = "0.0", inclusive = false, message = "Pensja musi być większa od zera!")
-    @BigDecimalFormat(message = "Pole musi być liczbą!")
     private BigDecimal salary;
 
     @NotBlank(message = "Pole nie może być puste!")

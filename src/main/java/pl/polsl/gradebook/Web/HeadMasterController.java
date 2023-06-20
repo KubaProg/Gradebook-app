@@ -188,6 +188,8 @@ public class HeadMasterController {
         model.addAttribute("errors", errors.getAllErrors().stream()
                 .map(error -> ((FieldError) error).getField() + ": " + error.getDefaultMessage()));
 
+
+
         return "headmaster-panel";
 
 
