@@ -9,3 +9,15 @@ spring:
       hibernate:
         hbm2ddl:
           import_files_sql_extractor: org.hibernate.tool.schema.internal.script.MultiLineSqlScriptExtractor
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: jakub.opielka1@gmail.com
+    password: wdztbqvbngdnjhdk
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
