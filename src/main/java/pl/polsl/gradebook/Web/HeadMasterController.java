@@ -168,7 +168,7 @@ public class HeadMasterController {
     {
         if (userService.isLoginDuplicated(teacherInfo.getLogin())) {
             String fieldName = "login";
-            String errorMessage = "Login already exists"; // Customize the error message as needed
+            String errorMessage = "Login zajęty, podaj inny"; // Customize the error message as needed
             errors.rejectValue(fieldName, "", errorMessage);
         }
         else if (!errors.hasErrors()) {
