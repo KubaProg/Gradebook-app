@@ -59,28 +59,43 @@
   </div>
 </div>
 
-
-<div class="modal fade" id="add-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="add-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Dodaj przedmiot</h5>
+        <h5 class="modal-title">Dodaj ucznia</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form class='modal-body' id="add-teacher-form" method="post">
-
-        <input type="hidden" name="subjectId" id="subjectForTeacherId" />
-
-        <select id="class-name" name="teacherId" class="form-control">
-          <option ></option>
-        </select>
+      <form novalidate th:object="${teacherInfo}" th:action="@{/headmaster-panel/add-teacher}" method="post" class="modal-body">
+        Imię:
+        <input th:field="*{name}" type="text" class="form-control">
+        <p id="namep"></p>
+        Nazwisko:
+        <input th:field="*{surname}"  type="text" class="form-control">
+        <p id="surnamep"></p>
+        Login:
+        <input th:field="*{login}"  type="text" class="form-control">
+        <p id="loginp"></p>
+        Hasło:
+        <input th:field="*{password}" type="password" class="form-control">
+        <p id="passwordp"></p>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+          <button type="button" class="btn btn-secondary add-teacher-cancel" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="btn btn-primary">Dodaj</button>
         </div>
       </form>
+
+
+      <div class="error">
+        <ul>
+          <li th:each="error: ${errors}">
+            <p th:text="${error}"></p>
+          </li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </div>
@@ -107,14 +122,6 @@
     </div>
   </div>
 </div>
-
-<!--<div class="error" style="display: none">-->
-<!--  <ul>-->
-<!--    <li th:each="error: ${errors}">-->
-<!--    <p th:text="${error}"></p>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</div>-->
 
 <div class="modal fade" id="remove-class-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -151,8 +158,13 @@
     <div class="panel-info">Panel Dyrektora</div>
     <div class="menu-headmaster-info">
       <div th:text="*{currentHeadMaster.getName() + ' ' + currentHeadMaster.getSurname()}">Jan Kowalski</div>
-      <button type="button" class="add-teacher" data-toggle="modal" data-target="#add-teacher-modal">
-        Dodaj nauczyciela
+      <button type="button" class="add-someone" data-toggle="modal" data-target="#add-student-modal">
+        &#x271A
+        <img src="../static/images/student.png" th:src="@{/images/student.png}">
+      </button>
+      <button type="button" class="add-someone" data-toggle="modal" data-target="#add-teacher-modal">
+        &#x271A
+        <img src="../static/images/teacherW.png" th:src="@{/images/teacherW.png}">
       </button>
     </div>
 
@@ -160,7 +172,6 @@
       <li th:each="teacher : ${teachers}">
         <div class="teacher" th:data-teacher-id="${teacher.getId()}">
           <div th:text="*{teacher.getName() + ' ' + teacher.getSurname()}">Nauczyciel</div>
-          <button   type="button" class="add" data-toggle="modal" data-target="#add-class-modal">&#x271A</button>
           <button onclick="setTeacherId(this)" type="button" class="remove" data-toggle="modal" data-target="#remove-teacher-modal">&#x2716</button>
         </div>
 

@@ -144,7 +144,7 @@ body {
     background: #FAFAFA;
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     padding: 10px;
     border-radius: 1px;
     font-size: 30px;
@@ -153,14 +153,23 @@ body {
     }
 }
 
-.add-teacher {
+.add-someone {
     background: #006800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 40px;
     border: 1px #CCC solid;
     border-radius: 5px;
     color: #EEE;
     font-size: 20px;
     &:hover {
         background: #117811;
+    }
+    img {
+        width: auto;
+        height: 100%;
     }
 }
 
@@ -224,7 +233,7 @@ body {
     font-size: 40px;
     transition: all 0.5s;
     div {
-        width: calc(100% - 85px);
+        width: calc(100% - 51px);
     }
     &:hover {
         background: #EEE;

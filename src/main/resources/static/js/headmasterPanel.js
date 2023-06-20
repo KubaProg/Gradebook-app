@@ -1,14 +1,17 @@
-document.querySelectorAll('.error ul li p').forEach(e => {
-    const error = e.innerHTML.split(': ');
-    document.querySelector(`#${error[0]}` + 'p').innerHTML = '&#128162' + error[1];
-    document.querySelector('#add-teacher-modal').classList.remove('fade');
-    $('#add-teacher-modal').modal('show');
-    document.querySelector('#add-teacher-modal').classList.remove('in');
-    document.querySelector('#add-teacher-modal').classList.add('fade');
-    document.querySelector('#add-teacher-modal').classList.add('in');
-    document.querySelector('.modal-backdrop').classList.remove('in');
-    document.querySelector('.modal-backdrop').classList.add('fade');
-    document.querySelector('.modal-backdrop').classList.add('in');
+document.querySelectorAll('.modal').forEach(modal => {
+    modalJQ = $(modal);
+    document.querySelectorAll('.error ul li p').forEach(e => {
+        const error = e.innerHTML.split(': ');
+        modal.querySelector(`#${error[0]}` + 'p').innerHTML = '&#128162' + error[1];
+        modal.classList.remove('fade');
+        modalJQ.modal('show');
+        modal.classList.remove('in');
+        modal.classList.add('fade');
+        modal.classList.add('in');
+        modal.classList.remove('in');
+        modal.classList.add('fade');
+        modal.classList.add('in');
+    });
 });
 
 document.querySelector('.add-teacher-cancel').addEventListener('click', element => {

@@ -148,7 +148,7 @@ body {
   background: #FAFAFA;
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   padding: 10px;
   border-radius: 1px;
   font-size: 30px;
@@ -157,15 +157,24 @@ body {
   flex: 1;
 }
 
-.add-teacher {
+.add-someone {
   background: #006800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 40px;
   border: 1px #CCC solid;
   border-radius: 5px;
   color: #EEE;
   font-size: 20px;
 }
-.add-teacher:hover {
+.add-someone:hover {
   background: #117811;
+}
+.add-someone img {
+  width: auto;
+  height: 100%;
 }
 
 .add {
@@ -229,7 +238,7 @@ body {
   transition: all 0.5s;
 }
 .teacher div {
-  width: calc(100% - 85px);
+  width: calc(100% - 51px);
 }
 .teacher:hover {
   background: #EEE;
