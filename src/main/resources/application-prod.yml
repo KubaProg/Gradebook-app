@@ -1,5 +1,0 @@
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/gradebook-heroku/heroku_904c67475d764d2
-    username: bcbd77662bd0a0
-    password: 6c4fb802

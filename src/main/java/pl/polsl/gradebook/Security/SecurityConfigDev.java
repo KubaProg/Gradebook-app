@@ -1,8 +1,10 @@
 package pl.polsl.gradebook.Security;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -12,8 +14,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
-class SecurityConfig {
+@Profile("dev")
+class SecurityConfigDev {
     @Bean
+    @Qualifier("devFilterChain")
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(requests -> requests
 //                .requestMatchers("/**").permitAll()
@@ -26,7 +30,7 @@ class SecurityConfig {
                         .requestMatchers("/student-panel").hasRole("STUDENT")
                         .requestMatchers("/headmaster-panel").hasRole("HEADMASTER")
 //                .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
-//                .requestMatchers(PathRequest.toH2Console()).permitAll()
+                .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .anyRequest().permitAll()
         );
         http.formLogin(login -> login.loginPage("/login").permitAll());

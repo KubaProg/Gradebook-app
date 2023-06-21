@@ -1,9 +1,5 @@
 spring:
   datasource:
-    url: jdbc:mysql://b74247ff886908:8bede543@eu-cdbr-west-03.cleardb.net/heroku_626a98db6bdf74a
-    username: b74247ff886908
-    password: 8bede543
-    hikari:
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 1800000
+    url: jdbc:mysql://b0743eb9d8628d:337b63a4@eu-cdbr-west-03.cleardb.net/heroku_76317c0897bb76d?reconnect=true
+    username: b0743eb9d8628d
+    password: 337b63a4

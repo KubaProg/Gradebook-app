@@ -1,9 +1,9 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:test
+  profiles:
+    default: deploy
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
     show-sql: true
     properties:
       hibernate:
