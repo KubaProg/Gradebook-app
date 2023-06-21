@@ -170,7 +170,7 @@ public class HeadMasterController {
 
 
     @PostMapping("/add-teacher")
-    public String addTeacher(@Valid TeacherRegisterDto teacherRegisterDto, Errors errors)
+    public String addTeacher(@Valid TeacherRegisterDto teacherRegisterDto, Errors errors, Model model, RedirectAttributes redirectAttributes)
     {
 
         if (!errors.hasErrors()) {
@@ -182,6 +182,8 @@ public class HeadMasterController {
             teacher.setUser(savedUser);
             teacherRepository.save(teacher);
 
+            redirectAttributes.addFlashAttribute("addTeacherSuccessMessage", true);
+
             return "redirect:/headmaster-panel";
         }
 
@@ -192,12 +194,12 @@ public class HeadMasterController {
             errors.rejectValue(fieldName, "duplicate", errorMessage);
         }
 
-        System.out.println(errors.getAllErrors());
+
         return "headmaster-panel";
     }
 
     @PostMapping("/add-student")
-    public String addStudent(@Valid StudentRegisterDto studentRegisterDto, Errors errors){
+    public String addStudent(@Valid StudentRegisterDto studentRegisterDto, Errors errors, Model model, RedirectAttributes redirectAttributes){
 
         if (!errors.hasErrors()){
             User user = new User();
@@ -213,6 +215,9 @@ public class HeadMasterController {
             student.setUser(savedUser);
             studentRepository.save(student);
 
+            // succes message
+            redirectAttributes.addFlashAttribute("addStudentSuccessMessage", true);
+
             return "redirect:/headmaster-panel";
         }
 
@@ -222,6 +227,7 @@ public class HeadMasterController {
             String errorMessage = "Login zajęty, podaj inny"; // Customize the error message as needed
             errors.rejectValue(fieldName, "duplicate", errorMessage);
         }
+
 
         return "headmaster-panel";
 
