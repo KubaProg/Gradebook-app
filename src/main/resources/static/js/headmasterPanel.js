@@ -5,20 +5,6 @@ if ( window.history.replaceState ) {
 document.querySelectorAll('.modal').forEach(modal => {
     modalJQ = $(modal);
     let who = modal.getAttribute('id');
-    modal.querySelectorAll('.error ul li p').forEach(e => {
-        const error = e.innerHTML.split(': ');
-        console.log(`#${error[0]}` + `-${who.split('-')[1]}-` + 'error');
-        modal.querySelector(`#${error[0]}` + `-${who.split('-')[1]}-` + 'error').innerHTML = '&#128162' + error[1];
-        modal.classList.remove('fade');
-        modalJQ.modal('show');
-        modal.classList.add('fade');
-        modal.classList.remove('in');
-        modal.classList.add('in');
-        document.querySelector('.modal-backdrop').classList.remove('in');
-        document.querySelector('.modal-backdrop').classList.add('fade');
-        document.querySelector('.modal-backdrop').classList.add('in');
-    });
-
     if (modal.querySelector('.invalid-feedback') != null){
         modal.classList.remove('fade');
         modalJQ.modal('show');
@@ -29,6 +15,12 @@ document.querySelectorAll('.modal').forEach(modal => {
         document.querySelector('.modal-backdrop').classList.add('fade');
         document.querySelector('.modal-backdrop').classList.add('in');
     }
+});
+
+document.querySelectorAll('.close-success-message').forEach(e => {
+    e.addEventListener('click', e => {
+        e.target.closest('.success-message').remove();
+    });
 });
 
 document.querySelectorAll('.add-teacher-cancel').forEach(cancel => {

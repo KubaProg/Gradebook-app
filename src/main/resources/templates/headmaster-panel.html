@@ -191,8 +191,12 @@
 </div>
 
 <!--succes form message-->
-<div th:if="${addStudentSuccessMessage}" class="success-message">Pomyslnie dodano ucznia !</div>
-<div th:if="${addTeacherSuccessMessage}" class="success-message">Pomyslnie dodano nauczyciela !</div>
+<div th:if="${addStudentSuccessMessage}" class="success-message">Pomyslnie dodano ucznia !
+  <button class="close-success-message">&times;</button>
+</div>
+<div th:if="${addTeacherSuccessMessage}" class="success-message">Pomyslnie dodano nauczyciela !
+  <button class="close-success-message">&times;</button>
+</div>
 
 
 <div class="container">
