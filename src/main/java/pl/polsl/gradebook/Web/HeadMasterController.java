@@ -216,6 +216,12 @@ public class HeadMasterController {
             return "redirect:/headmaster-panel";
         }
 
+        if (userService.isLoginDuplicated(studentRegisterDto.getLogin())) {
+            String fieldName = "login";
+            String errorMessage = "Login zajęty, podaj inny"; // Customize the error message as needed
+            errors.rejectValue(fieldName, "duplicate", errorMessage);
+        }
+
         return "headmaster-panel";
 
     }
