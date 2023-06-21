@@ -26,7 +26,7 @@ class SecurityConfig {
                         .requestMatchers("/student-panel").hasRole("STUDENT")
                         .requestMatchers("/headmaster-panel").hasRole("HEADMASTER")
 //                .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
-                .requestMatchers(PathRequest.toH2Console()).permitAll()
+//                .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .anyRequest().permitAll()
         );
         http.formLogin(login -> login.loginPage("/login").permitAll());
