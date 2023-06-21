@@ -10,16 +10,8 @@ import pl.polsl.gradebook.Contact.EmailSenderService;
 @SpringBootApplication
 public class GradebookApplication {
 
-//    @Autowired
-//    private EmailSenderService senderService;
     public static void main(String[] args) {
         SpringApplication.run(GradebookApplication.class, args);
     }
-
-//    @EventListener(ApplicationReadyEvent.class)
-//    public void sendMail(){
-//        senderService.sendEmail("jakub1.opielka1@interia.pl","jakub.opielka1@gmail.com","TEST MAIL", "HELLO MY FIRST MESSAGE");
-//
-//    }
 
 }

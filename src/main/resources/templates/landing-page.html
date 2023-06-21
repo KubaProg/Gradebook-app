@@ -9,13 +9,19 @@
   <form novalidate th:object="${emailDto}" th:action="@{/send-mail}" method="post" class="modal-body">
       Podaj swój email:
       <input th:field="*{fromEmail}" type="text" >
-      <p id="fromEmail"></p>
+      <div id="validationFromEmail" class="invalid-feedback" th:errors="*{fromEmail}">
+          Please enter a parent number !
+      </div>
       Podaj temat zapytania:
       <input th:field="*{subject}"  type="text" >
-      <p id="subject"></p>
+      <div id="validationMailSubject" class="invalid-feedback" th:errors="*{subject}">
+          Please enter a parent number !
+      </div>
       Podaj treść zapytania:
       <textarea th:field="*{body}" ></textarea>
-      <p id="body"></p>
+      <div id="validationMailBody" class="invalid-feedback" th:errors="*{body}">
+          Please enter a parent number !
+      </div>
 
       <button type="submit">
           WYŚLIJ
