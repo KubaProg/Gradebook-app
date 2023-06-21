@@ -159,8 +159,8 @@ public class HeadMasterController {
     }
 
 
-    @ModelAttribute("teacherInfo")
-    public TeacherRegisterDto getTeacherInfo(){
+    @ModelAttribute("teacherRegisterDto")
+    public TeacherRegisterDto getTeacherDto(){
         return new TeacherRegisterDto();
     }
 
@@ -170,30 +170,30 @@ public class HeadMasterController {
 
 
     @PostMapping("/add-teacher")
-    public String addTeacher(@Valid TeacherRegisterDto teacherInfo, Errors errors, RedirectAttributes redirectAttributes)
+    public String addTeacher(@Valid TeacherRegisterDto teacherRegisterDto, Errors errors)
     {
-        if (userService.isLoginDuplicated(teacherInfo.getLogin())) {
-            String fieldName = "login";
-            String errorMessage = "Login zajęty, podaj inny"; // Customize the error message as needed
-            errors.rejectValue(fieldName, "", errorMessage);
-        }
-        else if (!errors.hasErrors()) {
-            User user = TeacherDtoMapper.mapDtoToUser(teacherInfo);
-            user.setPassword(passwordEncoder.encode(teacherInfo.getPassword()));
+
+        if (!errors.hasErrors()) {
+            User user = TeacherDtoMapper.mapDtoToUser(teacherRegisterDto);
+            user.setPassword(passwordEncoder.encode(teacherRegisterDto.getPassword()));
             User savedUser = userRepository.save(user);
 
-            Teacher teacher = TeacherDtoMapper.mapDtoToTeacher(teacherInfo);
+            Teacher teacher = TeacherDtoMapper.mapDtoToTeacher(teacherRegisterDto);
             teacher.setUser(savedUser);
             teacherRepository.save(teacher);
 
             return "redirect:/headmaster-panel";
         }
 
-        redirectAttributes.addFlashAttribute("errors", errors.getAllErrors().stream()
-                .map(error -> ((FieldError) error).getField() + ": " + error.getDefaultMessage())
-                .collect(Collectors.toList())); // Convert stream to a list
 
-        return "redirect:/headmaster-panel";
+        if (userService.isLoginDuplicated(teacherRegisterDto.getLogin())) {
+            String fieldName = "login";
+            String errorMessage = "Login zajęty, podaj inny"; // Customize the error message as needed
+            errors.rejectValue(fieldName, "duplicate", errorMessage);
+        }
+
+        System.out.println(errors.getAllErrors());
+        return "headmaster-panel";
     }
 
     @PostMapping("/add-student")
@@ -215,6 +215,7 @@ public class HeadMasterController {
 
             return "redirect:/headmaster-panel";
         }
+
 
         if (userService.isLoginDuplicated(studentRegisterDto.getLogin())) {
             String fieldName = "login";

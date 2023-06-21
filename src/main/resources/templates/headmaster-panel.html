@@ -24,22 +24,47 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form novalidate th:object="${teacherInfo}" th:action="@{/headmaster-panel/add-teacher}" method="post" class="modal-body">
-        Imię:
-        <input th:field="*{name}" type="text" class="form-control">
-        <p id="name-teacher-error"></p>
-        Nazwisko:
-        <input th:field="*{surname}"  type="text" class="form-control">
-        <p id="surname-teacher-error"></p>
-        Pensja:
-        <input th:field="*{salary}"  type="number" class="form-control">
-        <p id="salary-teacher-error"></p>
-        Login:
-        <input th:field="*{login}"  type="text" class="form-control">
-        <p id="login-teacher-error"></p>
-        Hasło:
-        <input th:field="*{password}" type="password" class="form-control">
-        <p id="password-teacher-error"></p>
+      <form  novalidate th:object="${teacherRegisterDto}" th:action="@{/headmaster-panel/add-teacher}" method="post" class="modal-body">
+        <div class="mb-3">
+          <label for="teacherFirstName" class="form-label">First Name</label>
+          <input th:field="*{name}" th:errorclass="is-invalid" type="text" class="form-control" id="teacherFirstName">
+          <div id="validationTeacherFirstName" class="invalid-feedback" th:errors="*{name}">
+            Please choose first name !
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="teacherLastName" class="form-label">Surname</label>
+          <input th:field="*{surname}" th:errorclass="is-invalid"  type="text" class="form-control" id="teacherLastName">
+          <div id="validationTeacherLastName" class="invalid-feedback" th:errors="*{surname}">
+            Please choose a last name !
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="teacherSalary" class="form-label">Salary</label>
+          <input type="number" th:field="*{salary}" th:errorclass="is-invalid" class="form-control" id="teacherSalary">
+          <div id="validationTeacherSalary" class="invalid-feedback" th:errors="*{salary}">
+            Please enter a salary !
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="teacherLogin" class="form-label">login</label>
+          <input th:field="*{login}" th:errorclass="is-invalid"  type="text" class="form-control" id="teacherLogin">
+          <div id="validationTeacherLogin" class="invalid-feedback" th:errors="*{login}">
+            Please choose a login !
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="teacherPassword" class="form-label">password</label>
+          <input th:field="*{password}" th:errorclass="is-invalid" type="password" class="form-control" id="teacherPassword">
+          <div id="validationTeacherPassword" class="invalid-feedback" th:errors="*{password}">
+            Please choose a password !
+          </div>
+        </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary add-teacher-cancel" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="btn btn-primary">Dodaj</button>
@@ -47,13 +72,6 @@
       </form>
 
 
-      <div class="error">
-        <ul>
-          <li th:each="error: ${errors}">
-            <p th:text="${error}"></p>
-          </li>
-        </ul>
-      </div>
 
     </div>
   </div>
