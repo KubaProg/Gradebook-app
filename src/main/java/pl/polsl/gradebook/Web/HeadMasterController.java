@@ -197,13 +197,24 @@ public class HeadMasterController {
     @PostMapping("/add-student")
     public String addStudent(@Valid StudentRegisterDto studentRegisterDto, Errors errors){
 
-        if (errors.hasErrors()){
-            System.out.println(errors.getAllErrors());
-            return "headmaster-panel";
+        if (!errors.hasErrors()){
+            User user = new User();
+            user.setRole("STUDENT");
+            user.setLogin(studentRegisterDto.getLogin());
+            user.setPassword(studentRegisterDto.getPassword());
+            User savedUser = userRepository.save(user);
+
+            Student student = new Student();
+            student.setName(studentRegisterDto.getName());
+            student.setSurname(studentRegisterDto.getSurname());
+            student.setParent_number(studentRegisterDto.getParent_number());
+            student.setUser(savedUser);
+            studentRepository.save(student);
+
+            return "redirect:/headmaster-panel";
         }
 
-
-        return "redirect:/headmaster-panel";
+        return "headmaster-panel";
 
     }
 

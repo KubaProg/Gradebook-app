@@ -68,7 +68,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form novalidate th:object="${studentRegisterDto}" th:action="@{/headmaster-panel/add-student}" method="post" class="modal-body">
+      <form  novalidate th:object="${studentRegisterDto}" th:action="@{/headmaster-panel/add-student}" method="post" class="modal-body">
         <div class="mb-3">
           <label for="studentFirstName" class="form-label">First Name</label>
           <input th:field="*{name}" th:errorclass="is-invalid" type="text" class="form-control" id="studentFirstName">
