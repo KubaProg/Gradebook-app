@@ -107,17 +107,23 @@ body {
 }
 
 .success-message {
-  background: #CCC;
+  background: #ffff00;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   box-sizing: border-box;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   opacity: 0.6;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 10px;
   font-size: 15px;
+  height: 20px;
+}
+
+.centered-text {
+  text-align: center;
+  flex: 1;
 }
 
 .close-success-message {
@@ -128,7 +134,10 @@ body {
   border-radius: 100px;
   text-align: center;
   transition: all 200ms;
+  margin-left: 10px;
 }
+
+
 .close-success-message:hover {
   background: #EEE;
   color: #666;
