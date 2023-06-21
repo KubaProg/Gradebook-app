@@ -121,7 +121,7 @@
     <div class="panel-info">Panel Nauczyciela</div>
     <div class="menu-teacher-info">
       <div th:text="*{currentTeacher.getName() + ' ' + currentTeacher.getSurname()}">Jan Kowalski</div>
-      <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal">
+      <button type="button" class="add-class" data-toggle="modal" data-target="#add-class-modal" >
         Dodaj przedmiot
       </button>
     </div>
@@ -143,7 +143,7 @@
                 <form th:action="@{/teacher-panel/edit-student}" method="get">
                   <input name="subjectId" th:value="${subject.getId()}" type="hidden" class="form-control add-class-input">
                   <input name="studentId" th:value="${student.getId()}" type="hidden" class="form-control add-class-input">
-                  <button type="submit" class="edit-student" title="Dodaj/Usuń ocenę i wyświetl informacje o uczniu" title="">&#x2699</button>
+                  <button type="submit" class="edit-student" title="wyświetl informacje o uczniu" >&#x2699</button>
                 </form>
               </div>
               <button onclick="setSubjectIdAndStudentIdForDelete(this)"  type="button" class="remove-student" title="Usuń ucznia z zajęć" data-toggle="modal" data-target="#remove-student-modal">&#x2716</button>

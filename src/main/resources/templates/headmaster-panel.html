@@ -58,7 +58,7 @@
     </div>
   </div>
 </div>
-
+<!-- Modale DO DODAWANIA UCZNIA PRZEZ DYREKTORA-->
 <div class="modal fade" id="add-student-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -68,22 +68,52 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form novalidate th:object="${teacherInfo}" th:action="@{/headmaster-panel/add-teacher}" method="post" class="modal-body">
-        Imię:
-        <input th:field="*{name}" type="text" class="form-control">
-        <p id="name-student-error"></p>
-        Nazwisko:
-        <input th:field="*{surname}"  type="text" class="form-control">
-        <p id="surname-student-error"></p>
-        Numer rodzica:
-        <input type="text" class="form-control">
-        <p id="number-student-error"></p>
-        Login:
-        <input th:field="*{login}"  type="text" class="form-control">
-        <p id="login-student-error"></p>
-        Hasło:
-        <input th:field="*{password}" type="password" class="form-control">
-        <p id="password-student-error"></p>
+      <form novalidate th:object="${studentRegisterDto}" th:action="@{/headmaster-panel/add-student}" method="post" class="modal-body">
+        <div class="mb-3">
+          <label for="studentFirstName" class="form-label">First Name</label>
+          <input th:field="*{name}" th:errorclass="is-invalid" type="text" class="form-control" id="studentFirstName">
+          <div id="validationFirstName" class="invalid-feedback" th:errors="*{name}">
+            Please choose first name !
+          </div>
+          <!--        <p id="name-student-error"></p>-->
+        </div>
+
+        <div class="mb-3">
+          <label for="studentLastName" class="form-label">Surname</label>
+          <input th:field="*{surname}" th:errorclass="is-invalid"  type="text" class="form-control" id="studentLastName">
+          <div id="validationLastName" class="invalid-feedback" th:errors="*{surname}">
+            Please choose a last name !
+          </div>
+          <!--          <p id="surname-student-error"></p>-->
+        </div>
+
+        <div class="mb-3">
+          <label for="studentParentNumber" class="form-label">Parent number</label>
+          <input type="text" th:field="*{parent_number}" th:errorclass="is-invalid" class="form-control" id="studentParentNumber">
+          <div id="validationParentNumber" class="invalid-feedback" th:errors="*{parent_number}">
+            Please enter a parent number !
+          </div>
+          <!--          <p id="number-student-error"></p>-->
+        </div>
+
+        <div class="mb-3">
+          <label for="studentLogin" class="form-label">login</label>
+          <input th:field="*{login}" th:errorclass="is-invalid"  type="text" class="form-control" id="studentLogin">
+          <div id="validationLogin" class="invalid-feedback" th:errors="*{login}">
+            Please choose a login !
+          </div>
+          <!--          <p id="login-student-error"></p>-->
+        </div>
+
+        <div class="mb-3">
+          <label for="studentPassword" class="form-label">password</label>
+          <input th:field="*{password}" th:errorclass="is-invalid" type="password" class="form-control" id="studentPassword">
+          <div id="validationPassword" class="invalid-feedback" th:errors="*{password}">
+            Please choose a password !
+          </div>
+          <!--          <p id="password-student-error"></p>-->
+        </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary add-teacher-cancel" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="btn btn-primary">Dodaj</button>
@@ -156,6 +186,7 @@
     <button type="submit" class="logout">Wyloguj</button>
   </form>
 </div>
+
 <div class="container">
   <div class="menu">
     <div class="panel-info">Panel Dyrektora</div>

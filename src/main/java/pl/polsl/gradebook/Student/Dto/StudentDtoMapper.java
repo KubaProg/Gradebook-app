@@ -24,8 +24,7 @@ public class StudentDtoMapper {
         Student student = new Student();
         student.setName(dto.getName());
         student.setSurname(dto.getSurname());
-        // change this in the future
-        student.setParent_number("666666666");
+        student.setParent_number(dto.getParent_number());
 
         return student;
     }

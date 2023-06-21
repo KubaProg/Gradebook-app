@@ -14,6 +14,7 @@ import pl.polsl.gradebook.Grade.Model.Grade;
 import pl.polsl.gradebook.Grade.Repository.GradeRepository;
 import pl.polsl.gradebook.Headmaster.Model.Headmaster;
 import pl.polsl.gradebook.Headmaster.Repository.HeadMasterRepository;
+import pl.polsl.gradebook.Student.Dto.StudentRegisterDto;
 import pl.polsl.gradebook.Student.Model.Student;
 import pl.polsl.gradebook.Student.Repository.StudentRepository;
 import pl.polsl.gradebook.Subject.Model.Subject;
@@ -162,6 +163,10 @@ public class HeadMasterController {
         return new TeacherRegisterDto();
     }
 
+    @ModelAttribute("studentRegisterDto")
+    public StudentRegisterDto getStudentDto() {return new StudentRegisterDto();}
+
+
 
     @PostMapping("/add-teacher")
     public String addTeacher(@Valid TeacherRegisterDto teacherInfo, Errors errors, RedirectAttributes redirectAttributes)
@@ -187,6 +192,19 @@ public class HeadMasterController {
                 .map(error -> ((FieldError) error).getField() + ": " + error.getDefaultMessage()));
 
         return "redirect:/headmaster-panel";
+    }
+
+    @PostMapping("/add-student")
+    public String addStudent(@Valid StudentRegisterDto studentRegisterDto, Errors errors){
+
+        if (errors.hasErrors()){
+            System.out.println(errors.getAllErrors());
+            return "headmaster-panel";
+        }
+
+
+        return "redirect:/headmaster-panel";
+
     }
 
 

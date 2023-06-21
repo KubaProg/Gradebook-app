@@ -18,7 +18,7 @@ public class StudentRegisterDto {
     @NotBlank(message = "Nazwisko nie może pozostać puste")
     private String surname;
 
-    // add validation to this
+    @NotBlank(message = "Nazwisko nie może pozostać puste")
     private String parent_number;
 
     @NotBlank(message = "Pole nie może być puste!")
