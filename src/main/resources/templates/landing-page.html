@@ -28,5 +28,13 @@
       </button>
   </form>
 
+<div>
+    <ul>
+        <li th:each="login: ${logins}" >
+            <p th:text="${login}"></p>
+        </li>
+    </ul>
+</div>
+
 </body>
 </html>
