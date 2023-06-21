@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://b74247ff886908:8bede543@eu-cdbr-west-03.cleardb.net/heroku_626a98db6bdf74a
+    username: b74247ff886908
+    password: 8bede543
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
