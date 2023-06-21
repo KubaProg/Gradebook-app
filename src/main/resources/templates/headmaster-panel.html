@@ -75,7 +75,6 @@
           <div id="validationFirstName" class="invalid-feedback" th:errors="*{name}">
             Please choose first name !
           </div>
-                  <p id="name-student-error"></p>
         </div>
 
         <div class="mb-3">
@@ -84,16 +83,14 @@
           <div id="validationLastName" class="invalid-feedback" th:errors="*{surname}">
             Please choose a last name !
           </div>
-                    <p id="surname-student-error"></p>
         </div>
 
         <div class="mb-3">
           <label for="studentParentNumber" class="form-label">Parent number</label>
           <input type="text" th:field="*{parent_number}" th:errorclass="is-invalid" class="form-control" id="studentParentNumber">
           <div id="validationParentNumber" class="invalid-feedback" th:errors="*{parent_number}">
-          Please enter a parent number !
-        </div>
-                    <p id="number-student-error"></p>
+            Please enter a parent number !
+          </div>
         </div>
 
         <div class="mb-3">
@@ -102,7 +99,6 @@
           <div id="validationLogin" class="invalid-feedback" th:errors="*{login}">
             Please choose a login !
           </div>
-                    <p id="login-student-error"></p>
         </div>
 
         <div class="mb-3">
@@ -111,7 +107,6 @@
           <div id="validationPassword" class="invalid-feedback" th:errors="*{password}">
             Please choose a password !
           </div>
-                    <p id="password-student-error"></p>
         </div>
 
         <div class="modal-footer">

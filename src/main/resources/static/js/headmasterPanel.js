@@ -1,23 +1,44 @@
+if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, '/headmaster-panel' );
+  }
+
 document.querySelectorAll('.modal').forEach(modal => {
     modalJQ = $(modal);
     let who = modal.getAttribute('id');
-    document.querySelectorAll('.error ul li p').forEach(e => {
+    modal.querySelectorAll('.error ul li p').forEach(e => {
         const error = e.innerHTML.split(': ');
+        console.log(`#${error[0]}` + `-${who.split('-')[1]}-` + 'error');
         modal.querySelector(`#${error[0]}` + `-${who.split('-')[1]}-` + 'error').innerHTML = '&#128162' + error[1];
         modal.classList.remove('fade');
         modalJQ.modal('show');
-        modal.classList.remove('in');
         modal.classList.add('fade');
-        modal.classList.add('in');
         modal.classList.remove('in');
-        modal.classList.add('fade');
         modal.classList.add('in');
+        document.querySelector('.modal-backdrop').classList.remove('in');
+        document.querySelector('.modal-backdrop').classList.add('fade');
+        document.querySelector('.modal-backdrop').classList.add('in');
     });
+
+    if (modal.querySelector('.invalid-feedback') != null){
+        modal.classList.remove('fade');
+        modalJQ.modal('show');
+        modal.classList.add('fade');
+        modal.classList.remove('in');
+        modal.classList.add('in');
+        document.querySelector('.modal-backdrop').classList.remove('in');
+        document.querySelector('.modal-backdrop').classList.add('fade');
+        document.querySelector('.modal-backdrop').classList.add('in');
+    }
 });
 
-document.querySelector('.add-teacher-cancel').addEventListener('click', element => {
-    document.querySelectorAll('#add-teacher-modal p').forEach(e => {
-        e.innerHTML = '';
+document.querySelectorAll('.add-teacher-cancel').forEach(cancel => {
+    cancel.addEventListener('click', element => {
+        document.querySelectorAll('#add-teacher-modal p').forEach(e => {
+            e.innerHTML = '';
+        });
+        setTimeout(() => {element.target.closest('.modal-body').querySelectorAll('.invalid-feedback').forEach(e => {
+            e.remove();
+        })}, '150');
     });
 });
 

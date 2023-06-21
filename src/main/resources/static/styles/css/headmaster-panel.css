@@ -297,4 +297,8 @@ body {
     opacity: 1;
     filter: blur(0);
   }
+}
+.invalid-feedback {
+  color: red;
+  opacity: 0.7;
 }/*# sourceMappingURL=headmaster-panel.css.map */
