@@ -30,6 +30,7 @@ import pl.polsl.gradebook.User.Service.UserService;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/headmaster-panel")
@@ -189,7 +190,8 @@ public class HeadMasterController {
         }
 
         redirectAttributes.addFlashAttribute("errors", errors.getAllErrors().stream()
-                .map(error -> ((FieldError) error).getField() + ": " + error.getDefaultMessage()));
+                .map(error -> ((FieldError) error).getField() + ": " + error.getDefaultMessage())
+                .collect(Collectors.toList())); // Convert stream to a list
 
         return "redirect:/headmaster-panel";
     }
