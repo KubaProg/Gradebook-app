@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dziennik Elektroniczny</title>
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../static/styles/css/headmaster-panel.css" th:href="@{/styles/css/headmaster-panel.css}">
   <script defer src="../static/js/headmasterPanel.js" th:src="@{/js/headmasterPanel.js}"></script>
@@ -235,15 +235,15 @@
 </div>
 
 <script>
-  // function setTeacherId(button) {
-  //   var teacherId = button.parentNode.getAttributeNode("data-teacher-id").value;
-  //   document.getElementById("teacherId").value = teacherId;
-  // }
-  //
-  // function setSubjectIdForDelete(button) {
-  //   var subjectId = button.parentNode.getAttributeNode("data-subject-id").value;
-  //   document.getElementById("subject-delete-subjectid").value = subjectId;
-  // }
+  function setTeacherId(button) {
+    var teacherId = button.parentNode.getAttributeNode("data-teacher-id").value;
+    document.getElementById("teacherId").value = teacherId;
+  }
+
+  function setSubjectIdForDelete(button) {
+    var subjectId = button.parentNode.getAttributeNode("data-subject-id").value;
+    document.getElementById("subject-delete-subjectid").value = subjectId;
+  }
 
 </script>
 
