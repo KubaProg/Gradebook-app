@@ -21,3 +21,27 @@ document.querySelectorAll('.student-grades li').forEach(element => {
         }
     });
 })
+
+function setSubjectIdAndStudentIdForAddGrade(button) {
+    var subjectId = button.parentNode.parentNode.querySelector(".gradeAdd").getAttribute("data-subject-id");
+    var studentId = button.parentNode.parentNode.querySelector(".gradeAdd").getAttribute("data-student-id");
+    document.getElementById("add-grade-subject-id").value = subjectId;
+    document.getElementById("add-grade-student-id").value = studentId;
+}
+
+function setGradeDescription(button) {
+    var gradeDescription = button.parentNode.getAttribute("data-grade-description");
+    var gradeDescriptionElement = document.getElementById("grade-description");
+
+    if (button.classList.contains("clicked")) {
+        button.classList.remove("clicked");
+        gradeDescriptionElement.value = "";
+    } else {
+        var clickedButton = document.querySelector(".grade button.clicked");
+        if (clickedButton) {
+            clickedButton.classList.remove("clicked");
+        }
+        button.classList.add("clicked");
+        gradeDescriptionElement.value = gradeDescription;
+    }
+}

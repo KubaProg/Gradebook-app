@@ -51,3 +51,10 @@ document.querySelectorAll('.grades').forEach(e => {
         e.insertAdjacentElement('afterbegin', empty);
     }
 })
+
+function setValueAndDescriptionOfGrade(button) {
+    var gradeValue = button.parentNode.getAttributeNode("data-grade-value").value
+    var gradeDescription = button.parentNode.getAttributeNode("data-grade-description").value
+    document.getElementById("grade-value").value = gradeValue;
+    document.getElementById("grade-description").value = gradeDescription;
+}

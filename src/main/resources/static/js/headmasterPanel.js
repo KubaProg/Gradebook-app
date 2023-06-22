@@ -71,5 +71,16 @@ document.querySelectorAll('.classes').forEach(e => {
     }
 })
 
+function setTeacherId(button) {
+    var teacherId = button.parentNode.getAttributeNode("data-teacher-id").value;
+    document.getElementById("teacherId").value = teacherId;
+}
+
+function setSubjectIdForDelete(button) {
+    var subjectId = button.parentNode.getAttributeNode("data-subject-id").value;
+    document.getElementById("subject-delete-subjectid").value = subjectId;
+}
+
+
 
 
