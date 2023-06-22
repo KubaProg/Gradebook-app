@@ -1,9 +1,6 @@
 
 # Gradebook Web Application
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/your-username/gradebook/blob/main/LICENSE)
-[![Build Status](https://travis-ci.org/your-username/gradebook.svg?branch=main)](https://travis-ci.org/your-username/gradebook)
-
 > The Gradebook Web Application is a platform that helps educational institutions manage and track students' grades and academic progress. It provides a user-friendly interface for teachers, students, and headmaster to access and update school system related information.
 
 ![Gradebook Screenshot](/path/to/screenshot.png)
