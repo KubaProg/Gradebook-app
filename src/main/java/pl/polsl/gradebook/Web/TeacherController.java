@@ -106,7 +106,7 @@ public class TeacherController {
 
         }
 
-        return "/teacher-panel/edit-student?subjectId=" + gradeDto.getSubjectId() + "&studentId=" + gradeDto.getStudentId();
+        return "redirect:/teacher-panel/edit-student?subjectId=" + gradeDto.getSubjectId() + "&studentId=" + gradeDto.getStudentId();
 
     }
 
