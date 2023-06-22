@@ -45,3 +45,4 @@ function setGradeDescription(button) {
         gradeDescriptionElement.value = gradeDescription;
     }
 }
+
