@@ -205,7 +205,7 @@ public class HeadMasterController {
             User user = new User();
             user.setRole("STUDENT");
             user.setLogin(studentRegisterDto.getLogin());
-            user.setPassword(studentRegisterDto.getPassword());
+            user.setPassword(passwordEncoder.encode(studentRegisterDto.getPassword()));
             User savedUser = userRepository.save(user);
 
             Student student = new Student();
