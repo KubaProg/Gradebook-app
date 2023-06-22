@@ -41,9 +41,8 @@ public class Grade {
     @DecimalMax(value = "6")
     private BigDecimal numericalValue;
 
-    @NotBlank
-    @Size(min = 1, message = "{validation.name.size.too_short}")
-    @Size(max = 175, message = "{validation.name.size.too_long}")
+    @NotBlank(message = "opis nie może być pusty !")
+    @Size(max = 175, message = "opis jest za długi !")
     private String description;
 
 

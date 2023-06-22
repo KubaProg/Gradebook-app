@@ -22,11 +22,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <div class="gradeAdd"  th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
-      <form th:object="${grade}" method="post" class="modal-body" action="/add-grade" th:action="@{/teacher-panel/add-grade}">
+        <div class="gradeAdd">
+      <form novalidate th:object="${gradeDto}" method="post" class="modal-body" th:action="@{/teacher-panel/add-grade}">
 
-          <input type="hidden" id="add-grade-subject-id" name="subjectId" th:value="${subject.getId()}">
-          <input type="hidden" id="add-grade-student-id" name="studentId" th:value="${student.getId()}">
+          <input type="hidden" id="add-grade-subject-id" name="subjectId" th:field="*{subjectId}" >
+          <input type="hidden" id="add-grade-student-id" name="studentId" th:field="*{studentId}" >
 
         <p>Wartość:</p>
             <select th:field="*{numericalValue}" class="form-control">
@@ -37,8 +37,11 @@
                 <option value="5" >5</option>
                 <option value="6" >6</option>
             </select>
-        <p>Opis:</p>
-            <textarea maxlength="175" th:field="*{description}" type="range" class="form-control"></textarea>
+          <label for="add-grade-description" class="form-label">Grade description</label>
+          <textarea maxlength="175" th:field="*{description}"  class="form-control" th:errorclass="is-invalid" id="add-grade-description"></textarea>
+          <div id="validation-add-grade-description" class="invalid-feedback" th:errors="*{description}">
+              Please enter a description !
+          </div>
         <div class="modal-footer">
           <button type="button" class="delete" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="add">Dodaj</button>
@@ -83,7 +86,7 @@
             <input type="hidden" name="studentId" th:value="${student.getId()}"/>
         </div>
     </div>
-    <div class="menu-footer">
+    <div class="menu-footer" th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
         <button type="submit" th:formaction="'/teacher-panel/deleteGrade'" class="delete">Usuń ocenę</button>
         <button onclick="setSubjectIdAndStudentIdForAddGrade(this)" type="button" class="add" data-toggle="modal" data-target="#add-grade-modal">Dodaj ocenę</button>
     </div>
@@ -94,8 +97,8 @@
 
 <script>
     function setSubjectIdAndStudentIdForAddGrade(button) {
-        var subjectId = button.parentNode.parentNode.querySelector(".gradeAdd").getAttribute("data-subject-id");
-        var studentId = button.parentNode.parentNode.querySelector(".gradeAdd").getAttribute("data-student-id");
+        var subjectId = button.parentNode.getAttribute("data-subject-id");
+        var studentId = button.parentNode.getAttribute("data-student-id");
         document.getElementById("add-grade-subject-id").value = subjectId;
         document.getElementById("add-grade-student-id").value = studentId;
     }

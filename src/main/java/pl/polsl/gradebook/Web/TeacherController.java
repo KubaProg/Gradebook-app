@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import pl.polsl.gradebook.Grade.Dto.GradeAddDto;
 import pl.polsl.gradebook.Grade.Model.Grade;
 import pl.polsl.gradebook.Grade.Repository.GradeRepository;
+import pl.polsl.gradebook.Grade.Service.GradeService;
 import pl.polsl.gradebook.Student.Model.Student;
 import pl.polsl.gradebook.Student.Repository.StudentRepository;
 import pl.polsl.gradebook.Student.Service.StudentService;
@@ -35,12 +37,14 @@ public class TeacherController {
     SubjectRepository subjectRepository;
     StudentService studentService;
 
+    GradeService gradeService;
+
 
     public TeacherController(UserService userService, TeacherRepository teacherRepository,
                              TeacherService teacherService, StudentRepository studentRepository,
                              GradeRepository gradeRepository,
                              SubjectService subjectService, SubjectRepository subjectRepository,
-                             StudentService studentService) {
+                             StudentService studentService, GradeService gradeService) {
         this.userService = userService;
         this.teacherRepository = teacherRepository;
         this.teacherService = teacherService;
@@ -49,6 +53,7 @@ public class TeacherController {
         this.subjectService = subjectService;
         this.subjectRepository = subjectRepository;
         this.studentService = studentService;
+        this.gradeService = gradeService;
     }
 
     @GetMapping
@@ -87,29 +92,21 @@ public class TeacherController {
         return "edit-student";
     }
 
-    @ModelAttribute
-    public Grade getGrade(){
-        return new Grade();
+
+    @ModelAttribute("gradeDto")
+    public GradeAddDto getGrade(){
+        return new GradeAddDto();
     }
 
     @PostMapping("/add-grade")
-    public String addGradeToStudent(@Valid Grade grade,Errors errors, @RequestParam Long studentId, @RequestParam Long subjectId){
+    public String addGradeToStudent(@Valid GradeAddDto gradeDto,Errors errors){
 
         if(!errors.hasErrors()) {
-            Teacher teacher = teacherRepository.findTeacherByUserId(userService.findCurrentUser().getId()).get();
-            Student student = studentRepository.findById(studentId).get();
-            Subject subject = subjectRepository.findById(subjectId).get();
-            List<Grade> grades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId).get();
-
-            grade.setStudent(student);
-            grade.setSubject(subject);
-            grade.setTeacher(teacher);
-
-            gradeRepository.save(grade);
+            gradeService.saveDtoGrade(gradeDto);
 
         }
 
-        return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
+        return "reditect:/teacher-panel/edit-student?subjectId=" + gradeDto.getSubjectId() + "&studentId=" + gradeDto.getStudentId();
 
     }
 
