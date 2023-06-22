@@ -55,13 +55,13 @@ public class EditStudentController {
     }
 
     @PostMapping("/add-grade")
-    public String addGradeToStudent(@Valid GradeAddDto gradeAddDto, Errors errors){
+    public String addGradeToStudent(@Valid GradeAddDto gradeAddDto, Errors errors, @RequestParam Long studentId, @RequestParam Long subjectId){
 
         if(!errors.hasErrors()) {
             gradeService.saveDtoGrade(gradeAddDto);
-            return "redirect:/edit-student";
-
+            return "redirect:/edit-student?studentId=" + studentId + "&subjectId=" + subjectId;
         }
+
 
         return "edit-student";
 
@@ -76,7 +76,7 @@ public class EditStudentController {
             }
         }
 
-        return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
+        return "redirect:/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
     }
 
     @GetMapping("/student-grades/{studentId}/{subjectId}")

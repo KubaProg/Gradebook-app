@@ -87,7 +87,7 @@
         </div>
     </div>
     <div class="menu-footer" th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
-        <button type="submit" th:formaction="'/teacher-panel/deleteGrade'" class="delete">Usuń ocenę</button>
+        <button type="submit" th:formaction="'/edit-student/deleteGrade'" class="delete">Usuń ocenę</button>
         <button onclick="setSubjectIdAndStudentIdForAddGrade(this)" type="button" class="add" data-toggle="modal" data-target="#add-grade-modal">Dodaj ocenę</button>
     </div>
 </div>
