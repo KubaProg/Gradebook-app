@@ -106,7 +106,7 @@ public class TeacherController {
 
         }
 
-        return "reditect:/teacher-panel/edit-student?subjectId=" + gradeDto.getSubjectId() + "&studentId=" + gradeDto.getStudentId();
+        return "/teacher-panel/edit-student?subjectId=" + gradeDto.getSubjectId() + "&studentId=" + gradeDto.getStudentId();
 
     }
 

@@ -23,11 +23,12 @@ document.querySelectorAll('.student-grades li').forEach(element => {
 })
 
 function setSubjectIdAndStudentIdForAddGrade(button) {
-    var subjectId = button.parentNode.parentNode.querySelector(".gradeAdd").getAttribute("data-subject-id");
-    var studentId = button.parentNode.parentNode.querySelector(".gradeAdd").getAttribute("data-student-id");
+    var subjectId = button.parentNode.getAttribute("data-subject-id");
+    var studentId = button.parentNode.getAttribute("data-student-id");
     document.getElementById("add-grade-subject-id").value = subjectId;
     document.getElementById("add-grade-student-id").value = studentId;
 }
+
 
 function setGradeDescription(button) {
     var gradeDescription = button.parentNode.getAttribute("data-grade-description");

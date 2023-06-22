@@ -95,33 +95,33 @@
 
 </form>
 
-<script>
-    function setSubjectIdAndStudentIdForAddGrade(button) {
-        var subjectId = button.parentNode.getAttribute("data-subject-id");
-        var studentId = button.parentNode.getAttribute("data-student-id");
-        document.getElementById("add-grade-subject-id").value = subjectId;
-        document.getElementById("add-grade-student-id").value = studentId;
-    }
+<!--<script>-->
+<!--    function setSubjectIdAndStudentIdForAddGrade(button) {-->
+<!--        var subjectId = button.parentNode.getAttribute("data-subject-id");-->
+<!--        var studentId = button.parentNode.getAttribute("data-student-id");-->
+<!--        document.getElementById("add-grade-subject-id").value = subjectId;-->
+<!--        document.getElementById("add-grade-student-id").value = studentId;-->
+<!--    }-->
 
-    function setGradeDescription(button) {
-        var gradeDescription = button.parentNode.getAttribute("data-grade-description");
-        var gradeDescriptionElement = document.getElementById("grade-description");
+<!--    function setGradeDescription(button) {-->
+<!--        var gradeDescription = button.parentNode.getAttribute("data-grade-description");-->
+<!--        var gradeDescriptionElement = document.getElementById("grade-description");-->
 
-        if (button.classList.contains("clicked")) {
-            button.classList.remove("clicked");
-            gradeDescriptionElement.value = "";
-        } else {
-            var clickedButton = document.querySelector(".grade button.clicked");
-            if (clickedButton) {
-                clickedButton.classList.remove("clicked");
-            }
-            button.classList.add("clicked");
-            gradeDescriptionElement.value = gradeDescription;
-        }
-    }
+<!--        if (button.classList.contains("clicked")) {-->
+<!--            button.classList.remove("clicked");-->
+<!--            gradeDescriptionElement.value = "";-->
+<!--        } else {-->
+<!--            var clickedButton = document.querySelector(".grade button.clicked");-->
+<!--            if (clickedButton) {-->
+<!--                clickedButton.classList.remove("clicked");-->
+<!--            }-->
+<!--            button.classList.add("clicked");-->
+<!--            gradeDescriptionElement.value = gradeDescription;-->
+<!--        }-->
+<!--    }-->
 
 
-</script>
+<!--</script>-->
 
 </body>
 </html>
