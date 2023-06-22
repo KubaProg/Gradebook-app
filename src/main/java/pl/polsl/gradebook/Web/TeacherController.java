@@ -78,62 +78,18 @@ public class TeacherController {
     }
 
 
-    @GetMapping("/edit-student")
-    public String showEditStudentPage(@RequestParam Long studentId, @RequestParam Long subjectId, Model model){
-
-        Student student = studentRepository.findById(studentId).get();
-        List<Grade> grades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId).get();
-        Subject subject = subjectRepository.findById(subjectId).get();
-
-        model.addAttribute("grades", grades);
-        model.addAttribute("student",student);
-        model.addAttribute("subject",subject);
-
-        return "edit-student";
-    }
-
-
-    @ModelAttribute("gradeDto")
-    public GradeAddDto getGrade(){
-        return new GradeAddDto();
-    }
-
-    @PostMapping("/add-grade")
-    public String addGradeToStudent(@Valid GradeAddDto gradeDto,Errors errors){
-
-        if(!errors.hasErrors()) {
-            gradeService.saveDtoGrade(gradeDto);
-
-        }
-
-        return "redirect:/teacher-panel/edit-student?subjectId=" + gradeDto.getSubjectId() + "&studentId=" + gradeDto.getStudentId();
-
-    }
-
-    @PostMapping("deleteGrade")
-    public String deleteGrade(@RequestParam Long subjectId, @RequestParam Long studentId, @RequestParam Optional<List<Long>> selectedGradesId ){
-
-        if (selectedGradesId.isPresent()){
-            for (Long gradeId : selectedGradesId.get()){
-                gradeRepository.deleteById(gradeId);
-            }
-        }
-
-        return "redirect:/teacher-panel/edit-student?subjectId=" + subjectId + "&studentId=" + studentId;
-    }
 
 
 
 
-    @GetMapping("/student-grades/{studentId}/{subjectId}")
-    public String getStudentGrades(@PathVariable Long studentId, @PathVariable Long subjectId, Model model) {
-        // Pobierz oceny ucznia na podstawie studentId
-        Optional<List<Grade>> studentGrades = gradeRepository.findGradesByStudentIdAndSubjectId(studentId, subjectId);
 
-        studentGrades.ifPresent(grades -> model.addAttribute("studentGrades", grades));
 
-        return "redirect:/teacher-panel";
-    }
+
+
+
+
+
+
 
     @PostMapping("/add-student")
     public String addStudent(@RequestParam("studentId") Long studentId, @RequestParam("subjectId") Long subjectId)

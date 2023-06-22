@@ -23,7 +23,7 @@
         </button>
       </div>
         <div class="gradeAdd">
-      <form novalidate th:object="${gradeDto}" method="post" class="modal-body" th:action="@{/teacher-panel/add-grade}">
+      <form novalidate th:object="${gradeAddDto}" method="post" class="modal-body" th:action="@{/edit-student/add-grade}">
 
           <input type="hidden" id="add-grade-subject-id" name="subjectId" th:field="*{subjectId}" >
           <input type="hidden" id="add-grade-student-id" name="studentId" th:field="*{studentId}" >

@@ -140,7 +140,7 @@
             <div class="student"  th:data-student-id="${student.getId()}" th:data-subject-id="${subject.getId()}">
               <div class="student-name" th:text="*{student.getName() + ' ' + student.getSurname()}" >Kamil Nowak</div>
               <div class="student-options" th:data-student-name="${student.getName()}" th:data-student-surname="${student.getSurname()}" th:data-student-number="${student.getParent_number()}" th:data-student-id="${student.getId()}" >
-                <form th:action="@{/teacher-panel/edit-student}" method="get">
+                <form th:action="@{/edit-student}" method="get">
                   <input name="subjectId" th:value="${subject.getId()}" type="hidden" class="form-control add-class-input">
                   <input name="studentId" th:value="${student.getId()}" type="hidden" class="form-control add-class-input">
                   <button type="submit" class="edit-student" title="wyświetl informacje o uczniu" >&#x2699</button>
