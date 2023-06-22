@@ -72,31 +72,4 @@ document.querySelectorAll('.classes').forEach(e => {
 })
 
 
-// $(document).ready(function() {
-//     $('#teacherForm').submit(function(event) {
-//         event.preventDefault(); // Prevent the default form submission behavior
-//
-//         var formData = $(this).serialize(); // Serialize the form data
-//
-//         $.ajax({
-//             url: $(this).attr('action'),
-//             type: $(this).attr('method'),
-//             data: formData,
-//             success: function(response) {
-//                 // Handle the successful response
-//
-//                 // Optionally, you can close the modal or perform any other actions
-//                 $('#add-teacher-modal').modal('hide');
-//             },
-//             error: function(xhr, status, error) {
-//                 // Handle the error response
-//
-//                 // Update the modal content with the error message
-//                 var errorMessage = xhr.responseText; // Assuming the server returns the error message in the response
-//
-//                 // Display the error message inside the modal
-//                 $('#add-teacher-modal').find('.error').text(errorMessage).addClass('show');
-//             }
-//         });
-//     });
-// });
+

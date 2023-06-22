@@ -143,3 +143,31 @@ document.querySelector('.add-grade').addEventListener('click', (e) => {
 //         alert("Nie podano oceny lub podana ocena jest niepoprawna");
 //     }
 // })
+
+
+function setSubjectId(button) {
+    var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
+    document.getElementById("subjectId").value = subjectId;
+}
+
+function setSubjectIdForStudent(button) {
+    var subjectId = button.parentNode.parentNode.querySelector(".class").getAttribute("data-subject-id");
+    document.getElementById("subjectForStudentId").value = subjectId;
+}
+
+function setSubjectIdAndStudentIdForDelete(button) {
+    var subjectId = button.parentNode.parentNode.querySelector(".student").getAttribute("data-subject-id");
+    var studentId = button.parentNode.parentNode.querySelector(".student").getAttribute("data-student-id");
+    document.getElementById("delete-student-subject-id").value = subjectId;
+    document.getElementById("delete-student-student-id").value = studentId;
+}
+
+function setStudentInfoAndGrades(button) {
+    var studentName = button.parentNode.parentNode.querySelector(".studentInfo").getAttribute("data-student-name");
+    var studentSurname = button.parentNode.parentNode.querySelector(".studentInfo").getAttribute("data-student-surname");
+    var studentParentNumber = button.parentNode.parentNode.querySelector(".studentInfo").getAttribute("data-student-number");
+    var studentId = button.parentNode.parentNode.querySelector(".studentInfo").getAttribute("data-student-id");
+    document.getElementById("studentName").textContent = studentName;
+    document.getElementById("studentSurname").textContent = studentSurname;
+    document.getElementById("studentParentNumber").textContent = studentParentNumber;
+}
