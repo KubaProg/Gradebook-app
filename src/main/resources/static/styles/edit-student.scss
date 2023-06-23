@@ -158,7 +158,7 @@ textarea[readonly] {
     position: absolute;
     background: #EEE;
     left: 50%;
-    transform: translate(-50%, -100%) translateY(-14px);
+    transform: translate(-50%, -100%) translateY(-9px);
     width: 50%;
     padding: 5px 10px 0px 10px;
     border: 1px rgb(0, 151, 136) solid;
@@ -172,6 +172,7 @@ textarea[readonly] {
 .menu-header {
     background: rgb(0, 151, 136);
     display: flex;
+    align-items: center;
     padding: 15px;
     h5 {
         flex: 1;
@@ -179,9 +180,33 @@ textarea[readonly] {
 }
 
 .return {
+    background: #EEE;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 120px;
+    height: 40px;
+    border: 1px solid rgb(0, 151, 136);
+    border-radius: 5px;
     color: #333;
+    text-decoration: none;
     font-size: 20px;
     font-family: Impact, fantasy;
+    transition: all 0.2s;
+    &:visited { 
+        text-decoration: none; 
+    }
+    &:hover { 
+        text-decoration: none; 
+    }
+    &:active { 
+        text-decoration: none; 
+    }
+    &:hover {
+        background: rgb(0, 151, 136);
+        border: 1px solid #EEE;
+        color: #EEE;
+    }
 }
 
 .menu-title {
@@ -208,10 +233,13 @@ textarea[readonly] {
     padding: 0px 10px 0px 10px;
     font-size: 20px;
     font-family: Impact, fantasy;
+    p {
+        width: 50%;
+    }
 }
 
-#studentSurname {
-    width: 100%;
+.align-right {
+    text-align: end;
 }
 
 .student-grades-div {

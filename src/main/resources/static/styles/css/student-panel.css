@@ -108,6 +108,7 @@ body {
   border-bottom: none;
   border-radius: 100px 100px 0 0;
   color: rgb(0, 151, 136);
+  white-space: nowrap;
   font-size: 30px;
 }
 
@@ -161,7 +162,8 @@ body {
   width: 100%;
 }
 
-.class {
+.class-container {
+  display: flex;
   background: rgb(0, 151, 136);
   box-sizing: border-box;
   border: 1px #EEE solid;
@@ -171,13 +173,19 @@ body {
   font-size: 40px;
   transition: all 0.5s;
 }
-.class div {
-  width: calc(100% - 85px);
-}
-.class:hover {
+.class-container:hover {
   background: #EEE;
   border: 1px rgb(0, 151, 136) solid;
   color: rgb(0, 151, 136);
+}
+
+.class {
+  flex: 6;
+}
+
+.mean {
+  flex: 1;
+  text-align: center;
 }
 
 .grades {

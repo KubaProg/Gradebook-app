@@ -58,12 +58,12 @@
             
             <ul class="classes">
                 <li th:each="subject : ${subjects}">
+                  <div class="class-container">
                     <div class="class" th:text="*{subject.getName()}">
                       Matematyka
-                        <!-- <div>Matematyka</div>
-                        <button type="button" class="add-student" data-toggle="modal" data-target="#add-student-modal">&#x271A</button>
-                        <button type="button" class="remove-class" data-toggle="modal" data-target="#remove-class-modal">&#x2716</button> -->
                     </div>
+                    <div class="mean"></div>
+                  </div>
                     <ul class="grades">
                         <li th:each="grade : ${currentStudent.getGrades()}" class="grade" th:if="${grade.subject.id == subject.id}" th:data-grade-value="${grade.getNumericalValue()}" th:data-grade-description="${grade.getDescription()}">
                             <button onclick="setValueAndDescriptionOfGrade(this)" class="grade-button" data-toggle="modal" data-target="#grade-description-modal" th:text="*{grade.getNumericalValue()}"></button>

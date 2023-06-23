@@ -7,6 +7,15 @@ document.querySelectorAll('.grade').forEach((e) => {
     e.classList.add(`grade${num}`);
 });
 
+let mean = 0;
+let gradesCount = 0;
+document.querySelectorAll('.grade p').forEach(e => {
+    mean += parseFloat(e.innerHTML)
+    gradesCount += 1;
+})
+
+document.querySelector('#mean').innerHTML += (mean / gradesCount).toFixed(2);
+
 document.querySelectorAll('.invalid-feedback').forEach(e => {
     modalJQ = $('.modal');
     modal = document.querySelector('.modal');

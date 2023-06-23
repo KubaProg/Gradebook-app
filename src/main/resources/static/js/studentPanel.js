@@ -5,6 +5,12 @@ document.querySelectorAll('.grade').forEach((e) => {
 
 var noneTimeout = 0;
 document.querySelectorAll('.classes').forEach(element => {
+    let listGrades = element.querySelectorAll('.grade-button');
+    let mean = 0;
+    listGrades.forEach(e => {
+       mean += parseFloat(e.innerHTML);
+    });
+    element.querySelector('.mean').innerHTML = (mean / listGrades.length).toFixed(2);
     element.addEventListener('click', e => {
         studentList = $(e.target).parents('li').last().find('.students').first()[0];
         if (e.target.tagName.toLowerCase() == 'div' || e.target.tagName.toLowerCase() == 'a'){
@@ -19,13 +25,11 @@ document.querySelectorAll('.classes').forEach(element => {
             }
             else
             {
-                // console.log(noneTimeout)
                 clearTimeout(noneTimeout);
                 listGrades.style.maxHeight = 50 * rows + 5 * (rows - 1) + 20 + 'px';
                 setTimeout(() => {listGrades.style.maxHeight = 0 + 'px'} , 1);
                 listGrades.classList.remove('show-grades');
             }
-            console.log(noneTimeout);
         }
 
         if (e.target.classList.contains('remove-class') || e.target.classList.contains('remove-student')) {
