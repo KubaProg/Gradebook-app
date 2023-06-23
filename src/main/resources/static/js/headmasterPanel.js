@@ -1,6 +1,6 @@
 if ( window.history.replaceState ) {
     window.history.replaceState( null, null, '/headmaster-panel' );
-  }
+}
 
 document.querySelectorAll('.modal').forEach(modal => {
     modalJQ = $(modal);

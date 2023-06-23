@@ -20,7 +20,6 @@ body {
 
 .logo {
   flex: 1;
-  position: relative;
   overflow: hidden;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -45,9 +44,20 @@ body {
   border: 1px solid #EEE;
   border-radius: 5px;
   color: #000;
+  text-decoration: none;
+  font-family: fantasy;
   font-size: 20px;
   letter-spacing: 3px;
   transition: all 0.5s;
+}
+.login:visited {
+  text-decoration: none;
+}
+.login:hover {
+  text-decoration: none;
+}
+.login:active {
+  text-decoration: none;
 }
 .login div {
   position: absolute;
