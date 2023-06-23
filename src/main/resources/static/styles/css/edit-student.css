@@ -61,6 +61,10 @@ textarea[readonly] {
   margin: 10px 0px 0px 0px;
 }
 
+.invalid-feedback {
+  color: red;
+}
+
 .modal-footer {
   display: flex;
   justify-content: flex-end;
@@ -105,6 +109,34 @@ textarea[readonly] {
 .logout:hover {
   background: #880000;
   color: #333;
+}
+
+.success-message {
+  background: #ffff00;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  opacity: 0.6;
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: 15px;
+}
+
+.close-success-message {
+  background: none;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  text-align: center;
+  transition: all 200ms;
+}
+.close-success-message:hover {
+  background: #EEE;
+  color: #666;
 }
 
 .menu {

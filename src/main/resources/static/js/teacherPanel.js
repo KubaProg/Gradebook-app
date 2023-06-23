@@ -74,15 +74,6 @@ document.querySelectorAll('.students').forEach(e => {
     }
 })
 
-document.querySelector('.student-grades li').addEventListener('click', (e) => {
-    if (!e.target.classList.contains('grade-highlight')){
-        e.target.classList.add('grade-highlight');
-    }
-    else {
-        e.target.classList.remove('grade-highlight');
-    }
-});
-
 document.querySelector('.edit-grade').addEventListener('click', (e) => {
     document.querySelector('.edit-grade-submit').style.display = 'block';
     document.querySelector('.add-grade-submit').style.display = 'none';

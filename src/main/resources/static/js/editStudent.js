@@ -1,6 +1,37 @@
+if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, '/teacher-panel' );
+}
+
 document.querySelectorAll('.grade').forEach((e) => {
     let num = parseInt(e.querySelector('p').innerHTML);
     e.classList.add(`grade${num}`);
+});
+
+document.querySelectorAll('.invalid-feedback').forEach(e => {
+    modalJQ = $('.modal');
+    modal = document.querySelector('.modal');
+    modal.classList.remove('fade');
+    modalJQ.modal('show');
+    modal.classList.add('fade');
+    modal.classList.remove('in');
+    modal.classList.add('in');
+    document.querySelector('.modal-backdrop').classList.remove('in');
+    document.querySelector('.modal-backdrop').classList.add('fade');
+    document.querySelector('.modal-backdrop').classList.add('in');
+});
+
+document.querySelectorAll('.add-grade-cancel').forEach(cancel => {
+    cancel.addEventListener('click', element => {
+        setTimeout(() => {element.target.closest('.modal-body').querySelectorAll('.invalid-feedback').forEach(e => {
+            e.remove();
+        })}, '150');
+    });
+});
+
+document.querySelectorAll('.close-success-message').forEach(e => {
+    e.addEventListener('click', e => {
+        e.target.closest('.success-message').remove();
+    });
 });
 
 document.querySelectorAll('.student-grades li').forEach(element => {

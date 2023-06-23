@@ -43,7 +43,7 @@
               Please enter a description !
           </div>
         <div class="modal-footer">
-          <button type="button" class="delete" data-dismiss="modal">Anuluj</button>
+          <button type="button" class="delete add-grade-cancel" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="add">Dodaj</button>
         </div>
       </form>
@@ -58,6 +58,12 @@
       <button type="submit" class="logout">Wyloguj</button>
     </form>
 </div>
+
+<div th:if="${addGradeSuccessMessage}" class="success-message">
+  <span class="centered-text">Pomyslnie dodano ocenę!</span>
+  <button class="close-success-message">&times;</button>
+</div>
+
 <form method="post" th:object="${grade}" novalidate>
 
 <div class="menu">
