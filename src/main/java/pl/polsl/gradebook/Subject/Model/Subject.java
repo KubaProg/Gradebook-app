@@ -29,9 +29,8 @@ public class Subject {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    @NotBlank
-    @Size(min = 1, message = "{validation.name.size.too_short}")
-    @Size(max = 150, message = "{validation.name.size.too_long}")
+    @NotBlank(message = "to pole nie może być puste !")
+    @Size(max = 150, message = "nazwa przedmiotu za długa !")
     private String name;
 
     @ManyToMany(mappedBy = "subjects")

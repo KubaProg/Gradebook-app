@@ -25,8 +25,18 @@
         </button>
       </div>
       <form method="post" class="modal-body" th:object="${subject}" th:action="@{/teacher-panel/add-subject}">
-        Wpisz nazwę przedmiotu:
-        <input th:field="*{name}" type="text" class="form-control add-class-input">
+<!--        Wpisz nazwę przedmiotu:-->
+<!--        <input th:field="*{name}" type="text" class="form-control add-class-input">-->
+
+
+        <label for="subjectName" class="form-label">Wpisz nazwę przedmiotu:</label>
+        <input th:field="*{name}" th:errorclass="is-invalid" type="text" class="form-control" id="subjectName">
+        <div id="validationSubjectName" class="invalid-feedback" th:errors="*{name}">
+          Choose a valid name for subject !
+        </div>
+
+
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary add-class-cancel" data-dismiss="modal">Anuluj</button>
           <button type="submit" class="btn btn-primary add-class-submit">Dodaj</button>

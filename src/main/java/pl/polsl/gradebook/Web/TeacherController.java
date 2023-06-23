@@ -21,6 +21,8 @@ import pl.polsl.gradebook.Teacher.Service.TeacherService;
 import pl.polsl.gradebook.User.Model.User;
 import pl.polsl.gradebook.User.Service.UserService;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,15 +60,6 @@ public class TeacherController {
 
     @GetMapping
     public String showTeacherPage(Model model) {
-
-        User currentUser = userService.findCurrentUser();
-        Optional<Teacher> currentTeacher = teacherRepository.findTeacherByUserId(currentUser.getId());
-
-        if(currentTeacher.isPresent()){
-            Teacher teacher = currentTeacher.get();
-            model.addAttribute("subjects", teacher.getSubjects());
-        }
-
         return "teacher-panel";
     }
 
@@ -80,7 +73,20 @@ public class TeacherController {
 
 
 
+    @ModelAttribute("subjects")
+    public List<Subject> getAllSubjects(Model model) {
+        User currentUser = userService.findCurrentUser();
+        Optional<Teacher> currentTeacher = teacherRepository.findTeacherByUserId(currentUser.getId());
 
+        if (currentTeacher.isPresent()) {
+            Teacher teacher = currentTeacher.get();
+            return teacher.getSubjects();
+
+        }
+
+        return new ArrayList<>();
+
+    }
 
 
 
@@ -117,10 +123,10 @@ public class TeacherController {
     {
         if (!errors.hasErrors()) {
             subjectService.saveNewSubject(subject);
-
+            return "redirect:/teacher-panel";
         }
 
-        return "redirect:/teacher-panel";
+        return "/teacher-panel";
     }
 
     @PostMapping("/delete-subject")
