@@ -1,32 +1,57 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gradebook</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dziennik Elektroniczny</title>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/css/landing-page.css" th:href="@{/styles/css/landing-page.css}">
+    <script defer src="../static/js/landingPage.js" th:src="@{/js/landingPage.js}"></script>
+    
 </head>
 <body>
-  <h1>LANDING PAGE</h1>
-  <form novalidate th:object="${emailDto}" th:action="@{/send-mail}" method="post" class="modal-body">
-      Podaj swój email:
-      <input th:field="*{fromEmail}" type="text" >
-      <div id="validationFromEmail" class="invalid-feedback" th:errors="*{fromEmail}">
-          Please enter a parent number !
-      </div>
-      Podaj temat zapytania:
-      <input th:field="*{subject}"  type="text" >
-      <div id="validationMailSubject" class="invalid-feedback" th:errors="*{subject}">
-          Please enter a parent number !
-      </div>
-      Podaj treść zapytania:
-      <textarea th:field="*{body}" ></textarea>
-      <div id="validationMailBody" class="invalid-feedback" th:errors="*{body}">
-          Please enter a parent number !
-      </div>
+    <div class="header">
+        <div class="logo">Dziennik Elektroniczny</div>
+        <button class="login">Zaloguj<div></div></button>
+    </div>
+    <div class="container">
+        <div class="filler"></div>
+        <div class="banner">
+            <div class="banner-title">Dołącz do nas</div>
+            Dołącz do naszej usługi i otrzymaj dostęp do wygodnego i intuicyjnego w obsłudze dziennika elektronicznego. W prosty sposób zarządzaj nauczycielami, uczniami i umożliw im dostęp do ocen w każdej chwili
+        </div>
+        <div class="question-form-container">
+            <form novalidate th:object="${emailDto}" th:action="@{/send-mail}" method="post" class="question-form">
+                <p id="pierwszy">E-mail:</p>
+                <input th:field="*{fromEmail}" type="text" >
+                <div id="validationFromEmail" class="invalid-feedback" th:errors="*{fromEmail}">
+                    Please enter a parent number !
+                </div>
+                <p>Temat:</p>
+                <input th:field="*{subject}"  type="text" >
+                <div id="validationMailSubject" class="invalid-feedback" th:errors="*{subject}">
+                    Please enter a parent number !
+                </div>
+                <p>Treść:</p>
+                <textarea th:field="*{body}" ></textarea>
+                <div id="validationMailBody" class="invalid-feedback" th:errors="*{body}">
+                    Please enter a parent number !
+                </div>
+        
+                <button type="submit" class="send-question">
+                    WYŚLIJ
+                </button>
+            </form>
+        </div>
+    </div>
 
-      <button type="submit">
-          WYŚLIJ
-      </button>
-  </form>
-
+    <div class="footer">
+            <div>Community </div>
+            <div>Github</div>
+            <div class="help">Support</div>
+            <div>Contact us</div>
+        </div>
+    </div>
 </body>
 </html>

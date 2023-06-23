@@ -1,0 +1,236 @@
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0px;
+  color: #EEE;
+  background: #121228;
+}
+
+.header {
+  background: #006168;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.logo {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  margin-left: 5%;
+  color: #EEE;
+  white-space: nowrap;
+  font-size: 30px;
+  font-family: fantasy;
+}
+
+.login {
+  background: #EEE;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 170px;
+  height: 40px;
+  margin-right: 5%;
+  border: 1px solid #EEE;
+  border-radius: 5px;
+  color: #000;
+  font-size: 20px;
+  letter-spacing: 3px;
+  transition: all 0.5s;
+}
+.login div {
+  position: absolute;
+  transition: all 0.5s;
+  width: 120px;
+  height: 2px;
+  margin-top: 30px;
+}
+.login:hover {
+  background: #EFEFEF;
+  border: 1px solid #006168;
+}
+.login:hover div {
+  background: #000;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: none;
+  width: 100%;
+  min-height: 650px;
+  margin-top: 160px;
+}
+
+.banner {
+  display: block;
+  background: url("../../images/landingPageBlur.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  height: 400px;
+  padding: 30px 20px 30px 20px;
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
+  color: #EEE;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40px;
+}
+
+.banner-title {
+  margin-bottom: 50px;
+  font-size: 50px;
+}
+
+.question-form-container {
+  display: flex;
+  justify-content: center;
+  padding: 100px 0 100px 0;
+}
+
+.question-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 450px;
+  padding: 40px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.question-form::before {
+  background: rgb(0, 151, 136);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0 10px 0;
+  border-radius: 5px;
+  color: #EEE;
+  text-align: center;
+  font-size: 50px;
+  font-family: Impact, fantasy;
+  content: "Zadaj pytanie";
+}
+.question-form input {
+  padding: 10px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.question-form input:focus {
+  outline: none;
+}
+.question-form textarea {
+  resize: none;
+  border: none;
+  height: 70px;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.question-form textarea:focus {
+  outline: none;
+}
+.question-form p {
+  padding-top: 20px;
+  margin: 0;
+}
+.question-form div {
+  color: rgb(255, 60, 60);
+  font-size: 15px;
+}
+
+#pierwszy {
+  margin-top: 45px;
+}
+
+.send-question {
+  background: rgb(0, 151, 136);
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+  margin-top: 30px;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 20px;
+  transition: all 0.3s;
+}
+.send-question:hover {
+  background: rgb(0, 171, 156);
+}
+
+.footer {
+  display: flex;
+  background: rgb(0, 151, 136);
+  padding: 20px;
+  border-top: 1px solid #EEE;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+i {
+  background: #EEE;
+  width: 20px;
+}
+
+@media (width < 1000px) {
+  .container {
+    margin-top: 100px;
+  }
+  .banner {
+    height: 300px;
+    font-size: 30px;
+  }
+  .question-form-container {
+    justify-content: center;
+    padding: 40px 0 40px 0;
+  }
+}
+@media (width < 820px) {
+  .banner {
+    font-size: 25px;
+  }
+}
+@media (width < 600px) {
+  .banner {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .banner-title {
+    margin-bottom: 20px;
+    font-size: 40px;
+  }
+}/*# sourceMappingURL=landing-page.css.map */
