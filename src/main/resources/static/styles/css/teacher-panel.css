@@ -25,6 +25,12 @@ body {
   color: #EEE;
 }
 
+.modal-dialog {
+  max-width: 480px;
+  margin: auto;
+  margin-top: 30px;
+}
+
 .modal-body {
   background: #CCC;
   -webkit-user-select: none;
@@ -41,6 +47,10 @@ body {
   padding: 15px 0 15px 15px;
   margin-top: 0px;
   border: none;
+}
+
+.invalid-feedback {
+  color: red;
 }
 
 .btn:focus {
