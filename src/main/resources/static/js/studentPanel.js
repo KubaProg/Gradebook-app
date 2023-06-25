@@ -11,7 +11,12 @@ document.querySelectorAll('.classes').forEach(element => {
         listGrades.forEach(e => {
            mean += parseFloat(e.innerHTML);
         });
-        subject.querySelector('.mean').innerHTML = (mean / listGrades.length).toFixed(2);
+        if (listGrades.length != 0) {
+            subject.querySelector('.mean').innerHTML = (mean / listGrades.length).toFixed(2);
+        }
+        else {
+            subject.querySelector('.mean').innerHTML = '';
+        }
     })
     element.addEventListener('click', e => {
         studentList = $(e.target).parents('li').last().find('.students').first()[0];
@@ -52,7 +57,6 @@ document.querySelectorAll('.grades').forEach(e => {
         empty = document.createElement('li');
         empty.insertAdjacentHTML('afterbegin', 'Brak ocen');
         empty.style.width = '200%';
-        empty.style.color = '#000';
         empty.style.fontSize = '30px';
         e.insertAdjacentElement('afterbegin', empty);
     }

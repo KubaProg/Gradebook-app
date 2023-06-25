@@ -13,8 +13,12 @@ document.querySelectorAll('.grade p').forEach(e => {
     mean += parseFloat(e.innerHTML)
     gradesCount += 1;
 })
-
-document.querySelector('#mean').innerHTML += (mean / gradesCount).toFixed(2);
+if (gradesCount != 0){
+    document.querySelector('#mean').innerHTML += (mean / gradesCount).toFixed(2);
+}
+else {
+    document.querySelector('#mean').innerHTML += 'Brak ocen'
+}
 
 document.querySelectorAll('.invalid-feedback').forEach(e => {
     modalJQ = $('.modal');
