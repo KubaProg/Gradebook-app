@@ -200,6 +200,15 @@ body {
   padding: 20px;
   border-top: 1px solid #EEE;
 }
+.footer a {
+  margin-left: 5%;
+  color: #EEE;
+  text-decoration: none;
+  font-size: 20px;
+}
+.footer a:hover {
+  color: #333;
+}
 
 @keyframes fadeIn {
   from {
