@@ -3,7 +3,7 @@
 
 > The Gradebook Web Application is a platform that helps educational institutions manage and track students' grades and academic progress. It provides a user-friendly interface for teachers, students, and headmaster to access and update school system related information.
 
-![Gradebook Screenshot](/path/to/screenshot.png)
+
 
 ## Features
 
@@ -14,7 +14,7 @@
 
 ## Demo
 
-Check out the live demo: [https://gradebook-polsl-09b1b13c86f3.herokuapp.com/choose-account](https://gradebook-polsl-09b1b13c86f3.herokuapp.com/choose-account)
+Check out the live demo: [https://gradebook-polsl-09b1b13c86f3.herokuapp.com/choose-account](https://gradebook-polsl-09b1b13c86f3.herokuapp.com)
 
 ## Account Passwords [login,password]
 
