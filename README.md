@@ -14,7 +14,7 @@
 
 ## Demo
 
-Check out the live demo: [https://gradebook-polsl-09b1b13c86f3.herokuapp.com/choose-account](https://gradebook-polsl-09b1b13c86f3.herokuapp.com)
+Check out the live demo: [https://gradebook-polsl-09b1b13c86f3.herokuapp.com](https://gradebook-polsl-09b1b13c86f3.herokuapp.com)
 
 ## Account Passwords [login,password]
 
