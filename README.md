@@ -1,15 +1,30 @@
 
-# Gradebook Web Application
+# School Management System
 
-> The Gradebook Web Application is a platform that helps educational institutions manage and track students' grades and academic progress. It provides a user-friendly interface for teachers, students, and headmaster to access and update school system related information.
+This project aims to create a comprehensive database for a school management application, enabling efficient management of student and teacher information. The database is designed to facilitate easy storage, updating, and retrieval of data related to students, grades, classes, and other crucial school-related information. The goal is to provide an effective working environment for directors, teachers, and students by simplifying access to essential information and streamlining school management processes.
 
+## Key Features:
+- **User Roles:**
+  - Director: Highest authority with the ability to manage teachers, students, and school data.
+  - Teacher: Can manage classes, add and remove students, and assign grades.
+  - Student: Has access to personal grades and enrolled classes.
 
+- **Data Management:**
+  - User authentication and authorization.
+  - Adding and removing teachers by the director.
+  - Creating custom classes and adding students to them.
+  - Grade management for each student by teachers.
 
-# Features
+- **User Interface:**
+  - Separate interfaces for directors, teachers, and students.
+  - Intuitive navigation and user-friendly design.
+  - Responsive and accessible from various devices.
 
-- Create and manage courses, classes, and assignments.
-- Add and update students' grades for each assignment.
-- User authentication and authorization system for secure access.
+## Technologies Used:
+- **Java:** Core programming language.
+- **Spring Framework:** Used for building a scalable web application.
+- **H2 Database:** Utilized as the underlying database to manage and store data efficiently.
+- **Thymeleaf:** Template engine for server-side rendering.
 
 
 # Screenshots from app
